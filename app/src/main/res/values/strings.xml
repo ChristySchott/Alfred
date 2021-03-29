@@ -1,0 +1,73 @@
+<resources>
+    <string name="app_name">Alfred</string>
+    <!-- Main Activity -->
+    <string name="title_content_main">Entrar</string>
+    <string name="action_forgot_password">Esqueceu sua senha?</string>
+    <string name="action_do_not_have_account">Não possui uma conta?</string>
+    <string name="action_signUp">Cadastrar</string>
+    <string name="btn_signIn">Entrar agora</string>
+    <!-- SignUp Activity -->
+    <string name="title_content_signUp">Cadastrar</string>
+    <string name="action_have_account">Já possui uma conta?</string>
+    <string name="action_signIn"><u>Entrar</u></string>
+    <string name="btn_signUp"><u>Cadastrar agora</u></string>
+    <!-- RecoverPassword Activity -->
+    <string name="title_content_recoverPassword">Recuperar Senha</string>
+    <string name="description_recoverPassword">Enviaremos um e-mail para a recuperação de senha.</string>
+    <string name="btn_recoverPassword">Recuperar agora</string>
+    <!-- Text Fields -->
+    <string name="tx_email">Email</string>
+    <string name="tx_password">Senha</string>
+    <string name="tx_password_confirm">Confirmar senha</string>
+    <string name="tx_name">Nome</string>
+    <string name="tx_surname">Sobrenome</string>
+    <string name="tx_birthday">Data de nascimento</string>
+    <string name="tx_phone">Celular</string>
+    <string name="tx_area">Area</string>
+    <string name="tx_city">Cidade</string>
+    <string name="tx_neighborhood">Bairro</string>
+    <string name="tx_street">Rua</string>
+    <string name="tx_streetNumber">Nº</string>
+    <string name="tx_complement">Complemento</string>
+    <string name="tx_searchRestaurant">pesquisar restaurante</string>
+    <string name="tx_observation">Observação</string>
+    <string name="tx_currentPassword">Senha atual</string>
+    <string name="tx_newPassword">Nova senha</string>
+    <string name="tx_confirmNewPassword">Confirmar nova senha</string>
+    <!-- MyInfos Activity -->
+    <string name="title_content_personalInfos">infos pessoais</string>
+    <string name="title_content_myAddress">meu endereço</string>
+    <!-- MyAccount Activity -->
+    <string name="title_content_my_account">alterar senha</string>
+    <!-- Buttons -->
+    <string name="btn_save">salvar</string>
+    <string name="btn_cancel">cancelar</string>
+    <!-- Drawer -->
+    <string name="drawer_myOrders">meus pedidos</string>
+    <string name="drawer_myInfos">minhas infos</string>
+    <string name="drawer_myPassword">minha senha</string>
+    <!-- Cart -->
+    <string name="title_content_cart">Carrinho</string>
+    <string name="title_content_paymentMethod">forma de pagamento</string>
+    <string name="rb_cash">dinheiro</string>
+    <string name="rb_card">cartão</string>
+    <string name="btn_confirmOrder">Confirmar pedido</string>
+    <string name="btn_cancelOrder">Cancelar pedido</string>
+    <!-- Helpers -->
+    <string name="helper_optional">Opcional</string>
+    <string name="helper_required">Obrigatório</string>
+    <string name="title_activity_menu">MenuActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_tools">Tools</string>
+    <string name="menu_share">Share</string>
+    <string name="menu_send">Send</string>
+</resources>

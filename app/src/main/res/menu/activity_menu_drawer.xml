@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/itemOrders"
+            android:icon="@drawable/ic_myorders"
+            android:title="@string/drawer_myOrders"
+            android:checked="true" />
+        <item
+            android:id="@+id/itemInfos"
+            android:icon="@drawable/ic_myinfos"
+            android:title="@string/drawer_myInfos" />
+        <item
+            android:id="@+id/itemPassword"
+            android:icon="@drawable/ic_mypassword"
+            android:title="@string/drawer_myPassword" />
+    </group>
+</menu>
