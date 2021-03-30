@@ -35,7 +35,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
             android:textFontWeight="600"
-            android:textSize="24dp"
+            android:textSize="24sp"
             android:text="@string/title_content_signUp" />
 
     </LinearLayout>
@@ -50,7 +50,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/bg_input"
+            android:background="@drawable/roundex_textfield"
             />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -60,14 +60,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/tx_password"
-        android:layout_marginTop="12dp"
         app:startIconDrawable="@drawable/ic_password">
 
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/bg_input"/>
+            android:background="@drawable/roundex_textfield"
+            />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -76,7 +76,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/tx_password_confirm"
-        android:layout_marginTop="12dp"
         app:startIconDrawable="@drawable/ic_password"
         >
 
@@ -84,7 +83,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/bg_input"
+            android:background="@drawable/roundex_textfield"
             />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -96,6 +95,7 @@
         android:layout_height="50dp"
         android:layout_marginTop="64dp"
         android:text="@string/btn_signUp"
+        android:background="@drawable/rounded_button"
         />
 
     <LinearLayout
