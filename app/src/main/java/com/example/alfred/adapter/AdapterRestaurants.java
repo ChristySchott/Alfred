@@ -11,8 +11,17 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.alfred.R;
+import com.example.alfred.model.Restaurant;
+
+import java.util.List;
 
 public class AdapterRestaurants extends RecyclerView.Adapter<AdapterRestaurants.MyViewHolder> {
+
+    private List<Restaurant> restaurantList;
+
+    public AdapterRestaurants(List<Restaurant> list) {
+        this.restaurantList = list;
+    }
 
     @NonNull
     @Override
@@ -27,11 +36,16 @@ public class AdapterRestaurants extends RecyclerView.Adapter<AdapterRestaurants.
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
 
+        Restaurant restaurant = restaurantList.get(position);
+        holder.name.setText(restaurant.getName());
+        holder.rating.setNumStars(restaurant.getRating());
+        holder.category.setText(restaurant.getCategory());
+        holder.averagePrice.setText(restaurant.getAveragePrice().toString());
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return restaurantList.size();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
@@ -42,15 +56,14 @@ public class AdapterRestaurants extends RecyclerView.Adapter<AdapterRestaurants.
             TextView category;
             TextView averagePrice;
 
-            // TODO - Verificar se nomes não repetem
             public MyViewHolder(View itemView) {
                 super(itemView);
 
-
-                name = itemView.findViewById(R.id.txName);
-                rating = itemView.findViewById(R.id.rbRating);
-                category = itemView.findViewById(R.id.txCategory);
-                averagePrice = itemView.findViewById(R.id.txAveragePrice);
+                image = itemView.findViewById(R.id.ivRestaurantImage);
+                name = itemView.findViewById(R.id.txRestaurantName);
+                rating = itemView.findViewById(R.id.rbRestaurantRating);
+                category = itemView.findViewById(R.id.txRestaurantName);
+                averagePrice = itemView.findViewById(R.id.txRestaurantAveragePrice);
             }
         }
 }
