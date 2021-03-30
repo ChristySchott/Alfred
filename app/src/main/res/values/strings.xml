@@ -39,6 +39,8 @@
     <string name="title_content_myAddress">meu endereço</string>
     <!-- MyAccount Activity -->
     <string name="title_content_my_account">alterar senha</string>
+    <!-- MyOrders Activity -->
+    <string name="title_contet_my_orders">meus pedidos</string>
     <!-- Buttons -->
     <string name="btn_save">salvar</string>
     <string name="btn_cancel">cancelar</string>
@@ -63,11 +65,12 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
-
-    <string name="menu_home">Home</string>
-    <string name="menu_gallery">Gallery</string>
-    <string name="menu_slideshow">Slideshow</string>
-    <string name="menu_tools">Tools</string>
-    <string name="menu_share">Share</string>
-    <string name="menu_send">Send</string>
+    <!-- Recycler Views -->
+    <string name="recycler_view_opened">abertos</string>
+    <string name="recycler_view_closed">fechados</string>
+    <string name="recycler_view_dishes">pratos</string>
+    <string name="recycler_view_cart">seu carrinho</string>
+    <string name="recycler_view_order_analysis">em análise</string>
+    <string name="recycler_view_order_approved">aprovados</string>
+    <string name="recycler_view_order_denied">negados</string>
 </resources>

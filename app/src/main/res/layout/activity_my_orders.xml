@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBackground"
-    tools:context=".activity.MyInfosActivity">
+    tools:context=".activity.MyOrdersActivity">
 
-    <include layout="@layout/content_my_infos" />
+    <include layout="@layout/content_my_orders" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

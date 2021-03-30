@@ -5,6 +5,8 @@
     <color name="colorAccent">#00A395</color>
     <color name="colorMoney">#4AD395</color>
     <color name="colorGray">#666666</color>
+    <color name="colorBackground">#E5E5E5</color>
+    <color name="colorWhite">#FFFFFF</color>
     <color name="bg_input">#EAEAEA</color>
     <color name="bg_button">#969696</color>
     <color name="divider">#F7F7F7</color>
