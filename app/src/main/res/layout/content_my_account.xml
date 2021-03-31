@@ -1,48 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="24dp"
     tools:context=".activity.MyAccountActivity"
-    tools:showIn="@layout/activity_my_account"
-    android:padding="24dp">
+    tools:showIn="@layout/activity_my_account">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="24dp"
-        android:textSize="18sp"
+        android:text="@string/title_content_my_account"
         android:textColor="@color/colorPrimaryDark"
-        android:text="@string/title_content_my_account" />
+        android:textSize="18sp" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center">
+        android:gravity="center"
+        android:orientation="horizontal">
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_password"
-            android:layout_marginRight="16dp"/>
+            android:layout_marginRight="16dp"
+            android:src="@drawable/ic_password" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/txCurrentPassword"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:hint="@string/tx_currentPassword"
-            >
+            android:hint="@string/tx_currentPassword">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/roundex_textfield"
                 android:paddingStart="12dp"
-                android:paddingLeft="12dp"
-                />
+                android:paddingLeft="12dp" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -58,23 +56,20 @@
             android:layout_width="24dp"
             android:layout_height="20dp"
             android:layout_marginEnd="16dp"
-            android:layout_marginRight="16dp"
-            />
+            android:layout_marginRight="16dp" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/txNewPassword"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:hint="@string/tx_newPassword"
-            >
+            android:hint="@string/tx_newPassword">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/roundex_textfield"
                 android:paddingStart="12dp"
-                android:paddingEnd="12dp"
-                />
+                android:paddingEnd="12dp" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -89,21 +84,19 @@
         <View
             android:layout_width="24dp"
             android:layout_height="20dp"
-            android:layout_marginRight="16dp"/>
+            android:layout_marginRight="16dp" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/txConfirmNewPassword"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:hint="@string/tx_confirmNewPassword"
-            >
+            android:hint="@string/tx_confirmNewPassword">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/roundex_textfield"
-                android:paddingLeft="12dp"
-                />
+                android:paddingLeft="12dp" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -112,25 +105,24 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_gravity="end"
         android:layout_marginTop="32dp"
-        >
+        android:orientation="horizontal">
+
         <Button
             android:id="@+id/btnMyAccountCancel"
             android:layout_width="120dp"
             android:layout_height="50dp"
-            android:text="@string/btn_cancel"
             android:layout_marginRight="12dp"
             android:background="@drawable/rounded_button"
-            />
+            android:text="@string/btn_cancel" />
+
         <Button
             android:id="@+id/btnMyAccountSave"
             android:layout_width="120dp"
             android:layout_height="50dp"
-            android:text="@string/btn_save"
             android:background="@drawable/rounded_button"
-            />
+            android:text="@string/btn_save" />
 
     </LinearLayout>
 </LinearLayout>

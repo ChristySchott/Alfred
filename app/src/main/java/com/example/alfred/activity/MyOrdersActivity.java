@@ -5,9 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Build;
 import android.os.Bundle;
-import android.widget.Toolbar;
 
 import com.example.alfred.R;
+import com.google.android.material.appbar.MaterialToolbar;
 
 public class MyOrdersActivity extends AppCompatActivity {
 
@@ -18,8 +18,9 @@ public class MyOrdersActivity extends AppCompatActivity {
         setContentView(R.layout.activity_my_orders);
 
         // Configuração da Toolbar
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        MaterialToolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("Meus Pedidos");
+        setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 }

@@ -1,14 +1,13 @@
 package com.example.alfred.activity;
 
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Build;
 import android.os.Bundle;
 import android.widget.Button;
-import android.widget.Toolbar;
 
 import com.example.alfred.R;
+import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.textfield.TextInputLayout;
 
 public class MyInfosActivity extends AppCompatActivity {
@@ -16,7 +15,6 @@ public class MyInfosActivity extends AppCompatActivity {
     TextInputLayout txMyInfosName, txMyInfosSurname, txMyInfosBirthday, txMyInfosPhone, txMyInfosArea, txMyInfosCity, txMyInfosNeighbordhood, txMyInfosStreet, txMyInfosStreetNumber, txMyInfosComplement;
     Button btnMyAccountCancel, btnMyAccountSave;
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,8 +24,9 @@ public class MyInfosActivity extends AppCompatActivity {
         initComponents();
 
         // Configuração da Toolbar
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        MaterialToolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("Minhas Infos");
+        setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 

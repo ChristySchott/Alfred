@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.widget.Button;
 
 import com.example.alfred.R;
+import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.textfield.TextInputLayout;
 
 public class MyAccountActivity extends AppCompatActivity {
@@ -20,6 +21,12 @@ public class MyAccountActivity extends AppCompatActivity {
 
         // Configuração inicial dos componentes
         initComponents();
+
+        // Configuração da Toolbar
+        MaterialToolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle("Minha Conta");
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     private void initComponents() {

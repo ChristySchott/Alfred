@@ -1,129 +1,142 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:padding="24dp">
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_examplerestaurant"
-            android:layout_marginEnd="16dp"
-            android:layout_marginRight="16dp"/>
-
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
             android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/txName"
+                <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="12dp"
-                    android:layout_marginEnd="12dp"
-                    android:textColor="@color/colorPrimaryDark"
-                    android:text="Restaurante" />
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginRight="16dp"
+                    android:src="@drawable/ic_examplerestaurant" />
 
-                <RatingBar
-                    android:id="@+id/rbRating"
+
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    style="?android:attr/ratingBarStyleSmall"
-                    android:numStars="5"
-                    android:stepSize="0.1"
-                    android:isIndicator="true" />
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/txName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="12dp"
+                            android:layout_marginRight="12dp"
+                            android:text="Restaurante"
+                            android:textColor="@color/colorPrimaryDark" />
+
+                        <RatingBar
+                            android:id="@+id/rbRating"
+                            style="?android:attr/ratingBarStyleSmall"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:isIndicator="true"
+                            android:numStars="5"
+                            android:stepSize="0.1" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/txCityAndState"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:text="Venâncio Aires - RS"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/txStreet"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Rua 13 de Maio"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="12sp" />
+
+                </LinearLayout>
+
+
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/txCityAndState"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="12sp"
-                android:textColor="@color/colorPrimaryDark"
-                android:layout_marginTop="12dp"
-                android:text="Venâncio Aires - RS"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="48dp"
+                android:background="@drawable/rounded_button"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp">
 
-            <TextView
-                android:id="@+id/txStreet"
-                android:layout_width="wrap_content"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/title_content_cart"
+                    android:textColor="#FFFFFF" />
+
+                <TextView
+                    android:id="@+id/txTotalValue"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="end"
+                    android:text="R$ 0.00"
+                    android:textColor="#FFFFFF" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="12sp"
-                android:textColor="@color/colorPrimaryDark"
-                android:text="Rua 13 de Maio"/>
+                android:layout_marginTop="24dp"
+                android:background="@drawable/recycler_view_container"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/recycler_view_header"
+                    android:text="@string/recycler_view_dishes" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/divider" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvDishes"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp"
+                    tools:layout_editor_absoluteX="1dp"
+                    tools:layout_editor_absoluteY="20dp" />
+
+            </LinearLayout>
 
         </LinearLayout>
 
-
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:background="@drawable/rounded_button"
-        android:layout_marginTop="48dp"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
-        android:orientation="horizontal"
-        android:gravity="center">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/title_content_cart"
-            android:textColor="#FFFFFF"/>
-
-        <TextView
-            android:id="@+id/txTotalValue"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="R$ 0.00"
-            android:gravity="end"
-            android:textColor="#FFFFFF"/>
-
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:background="@drawable/recycler_view_container"
-        android:orientation="vertical">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/recycler_view_dishes"
-            android:background="@drawable/recycler_view_header" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/divider" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvDishes"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:layout_editor_absoluteX="1dp"
-            tools:layout_editor_absoluteY="20dp"
-            android:padding="16dp"/>
-
-    </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>

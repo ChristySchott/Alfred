@@ -11,13 +11,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
-import android.widget.Toolbar;
 
 import com.example.alfred.InfosApp;
 import com.example.alfred.R;
 import com.example.alfred.RecyclerItemClickListener;
 import com.example.alfred.adapter.AdapterDishes;
 import com.example.alfred.model.Dish;
+import com.google.android.material.appbar.MaterialToolbar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,8 +42,10 @@ public class RestaurantMenuActivity extends AppCompatActivity {
         this.createDishes();
 
         // Configuração da Toolbar
-        Toolbar toolbar = findViewById(R.id.toolbar);
+
+        MaterialToolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("Cardápio");
+        setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         // Configurar adapter para o RecyclerView

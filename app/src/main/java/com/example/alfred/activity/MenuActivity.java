@@ -9,7 +9,6 @@ import com.example.alfred.RecyclerItemClickListener;
 import com.example.alfred.adapter.AdapterRestaurants;
 import com.example.alfred.model.Restaurant;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
 import android.view.View;
 
@@ -40,7 +39,6 @@ public class MenuActivity extends AppCompatActivity {
     // private AppBarConfiguration mAppBarConfiguration;
     private RecyclerView recyclerViewOpenedRestaurants;
     private List<Restaurant> restaurantList =  new ArrayList<>();
-    private InfosApp infosApp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +61,6 @@ public class MenuActivity extends AppCompatActivity {
 
         recyclerViewOpenedRestaurants = findViewById(R.id.rvOpened);
 
-        infosApp = (InfosApp) getApplicationContext();
 
         // Listagem de Restaurantes
         this.createRestaurants();
@@ -86,7 +83,7 @@ public class MenuActivity extends AppCompatActivity {
                         new RecyclerItemClickListener.OnItemClickListener() {
                             @Override
                             public void onItemClick(View view, int position) {
-                                Restaurant myRestaurant = infosApp.getRestaurantList().get(position);
+                                Restaurant myRestaurant = restaurantList.get(position);
 
                                 Intent it = new Intent(MenuActivity.this, RestaurantMenuActivity.class);
                                 it.putExtra("restaurant", myRestaurant);

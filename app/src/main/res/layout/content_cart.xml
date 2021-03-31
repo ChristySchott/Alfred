@@ -1,112 +1,120 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="24dp"
     tools:context=".activity.CartActivity"
-    tools:showIn="@layout/activity_cart"
-    android:padding="24dp">
+    tools:showIn="@layout/activity_cart">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
-        android:textSize="18sp"
-        android:textColor="@color/colorPrimaryDark"
-        android:text="@string/title_content_paymentMethod" />
-
-    <RadioGroup
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <RadioButton
-            android:id="@+id/rbCartCash"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/rb_cash"/>
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical">
 
-        <RadioButton
-            android:id="@+id/rbCartCard"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/rb_card"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                android:text="@string/title_content_paymentMethod"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="18sp" />
 
-    </RadioGroup>
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-    <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/txCartObservation"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:hint="@string/tx_observation"
-            app:helperTextTextColor="@color/colorPrimaryDark"
-            app:helperText="@string/helper_optional"
-            app:helperTextEnabled="true"
-            >
+                <RadioButton
+                    android:id="@+id/rbCartCash"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/rb_cash" />
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/roundex_textfield"
-            android:paddingLeft="12dp"
-            />
+                <RadioButton
+                    android:id="@+id/rbCartCard"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/rb_card" />
 
-    </com.google.android.material.textfield.TextInputLayout>
+            </RadioGroup>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/txCartObservation"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:hint="@string/tx_observation"
+                app:helperText="@string/helper_optional"
+                app:helperTextEnabled="true"
+                app:helperTextTextColor="@color/colorPrimaryDark">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/roundex_textfield"
+                    android:paddingLeft="12dp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
 
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:background="@drawable/recycler_view_container"
-        android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/recycler_view_container"
+                android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/recycler_view_cart"
-            android:background="@drawable/recycler_view_header" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/recycler_view_header"
+                    android:text="@string/recycler_view_cart" />
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/divider" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/divider" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvCart"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:layout_editor_absoluteX="1dp"
-            tools:layout_editor_absoluteY="20dp"
-            android:padding="16dp"/>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvCart"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp"
+                    tools:layout_editor_absoluteX="1dp"
+                    tools:layout_editor_absoluteY="20dp" />
 
-    </LinearLayout>
+            </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:orientation="vertical"
-        android:gravity="center">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:gravity="center"
+                android:orientation="vertical">
 
-        <Button
-            android:id="@+id/btnCartConfirmOrder"
-            android:layout_width="300dp"
-            android:layout_height="50dp"
-            android:text="@string/btn_confirmOrder"
-            android:background="@drawable/rounded_button"
-            />
-        <Button
-            android:id="@+id/btnCartCancelOrder"
-            android:layout_width="300dp"
-            android:layout_marginTop="12dp"
-            android:layout_height="50dp"
-            android:text="@string/btn_cancelOrder"
-            android:background="@drawable/rounded_button"
-            />
-    </LinearLayout>
+                <Button
+                    android:id="@+id/btnCartConfirmOrder"
+                    android:layout_width="300dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/rounded_button"
+                    android:text="@string/btn_confirmOrder" />
 
+                <Button
+                    android:id="@+id/btnCartCancelOrder"
+                    android:layout_width="300dp"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="12dp"
+                    android:background="@drawable/rounded_button"
+                    android:text="@string/btn_cancelOrder" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>

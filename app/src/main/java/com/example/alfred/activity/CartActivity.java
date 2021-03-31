@@ -8,9 +8,9 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.widget.RadioButton;
-import android.widget.Toolbar;
 
 import com.example.alfred.R;
+import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.textfield.TextInputLayout;
 
 public class CartActivity extends AppCompatActivity {
@@ -28,8 +28,9 @@ public class CartActivity extends AppCompatActivity {
         initComponents();
 
         // Configuração da Toolbar
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        MaterialToolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("Carrinho");
+        setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
