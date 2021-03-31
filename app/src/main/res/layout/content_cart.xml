@@ -23,13 +23,13 @@
         android:orientation="vertical">
 
         <RadioButton
-            android:id="@+id/rbCash"
+            android:id="@+id/rbCartCash"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/rb_cash"/>
 
         <RadioButton
-            android:id="@+id/rbCard"
+            android:id="@+id/rbCartCard"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/rb_card"/>
@@ -37,7 +37,7 @@
     </RadioGroup>
 
     <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/txObservation"
+            android:id="@+id/txCartObservation"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:hint="@string/tx_observation"
@@ -92,14 +92,14 @@
         android:gravity="center">
 
         <Button
-            android:id="@+id/btnConfirmOrder"
+            android:id="@+id/btnCartConfirmOrder"
             android:layout_width="300dp"
             android:layout_height="50dp"
             android:text="@string/btn_confirmOrder"
             android:background="@drawable/rounded_button"
             />
         <Button
-            android:id="@+id/btnCancelOrder"
+            android:id="@+id/btnCartCancelOrder"
             android:layout_width="300dp"
             android:layout_marginTop="12dp"
             android:layout_height="50dp"
