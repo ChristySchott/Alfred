@@ -5,16 +5,16 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center"
     tools:context=".activity.SignUpActivity"
     tools:showIn="@layout/activity_sign_up"
-    android:padding="12dp">
+    android:padding="24dp">
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_logo"
         android:layout_marginBottom="64dp"
-        android:layout_marginTop="64dp"
         />
 
     <LinearLayout

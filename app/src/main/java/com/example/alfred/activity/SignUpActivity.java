@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toolbar;
 
 import com.example.alfred.R;
 import com.google.android.material.textfield.TextInputLayout;
@@ -22,6 +23,10 @@ public class SignUpActivity extends AppCompatActivity {
 
         // Configuração inicial dos componentes
         initComponents();
+
+        // Configuração da Toolbar
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        getSupportActionBar().hide();
 
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override

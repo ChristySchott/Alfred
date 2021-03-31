@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toolbar;
 
 import com.example.alfred.R;
 import com.google.android.material.textfield.TextInputLayout;
@@ -13,7 +14,7 @@ import com.google.android.material.textfield.TextInputLayout;
 public class MainActivity extends AppCompatActivity {
 
     TextInputLayout txMainEmail, txMainPassword;
-    Button btnMainSignIn, btnDoNotHaveAccount;
+    Button btnMainSignIn, btnDoNotHaveAccount, btnForgotPassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +23,10 @@ public class MainActivity extends AppCompatActivity {
 
         // Configuração inicial dos components
         initComponents();
+
+        // Configuração da Toolbar
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        getSupportActionBar().hide();
 
         btnMainSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,6 +57,14 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(it);
             }
         });
+
+        btnForgotPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent it = new Intent(MainActivity.this, RecoverPasswordActivity.class);
+                startActivity(it);
+            }
+        });
     }
 
     private void initComponents() {
@@ -59,5 +72,6 @@ public class MainActivity extends AppCompatActivity {
         txMainPassword = findViewById(R.id.txMainPassword);
         btnMainSignIn = findViewById(R.id.btnMainSignIn);
         btnDoNotHaveAccount = findViewById(R.id.btnDoNotHaveAccount);
+        btnForgotPassword = findViewById(R.id.btnForgotPassword);
     }
 }

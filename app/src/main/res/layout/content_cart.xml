@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".activity.CartActivity"
     tools:showIn="@layout/activity_cart"
-    android:padding="12dp">
+    android:padding="24dp">
 
     <TextView
         android:layout_width="wrap_content"
