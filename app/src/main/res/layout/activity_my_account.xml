@@ -7,6 +7,11 @@
     android:background="@color/colorBackground"
     tools:context=".activity.MyAccountActivity">
 
+    <include
+        layout="@layout/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
     <include layout="@layout/content_my_account" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

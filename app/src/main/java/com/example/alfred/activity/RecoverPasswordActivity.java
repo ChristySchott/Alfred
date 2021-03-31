@@ -20,10 +20,8 @@ public class RecoverPasswordActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recover_password);
 
-        txRecoverPasswordEmail = findViewById(R.id.txRecoverPasswordEmail);
-
-        btnRecoverPassword = findViewById(R.id.btnRecoverPassword);
-        btnHaveAccountRP = findViewById(R.id.btnHaveAccountRP);
+        // Configuração inicial dos componentes
+        initComponents();
 
         btnRecoverPassword.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,4 +50,11 @@ public class RecoverPasswordActivity extends AppCompatActivity {
         });
 
     }
+
+    private void initComponents() {
+        txRecoverPasswordEmail = findViewById(R.id.txRecoverPasswordEmail);
+        btnRecoverPassword = findViewById(R.id.btnRecoverPassword);
+        btnHaveAccountRP = findViewById(R.id.btnHaveAccountRP);
+    }
+
 }

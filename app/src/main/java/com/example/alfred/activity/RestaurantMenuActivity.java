@@ -1,14 +1,17 @@
 package com.example.alfred.activity;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
+import android.widget.Toolbar;
 
 import com.example.alfred.InfosApp;
 import com.example.alfred.R;
@@ -25,6 +28,7 @@ public class RestaurantMenuActivity extends AppCompatActivity {
     private List<Dish> dishList =  new ArrayList<>();
     private InfosApp infosApp;
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +40,11 @@ public class RestaurantMenuActivity extends AppCompatActivity {
 
         // Listagem de Restaurantes
         this.createDishes();
+
+        // Configuração da Toolbar
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle("Cardápio");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         // Configurar adapter para o RecyclerView
         AdapterDishes adapterRestaurants = new AdapterDishes(dishList);

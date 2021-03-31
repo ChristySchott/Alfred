@@ -48,6 +48,7 @@
     <string name="drawer_myPassword">minha senha</string>
     <!-- Cart -->
     <string name="title_content_cart">Carrinho</string>
+    <string name="title_header_cart">Encerrar Pedido</string>
     <string name="title_content_paymentMethod">forma de pagamento</string>
     <string name="rb_cash">dinheiro</string>
     <string name="rb_card">cartão</string>

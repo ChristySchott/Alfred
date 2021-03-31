@@ -20,12 +20,8 @@ public class SignUpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
-        txSignUpEmail = findViewById(R.id.txSignUpEmail);
-        txSignUpPassword = findViewById(R.id.txSignUpPassword);
-        txSignUpConfirmPassword = findViewById(R.id.txSignUpConfirmPassword);
-
-        btnSignUp = findViewById(R.id.btnSignUp);
-        btnHaveAccount = findViewById(R.id.btnHaveAccount);
+        // Configuração inicial dos componentes
+        initComponents();
 
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,5 +52,13 @@ public class SignUpActivity extends AppCompatActivity {
                 startActivity(it);
             }
         });
+    }
+
+    public void initComponents() {
+        txSignUpEmail = findViewById(R.id.txSignUpEmail);
+        txSignUpPassword = findViewById(R.id.txSignUpPassword);
+        txSignUpConfirmPassword = findViewById(R.id.txSignUpConfirmPassword);
+        btnSignUp = findViewById(R.id.btnSignUp);
+        btnHaveAccount = findViewById(R.id.btnHaveAccount);
     }
 }

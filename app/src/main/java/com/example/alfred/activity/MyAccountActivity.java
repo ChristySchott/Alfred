@@ -18,10 +18,14 @@ public class MyAccountActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_account);
 
+        // Configuração inicial dos componentes
+        initComponents();
+    }
+
+    private void initComponents() {
         txCurrentPassword = findViewById(R.id.txCurrentPassword);
         txNewPassword = findViewById(R.id.txNewPassword);
         txConfirmNewPassword = findViewById(R.id.txConfirmNewPassword);
-
         btnMyAccountCancel = findViewById(R.id.btnMyAccountCancel);
         btnMyAccountSave = findViewById(R.id.btnMyAccountSave);
     }

@@ -20,11 +20,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        txMainEmail = findViewById(R.id.txMainEmail);
-        txMainPassword = findViewById(R.id.txMainPassword);
-
-        btnMainSignIn = findViewById(R.id.btnMainSignIn);
-        btnDoNotHaveAccount = findViewById(R.id.btnDoNotHaveAccount);
+        // Configuração inicial dos components
+        initComponents();
 
         btnMainSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,5 +52,12 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(it);
             }
         });
+    }
+
+    private void initComponents() {
+        txMainEmail = findViewById(R.id.txMainEmail);
+        txMainPassword = findViewById(R.id.txMainPassword);
+        btnMainSignIn = findViewById(R.id.btnMainSignIn);
+        btnDoNotHaveAccount = findViewById(R.id.btnDoNotHaveAccount);
     }
 }
