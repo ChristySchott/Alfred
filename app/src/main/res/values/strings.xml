@@ -3,13 +3,11 @@
     <!-- Main Activity -->
     <string name="title_content_main">Entrar</string>
     <string name="action_forgot_password">Esqueceu sua senha?</string>
-    <string name="action_do_not_have_account">Não possui uma conta?</string>
-    <string name="action_signUp">Cadastrar</string>
+    <string name="action_do_not_have_account"><font color="#FF000000">Não possui uma conta?&#160;</font><u><font color="#FF34CB79">Cadastrar</font></u></string>
     <string name="btn_signIn">Entrar agora</string>
     <!-- SignUp Activity -->
     <string name="title_content_signUp">Cadastrar</string>
-    <string name="action_have_account">Já possui uma conta?</string>
-    <string name="action_signIn"><u>Entrar</u></string>
+    <string name="action_have_account"><font color="#FF000000">Já possui uma conta?&#160;</font><u><font color="#FF34CB79">Entrar</font></u></string>
     <string name="btn_signUp"><u>Cadastrar agora</u></string>
     <!-- RecoverPassword Activity -->
     <string name="title_content_recoverPassword">Recuperar Senha</string>

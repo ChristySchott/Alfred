@@ -41,7 +41,7 @@
     </LinearLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/txUser"
+        android:id="@+id/txMainEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/tx_email"
@@ -57,7 +57,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/txPassword"
+        android:id="@+id/txMainPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/tx_password"
@@ -82,7 +82,7 @@
         android:text="@string/action_forgot_password" />
 
     <Button
-        android:id="@+id/btnSignIn"
+        android:id="@+id/btnMainSignIn"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginTop="64dp"
@@ -98,16 +98,16 @@
         android:layout_marginTop="12dp"
         android:layout_gravity="center"
         >
-        <TextView
-            android:layout_width="match_parent"
+
+        <Button
+            android:id="@+id/btnDoNotHaveAccount"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:paddingTop="0dp"
+            android:paddingBottom="0dp"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
             android:text="@string/action_do_not_have_account" />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="4dp"
-            android:textColor="@color/colorAccent"
-            android:text="@string/action_signUp" />
 
     </LinearLayout>
 

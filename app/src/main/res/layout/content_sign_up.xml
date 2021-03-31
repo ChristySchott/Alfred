@@ -41,7 +41,7 @@
     </LinearLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/txUser"
+        android:id="@+id/txSignUpEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/tx_email"
@@ -56,7 +56,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/txPassword"
+        android:id="@+id/txSignUpPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/tx_password"
@@ -72,7 +72,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/txConfirmPassword"
+        android:id="@+id/txSignUpConfirmPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/tx_password_confirm"
@@ -90,7 +90,7 @@
 
 
     <Button
-        android:id="@+id/btnSignIn"
+        android:id="@+id/btnSignUp"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginTop="64dp"
@@ -105,16 +105,16 @@
         android:layout_marginTop="12dp"
         android:layout_gravity="center"
         >
-        <TextView
-            android:layout_width="match_parent"
+
+        <Button
+            android:id="@+id/btnHaveAccount"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:paddingTop="0dp"
+            android:paddingBottom="0dp"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
             android:text="@string/action_have_account" />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="4dp"
-            android:textColor="@color/colorAccent"
-            android:text="@string/action_signIn" />
 
     </LinearLayout>
 
