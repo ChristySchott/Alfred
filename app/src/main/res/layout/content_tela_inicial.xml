@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="24dp">
+    android:padding="24dp"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:showIn="@layout/app_bar_menu">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -15,12 +18,6 @@
             android:layout_height="fill_parent"
             android:orientation="vertical">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="24dp"
-                android:text="@string/title_contet_my_orders"
-                android:textAlignment="center" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -33,7 +30,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/recycler_view_header"
-                    android:text="@string/recycler_view_order_analysis" />
+                    android:text="@string/recycler_view_abertos" />
 
                 <View
                     android:layout_width="match_parent"
@@ -41,7 +38,7 @@
                     android:background="@color/divider" />
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rvAnalysis"
+                    android:id="@+id/rvAbertos"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="16dp"
@@ -60,7 +57,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/recycler_view_header"
-                    android:text="@string/recycler_view_order_approved" />
+                    android:text="@string/recycler_view_fechados" />
 
                 <View
                     android:layout_width="match_parent"
@@ -68,42 +65,15 @@
                     android:background="@color/divider" />
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rvApproved"
+                    android:id="@+id/rvFechados"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="16dp"
                     tools:layout_editor_absoluteX="1dp"
                     tools:layout_editor_absoluteY="20dp" />
 
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/recycler_view_container"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/recycler_view_header"
-                    android:text="@string/recycler_view_order_denied" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/divider" />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rvDenied"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="16dp"
-                    tools:layout_editor_absoluteX="1dp"
-                    tools:layout_editor_absoluteY="20dp" />
 
             </LinearLayout>
-
         </LinearLayout>
     </ScrollView>
 

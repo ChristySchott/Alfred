@@ -7,8 +7,8 @@
     android:gravity="center"
     android:orientation="vertical"
     android:padding="24dp"
-    tools:context=".activity.SignUpActivity"
-    tools:showIn="@layout/activity_sign_up">
+    tools:context=".activity.CadastroActivity"
+    tools:showIn="@layout/activity_cadastro">
 
     <ImageView
         android:layout_width="match_parent"
@@ -32,14 +32,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
-            android:text="@string/title_content_signUp"
+            android:text="@string/titulo_content_cadastro"
             android:textFontWeight="600"
             android:textSize="24sp" />
 
     </LinearLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/txSignUpEmail"
+        android:id="@+id/txCadastroEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/tx_email"
@@ -53,10 +53,10 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/txSignUpPassword"
+        android:id="@+id/txCadastroSenha"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/tx_password"
+        android:hint="@string/tx_senha"
         app:startIconDrawable="@drawable/ic_password">
 
 
@@ -68,10 +68,10 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/txSignUpConfirmPassword"
+        android:id="@+id/txCadastroConfirmarSenha"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/tx_password_confirm"
+        android:hint="@string/tx_confirmar_senha"
         app:startIconDrawable="@drawable/ic_password">
 
 
@@ -84,12 +84,12 @@
 
 
     <Button
-        android:id="@+id/btnSignUp"
+        android:id="@+id/btnCadastro"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginTop="64dp"
         android:background="@drawable/rounded_button"
-        android:text="@string/btn_signUp" />
+        android:text="@string/btn_cadastro" />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -99,13 +99,13 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/btnHaveAccount"
+            android:id="@+id/btnPossuiConta"
             style="@style/Widget.MaterialComponents.Button.TextButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingTop="0dp"
             android:paddingBottom="0dp"
-            android:text="@string/action_have_account"
+            android:text="@string/acao_possui_conta"
             android:textSize="14sp" />
 
     </LinearLayout>

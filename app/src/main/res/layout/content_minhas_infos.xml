@@ -6,8 +6,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="24dp"
-    tools:context=".activity.MyInfosActivity"
-    tools:showIn="@layout/activity_my_infos">
+    tools:context=".activity.MinhasInfosActivity"
+    tools:showIn="@layout/activity_minhas_infos">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -22,7 +22,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="24dp"
-                android:text="@string/title_content_personalInfos"
+                android:text="@string/titulo_content_infos_pessoais"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="18sp" />
 
@@ -54,10 +54,10 @@
                     android:src="@drawable/ic_usericon" />
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/txMyInfosName"
+                    android:id="@+id/txMinhasInfosNome"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:hint="@string/tx_name">
+                    android:hint="@string/tx_nome">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
@@ -81,10 +81,10 @@
                     android:layout_marginRight="16dp" />
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/txMyInfosSurname"
+                    android:id="@+id/txMinhasInfosSobrenome"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:hint="@string/tx_surname">
+                    android:hint="@string/tx_sobrenome">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
@@ -110,10 +110,10 @@
                     android:src="@drawable/ic_birthday" />
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/txMyInfosBirthday"
+                    android:id="@+id/txMinhasInfosDataNascimento"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:hint="@string/tx_birthday"
+                    android:hint="@string/tx_data_nascimento"
                     app:boxCornerRadiusBottomEnd="4dp"
                     app:boxCornerRadiusTopEnd="4dp">
 
@@ -142,12 +142,12 @@
                     android:src="@drawable/ic_phone" />
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/txMyInfosPhone"
+                    android:id="@+id/txMinhasInfosTelefone"
                     android:layout_width="wrap_content"
                     android:layout_height="50dp"
                     android:layout_marginRight="12dp"
                     android:layout_weight="4"
-                    android:hint="@string/tx_phone">
+                    android:hint="@string/tx_telefone">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
@@ -158,7 +158,7 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/txMyInfosArea"
+                    android:id="@+id/txMinhasInfosArea"
                     android:layout_width="wrap_content"
                     android:layout_height="50dp"
                     android:layout_weight="2"
@@ -179,7 +179,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
                 android:layout_marginBottom="24dp"
-                android:text="@string/title_content_myAddress"
+                android:text="@string/titulo_content_meu_endereco"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="18sp" />
 
@@ -196,10 +196,10 @@
                     android:src="@drawable/ic_maps" />
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/txMyInfosCity"
+                    android:id="@+id/txMinhasInfosCidade"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:hint="@string/tx_city">
+                    android:hint="@string/tx_cidade">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
@@ -223,10 +223,10 @@
                     android:layout_marginRight="16dp" />
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/txMyInfosNeighbordhood"
+                    android:id="@+id/txMinhasInfosBairro"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:hint="@string/tx_neighborhood">
+                    android:hint="@string/tx_bairro">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
@@ -250,12 +250,12 @@
                     android:layout_marginRight="16dp" />
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/txMyInfosStreet"
+                    android:id="@+id/txMinhasInfosRua"
                     android:layout_width="wrap_content"
                     android:layout_height="50dp"
                     android:layout_marginRight="12dp"
                     android:layout_weight="4"
-                    android:hint="@string/tx_street">
+                    android:hint="@string/tx_rua">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
@@ -266,11 +266,11 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/txMyInfosStreetNumber"
+                    android:id="@+id/txMinhasInfosNumeroRua"
                     android:layout_width="wrap_content"
                     android:layout_height="50dp"
                     android:layout_weight="1"
-                    android:hint="@string/tx_streetNumber">
+                    android:hint="@string/tx_numero_rua">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
@@ -294,10 +294,10 @@
                     android:layout_marginRight="16dp" />
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/txMyInfosComplement"
+                    android:id="@+id/txMinhasInfosComplemento"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:hint="@string/tx_complement">
+                    android:hint="@string/tx_complemento">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
@@ -317,19 +317,19 @@
                 android:orientation="horizontal">
 
                 <Button
-                    android:id="@+id/btnMyInfosCancel"
+                    android:id="@+id/btnMinhasInfosCancelar"
                     android:layout_width="120dp"
                     android:layout_height="50dp"
                     android:layout_marginRight="12dp"
                     android:background="@drawable/rounded_button"
-                    android:text="@string/btn_cancel" />
+                    android:text="@string/btn_cancelar" />
 
                 <Button
-                    android:id="@+id/btnMyInfosSave"
+                    android:id="@+id/btnMinhasInfosSalvar"
                     android:layout_width="120dp"
                     android:layout_height="50dp"
                     android:background="@drawable/rounded_button"
-                    android:text="@string/btn_save" />
+                    android:text="@string/btn_salvar" />
 
             </LinearLayout>
 

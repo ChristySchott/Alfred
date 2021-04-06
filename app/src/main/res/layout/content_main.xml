@@ -32,7 +32,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="24dp"
-            android:text="@string/title_content_main"
+            android:text="@string/titulo_content_main"
             android:textFontWeight="600"
             android:textSize="24sp" />
 
@@ -53,10 +53,10 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/txMainPassword"
+        android:id="@+id/txMainSenha"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/tx_password"
+        android:hint="@string/tx_senha"
         app:startIconDrawable="@drawable/ic_password">
 
 
@@ -75,24 +75,24 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/btnForgotPassword"
+            android:id="@+id/btnEsqueceuSenha"
             style="@style/Widget.MaterialComponents.Button.TextButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="0dp"
-            android:text="@string/action_forgot_password"
+            android:text="@string/acao_esqueceu_senha"
             android:textColor="@color/colorGray"
             android:textSize="14sp" />
 
     </LinearLayout>
 
     <Button
-        android:id="@+id/btnMainSignIn"
+        android:id="@+id/btnMainEntrar"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginTop="64dp"
         android:background="@drawable/rounded_button"
-        android:text="@string/btn_signIn" />
+        android:text="@string/btn_entrar" />
 
 
     <LinearLayout
@@ -103,13 +103,13 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/btnDoNotHaveAccount"
+            android:id="@+id/btnNaoPossuiConta"
             style="@style/Widget.MaterialComponents.Button.TextButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingTop="0dp"
             android:paddingBottom="0dp"
-            android:text="@string/action_do_not_have_account"
+            android:text="@string/acao_nao_possui_conta"
             android:textSize="14sp" />
 
     </LinearLayout>

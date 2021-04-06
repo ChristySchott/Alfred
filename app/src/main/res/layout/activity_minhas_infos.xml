@@ -5,13 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBackground"
-    tools:context=".activity.MyOrdersActivity">
+    tools:context=".activity.MinhasInfosActivity">
 
     <include
         layout="@layout/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <include layout="@layout/content_my_orders" />
+    <include layout="@layout/content_minhas_infos" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

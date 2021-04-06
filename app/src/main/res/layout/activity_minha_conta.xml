@@ -5,13 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBackground"
-    tools:context=".activity.RestaurantMenuActivity">
+    tools:context=".activity.MinhaContaActivity">
 
     <include
         layout="@layout/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <include layout="@layout/content_restaurant_menu" />
+    <include layout="@layout/content_minha_conta" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

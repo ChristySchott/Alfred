@@ -1,12 +1,10 @@
 package com.example.alfred.activity;
 
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -15,54 +13,51 @@ import android.widget.LinearLayout;
 import com.example.alfred.InfosApp;
 import com.example.alfred.R;
 import com.example.alfred.RecyclerItemClickListener;
-import com.example.alfred.adapter.AdapterDishes;
+import com.example.alfred.adapter.AdapterPratos;
 import com.example.alfred.model.Dish;
 import com.google.android.material.appbar.MaterialToolbar;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class RestaurantMenuActivity extends AppCompatActivity {
+public class CardapioActivity extends AppCompatActivity {
 
-    private RecyclerView recyclerViewDishes;
+    private RecyclerView recyclerViewPratos;
     private List<Dish> dishList =  new ArrayList<>();
     private InfosApp infosApp;
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_restaurant_menu);
+        setContentView(R.layout.activity_cardapio);
 
-        recyclerViewDishes = findViewById(R.id.rvDishes);
+        recyclerViewPratos = findViewById(R.id.rvPratos);
 
         infosApp = (InfosApp) getApplicationContext();
 
-        // Listagem de Restaurantes
-        this.createDishes();
+        // Listagem de Pratos
+        this.criarPratos();
 
         // Configuração da Toolbar
-
         MaterialToolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("Cardápio");
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         // Configurar adapter para o RecyclerView
-        AdapterDishes adapterRestaurants = new AdapterDishes(dishList);
+        AdapterPratos adapterPratos = new AdapterPratos(dishList);
 
         // Configurar RecyclerView
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
-        recyclerViewDishes.setLayoutManager(layoutManager);
-        recyclerViewDishes.setHasFixedSize(true);
-        recyclerViewDishes.addItemDecoration(new DividerItemDecoration(this, LinearLayout.VERTICAL));
-        recyclerViewDishes.setAdapter(adapterRestaurants);
+        recyclerViewPratos.setLayoutManager(layoutManager);
+        recyclerViewPratos.setHasFixedSize(true);
+        recyclerViewPratos.addItemDecoration(new DividerItemDecoration(this, LinearLayout.VERTICAL));
+        recyclerViewPratos.setAdapter(adapterPratos);
 
         // Evento de Clique em um item da Recycler View
-        recyclerViewDishes.addOnItemTouchListener(
+        recyclerViewPratos.addOnItemTouchListener(
                 new RecyclerItemClickListener(
                         getApplicationContext(),
-                        recyclerViewDishes,
+                        recyclerViewPratos,
                         new RecyclerItemClickListener.OnItemClickListener() {
                             @Override
                             public void onItemClick(View view, int position) {
@@ -85,7 +80,7 @@ public class RestaurantMenuActivity extends AppCompatActivity {
     }
 
     // TODO - BUSCAR DO BANCO
-    public void createDishes() {
+    public void criarPratos() {
         Dish restaurant = new Dish("name", "description",  5.5);
         dishList.add(restaurant);
         Dish restaurant2 = new Dish("name", "description",  5.5);

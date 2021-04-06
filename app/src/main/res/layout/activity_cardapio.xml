@@ -5,8 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBackground"
-    tools:context=".activity.RecoverPasswordActivity">
+    tools:context=".activity.CardapioActivity">
 
-    <include layout="@layout/content_recover_password" />
+    <include
+        layout="@layout/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <include layout="@layout/content_cardapio" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

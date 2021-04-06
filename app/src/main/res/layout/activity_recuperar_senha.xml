@@ -5,13 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBackground"
-    tools:context=".activity.MyAccountActivity">
+    tools:context=".activity.RecuperarSenhaActivity">
 
-    <include
-        layout="@layout/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <include layout="@layout/content_my_account" />
+    <include layout="@layout/content_recuperar_senha" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

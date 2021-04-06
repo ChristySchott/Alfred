@@ -1,9 +1,7 @@
 package com.example.alfred.activity;
 
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -13,19 +11,17 @@ import com.example.alfred.R;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.textfield.TextInputLayout;
 
-public class CartActivity extends AppCompatActivity {
+public class CarrinhoActivity extends AppCompatActivity {
 
-    RadioButton rbCartCash, rbCartCard;
-    TextInputLayout txCartObservation;
+    RadioButton rbCarrinhoDinheiro, rbCarrinhoCartao;
+    TextInputLayout txCarrinhoObservacao;
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cart);
+        setContentView(R.layout.activity_carrinho);
 
         // Configuração inicial dos components
-        initComponents();
+        iniciarComponentes();
 
         // Configuração da Toolbar
         MaterialToolbar toolbar = findViewById(R.id.toolbar);
@@ -43,10 +39,10 @@ public class CartActivity extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
-    private void initComponents() {
-        rbCartCash = findViewById(R.id.rbCartCash);
-        rbCartCard = findViewById(R.id.rbCartCard);
-        txCartObservation = findViewById(R.id.txCartObservation);
+    private void iniciarComponentes() {
+        rbCarrinhoDinheiro = findViewById(R.id.rbCarrinhoDinheiro);
+        rbCarrinhoCartao = findViewById(R.id.rbCarrinhoCartao);
+        txCarrinhoObservacao = findViewById(R.id.txCarrinhoObservacao);
     }
 
 }

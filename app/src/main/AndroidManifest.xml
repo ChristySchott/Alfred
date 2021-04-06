@@ -9,17 +9,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.MyOrdersActivity" android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".activity.RestaurantMenuActivity" android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".activity.MeusPedidosActivity" android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".activity.CardapioActivity" android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".activity.MenuActivity"
-            android:label="@string/title_activity_menu"
+            android:name=".activity.TelaInicialActivity"
+            android:label="@string/titulo_activity_menu"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".activity.CartActivity" android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".activity.MyAccountActivity" android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".activity.MyInfosActivity" android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".activity.RecoverPasswordActivity" android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".activity.SignUpActivity" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".activity.CarrinhoActivity" android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".activity.MinhaContaActivity" android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".activity.MinhasInfosActivity" android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".activity.RecuperarSenhaActivity" android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".activity.CadastroActivity" android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".activity.MainActivity" android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

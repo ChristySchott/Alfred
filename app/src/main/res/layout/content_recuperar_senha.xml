@@ -7,8 +7,8 @@
     android:gravity="center"
     android:orientation="vertical"
     android:padding="24dp"
-    tools:context=".activity.RecoverPasswordActivity"
-    tools:showIn="@layout/activity_recover_password">
+    tools:context=".activity.RecuperarSenhaActivity"
+    tools:showIn="@layout/activity_recuperar_senha">
 
     <ImageView
         android:layout_width="match_parent"
@@ -32,7 +32,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
-            android:text="@string/title_content_recoverPassword"
+            android:text="@string/titulo_content_recuperar_senha"
             android:textFontWeight="600"
             android:textSize="24sp" />
 
@@ -42,10 +42,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="24dp"
-        android:text="@string/description_recoverPassword" />
+        android:text="@string/descricao_recuperar_senha" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/txRecoverPasswordEmail"
+        android:id="@+id/txRecuperarSenhaEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/tx_email"
@@ -59,12 +59,12 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/btnRecoverPassword"
+        android:id="@+id/btnRecuperarSenha"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginTop="32dp"
         android:background="@drawable/rounded_button"
-        android:text="@string/btn_recoverPassword"
+        android:text="@string/btn_recuperar_senha"
         android:textAllCaps="false" />
 
     <LinearLayout
@@ -75,13 +75,13 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/btnHaveAccountRP"
+            android:id="@+id/btnPossuiContaRecuperarSenha"
             style="@style/Widget.MaterialComponents.Button.TextButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingTop="0dp"
             android:paddingBottom="0dp"
-            android:text="@string/action_have_account"
+            android:text="@string/acao_possui_conta"
             android:textSize="14sp" />
 
     </LinearLayout>

@@ -9,18 +9,18 @@ import com.example.alfred.R;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.textfield.TextInputLayout;
 
-public class MyAccountActivity extends AppCompatActivity {
+public class MinhaContaActivity extends AppCompatActivity {
 
-    TextInputLayout txCurrentPassword, txNewPassword, txConfirmNewPassword;
-    Button btnMyAccountCancel, btnMyAccountSave;
+    TextInputLayout txSenhaATUAL, txNovaSenha, txConfirmarNovaSenha;
+    Button btnMinhaContaCancelar, btnMinhaContaSalvar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_my_account);
+        setContentView(R.layout.activity_minha_conta);
 
         // Configuração inicial dos componentes
-        initComponents();
+        iniciarComponentes();
 
         // Configuração da Toolbar
         MaterialToolbar toolbar = findViewById(R.id.toolbar);
@@ -29,11 +29,11 @@ public class MyAccountActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
-    private void initComponents() {
-        txCurrentPassword = findViewById(R.id.txCurrentPassword);
-        txNewPassword = findViewById(R.id.txNewPassword);
-        txConfirmNewPassword = findViewById(R.id.txConfirmNewPassword);
-        btnMyAccountCancel = findViewById(R.id.btnMyAccountCancel);
-        btnMyAccountSave = findViewById(R.id.btnMyAccountSave);
+    private void iniciarComponentes() {
+        txSenhaATUAL = findViewById(R.id.txSenhaAtual);
+        txNovaSenha = findViewById(R.id.txNovaSenha);
+        txConfirmarNovaSenha = findViewById(R.id.txConfirmarNovaSenha);
+        btnMinhaContaCancelar = findViewById(R.id.btnMinhaContaCancelar);
+        btnMinhaContaSalvar = findViewById(R.id.btnMinhaContaSalvar);
     }
 }

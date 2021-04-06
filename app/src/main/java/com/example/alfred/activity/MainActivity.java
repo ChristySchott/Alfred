@@ -12,8 +12,8 @@ import com.google.android.material.textfield.TextInputLayout;
 
 public class MainActivity extends AppCompatActivity {
 
-    TextInputLayout txMainEmail, txMainPassword;
-    Button btnMainSignIn, btnDoNotHaveAccount, btnForgotPassword;
+    TextInputLayout txMainEmail, txMainSenha;
+    Button btnMainEntrar, btnNaoPossuiConta, btnEsqueceuSenha;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,23 +21,23 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // Configuração inicial dos components
-        initComponents();
+        iniciarComponentes();
 
-        btnMainSignIn.setOnClickListener(new View.OnClickListener() {
+        btnMainEntrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (txMainEmail.getEditText().getText().toString().equals("")){
                     txMainEmail.setError("Informe o e-mail");
                     txMainEmail.requestFocus();
-                } else if (txMainPassword.getEditText().getText().toString().equals("")){
-                    txMainPassword.setError("Informe a senha");
-                    txMainPassword.requestFocus();
+                } else if (txMainSenha.getEditText().getText().toString().equals("")){
+                    txMainSenha.setError("Informe a senha");
+                    txMainSenha.requestFocus();
                 } else {
                     String email = txMainEmail.getEditText().getText().toString();
-                    String password = txMainPassword.getEditText().getText().toString();
+                    String password = txMainSenha.getEditText().getText().toString();
 
                     if (!email.equals("") && !password.equals("")){
-                        Intent it = new Intent(MainActivity.this, MenuActivity.class);
+                        Intent it = new Intent(MainActivity.this, TelaInicialActivity.class);
                         it.putExtra("email", email);
                         startActivity(it);
                     }
@@ -45,28 +45,28 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        btnDoNotHaveAccount.setOnClickListener(new View.OnClickListener() {
+        btnNaoPossuiConta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent it = new Intent(MainActivity.this, SignUpActivity.class);
+                Intent it = new Intent(MainActivity.this, CadastroActivity.class);
                 startActivity(it);
             }
         });
 
-        btnForgotPassword.setOnClickListener(new View.OnClickListener() {
+        btnEsqueceuSenha.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent it = new Intent(MainActivity.this, RecoverPasswordActivity.class);
+                Intent it = new Intent(MainActivity.this, RecuperarSenhaActivity.class);
                 startActivity(it);
             }
         });
     }
 
-    private void initComponents() {
+    private void iniciarComponentes() {
         txMainEmail = findViewById(R.id.txMainEmail);
-        txMainPassword = findViewById(R.id.txMainPassword);
-        btnMainSignIn = findViewById(R.id.btnMainSignIn);
-        btnDoNotHaveAccount = findViewById(R.id.btnDoNotHaveAccount);
-        btnForgotPassword = findViewById(R.id.btnForgotPassword);
+        txMainSenha = findViewById(R.id.txMainSenha);
+        btnMainEntrar = findViewById(R.id.btnMainEntrar);
+        btnNaoPossuiConta = findViewById(R.id.btnNaoPossuiConta);
+        btnEsqueceuSenha = findViewById(R.id.btnEsqueceuSenha);
     }
 }

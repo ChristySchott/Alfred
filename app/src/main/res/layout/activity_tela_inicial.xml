@@ -20,9 +20,9 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
-        app:headerLayout="@layout/nav_header_menu"
+        app:headerLayout="@layout/nav_header_tela_inicial"
         app:menu="@menu/activity_menu_drawer" />
 
-    <include layout="@layout/content_menu" />
+    <include layout="@layout/content_tela_inicial" />
 
 </androidx.drawerlayout.widget.DrawerLayout>

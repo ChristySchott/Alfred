@@ -6,8 +6,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="24dp"
-    tools:context=".activity.CartActivity"
-    tools:showIn="@layout/activity_cart">
+    tools:context=".activity.CarrinhoActivity"
+    tools:showIn="@layout/activity_carrinho">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -32,25 +32,25 @@
                 android:orientation="vertical">
 
                 <RadioButton
-                    android:id="@+id/rbCartCash"
+                    android:id="@+id/rbCarrinhoDinheiro"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/rb_cash" />
+                    android:text="@string/rb_dinheiro" />
 
                 <RadioButton
-                    android:id="@+id/rbCartCard"
+                    android:id="@+id/rbCarrinhoCartao"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/rb_card" />
+                    android:text="@string/rb_cartao" />
 
             </RadioGroup>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/txCartObservation"
+                android:id="@+id/txCarrinhoObservacao"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:hint="@string/tx_observation"
-                app:helperText="@string/helper_optional"
+                android:hint="@string/tx_observacao"
+                app:helperText="@string/helper_opcional"
                 app:helperTextEnabled="true"
                 app:helperTextTextColor="@color/colorPrimaryDark">
 
@@ -74,7 +74,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/recycler_view_header"
-                    android:text="@string/recycler_view_cart" />
+                    android:text="@string/recycler_view_carrinho" />
 
                 <View
                     android:layout_width="match_parent"
@@ -82,7 +82,7 @@
                     android:background="@color/divider" />
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rvCart"
+                    android:id="@+id/rvCarrinho"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="16dp"
@@ -99,19 +99,19 @@
                 android:orientation="vertical">
 
                 <Button
-                    android:id="@+id/btnCartConfirmOrder"
+                    android:id="@+id/btnCarrinhoConfirmarPedido"
                     android:layout_width="300dp"
                     android:layout_height="50dp"
                     android:background="@drawable/rounded_button"
-                    android:text="@string/btn_confirmOrder" />
+                    android:text="@string/btn_confirmar_pedido" />
 
                 <Button
-                    android:id="@+id/btnCartCancelOrder"
+                    android:id="@+id/btnCarrinhoCancelarPedido"
                     android:layout_width="300dp"
                     android:layout_height="50dp"
                     android:layout_marginTop="12dp"
                     android:background="@drawable/rounded_button"
-                    android:text="@string/btn_cancelOrder" />
+                    android:text="@string/btn_cancelar_pedido" />
             </LinearLayout>
 
         </LinearLayout>

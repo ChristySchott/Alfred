@@ -1,75 +1,75 @@
 <resources>
     <string name="app_name">Alfred</string>
     <!-- Main Activity -->
-    <string name="title_content_main">Entrar</string>
-    <string name="action_forgot_password">Esqueceu sua senha?</string>
-    <string name="action_do_not_have_account"><font color="#FF000000">Não possui uma conta?&#160;</font><u><font color="#FF34CB79">Cadastrar</font></u></string>
-    <string name="btn_signIn">Entrar agora</string>
-    <!-- SignUp Activity -->
-    <string name="title_content_signUp">Cadastrar</string>
-    <string name="action_have_account"><font color="#FF000000">Já possui uma conta?&#160;</font><u><font color="#FF34CB79">Entrar</font></u></string>
-    <string name="btn_signUp"><u>Cadastrar agora</u></string>
-    <!-- RecoverPassword Activity -->
-    <string name="title_content_recoverPassword">Recuperar Senha</string>
-    <string name="description_recoverPassword">Enviaremos um e-mail para a recuperação de senha.</string>
-    <string name="btn_recoverPassword">Recuperar agora</string>
+    <string name="titulo_content_main">Entrar</string>
+    <string name="acao_esqueceu_senha">Esqueceu sua senha?</string>
+    <string name="acao_nao_possui_conta"><font color="#FF000000">Não possui uma conta?&#160;</font><u><font color="#FF34CB79">Cadastrar</font></u></string>
+    <string name="btn_entrar">Entrar agora</string>
+    <!-- Cadastro Activity -->
+    <string name="titulo_content_cadastro">Cadastrar</string>
+    <string name="acao_possui_conta"><font color="#FF000000">Já possui uma conta?&#160;</font><u><font color="#FF34CB79">Entrar</font></u></string>
+    <string name="btn_cadastro"><u>Cadastrar agora</u></string>
+    <!-- RecuperarSenha Activity -->
+    <string name="titulo_content_recuperar_senha">Recuperar Senha</string>
+    <string name="descricao_recuperar_senha">Enviaremos um e-mail para a recuperação de senha.</string>
+    <string name="btn_recuperar_senha">Recuperar agora</string>
     <!-- Text Fields -->
     <string name="tx_email">Email</string>
-    <string name="tx_password">Senha</string>
-    <string name="tx_password_confirm">Confirmar senha</string>
-    <string name="tx_name">Nome</string>
-    <string name="tx_surname">Sobrenome</string>
-    <string name="tx_birthday">Data de nascimento</string>
-    <string name="tx_phone">Celular</string>
+    <string name="tx_senha">Senha</string>
+    <string name="tx_confirmar_senha">Confirmar senha</string>
+    <string name="tx_nome">Nome</string>
+    <string name="tx_sobrenome">Sobrenome</string>
+    <string name="tx_data_nascimento">Data de nascimento</string>
+    <string name="tx_telefone">Celular</string>
     <string name="tx_area">Area</string>
-    <string name="tx_city">Cidade</string>
-    <string name="tx_neighborhood">Bairro</string>
-    <string name="tx_street">Rua</string>
-    <string name="tx_streetNumber">Nº</string>
-    <string name="tx_complement">Complemento</string>
-    <string name="tx_searchRestaurant">pesquisar restaurante</string>
-    <string name="tx_observation">Observação</string>
-    <string name="tx_currentPassword">Senha atual</string>
-    <string name="tx_newPassword">Nova senha</string>
-    <string name="tx_confirmNewPassword">Confirmar nova senha</string>
-    <!-- MyInfos Activity -->
-    <string name="title_content_personalInfos">infos pessoais</string>
-    <string name="title_content_myAddress">meu endereço</string>
-    <!-- MyAccount Activity -->
-    <string name="title_content_my_account">alterar senha</string>
-    <!-- MyOrders Activity -->
-    <string name="title_contet_my_orders">meus pedidos</string>
-    <!-- Buttons -->
-    <string name="btn_save">salvar</string>
-    <string name="btn_cancel">cancelar</string>
+    <string name="tx_cidade">Cidade</string>
+    <string name="tx_bairro">Bairro</string>
+    <string name="tx_rua">Rua</string>
+    <string name="tx_numero_rua">Nº</string>
+    <string name="tx_complemento">Complemento</string>
+    <string name="tx_pesquisar_restaurantes">pesquisar restaurante</string>
+    <string name="tx_observacao">Observação</string>
+    <string name="tx_senha_atual">Senha atual</string>
+    <string name="tx_nova_senha">Nova senha</string>
+    <string name="tx_confirmar_nova_senha">Confirmar nova senha</string>
+    <!-- MinhasInfos Activity -->
+    <string name="titulo_content_infos_pessoais">infos pessoais</string>
+    <string name="titulo_content_meu_endereco">meu endereço</string>
+    <!-- MinhaConta Activity -->
+    <string name="titulo_content_minha_conta">alterar senha</string>
+    <!-- MeusPedidos Activity -->
+    <string name="titulo_content_meus_pedidos">meus pedidos</string>
+    <!-- Botoes -->
+    <string name="btn_salvar">salvar</string>
+    <string name="btn_cancelar">cancelar</string>
     <!-- Drawer -->
-    <string name="drawer_myOrders">meus pedidos</string>
-    <string name="drawer_myInfos">minhas infos</string>
-    <string name="drawer_myPassword">minha senha</string>
-    <!-- Cart -->
-    <string name="title_content_cart">Carrinho</string>
-    <string name="title_header_cart">Encerrar Pedido</string>
+    <string name="drawer_meus_pedidos">meus pedidos</string>
+    <string name="drawer_minhas_infos">minhas infos</string>
+    <string name="drawer_minha_senha">minha senha</string>
+    <!-- Carrinho -->
+    <string name="titulo_conteudo_carrinho">Carrinho</string>
+    <string name="titulo_header_carrinho">Encerrar Pedido</string>
     <string name="title_content_paymentMethod">forma de pagamento</string>
-    <string name="rb_cash">dinheiro</string>
-    <string name="rb_card">cartão</string>
-    <string name="btn_confirmOrder">Confirmar pedido</string>
-    <string name="btn_cancelOrder">Cancelar pedido</string>
+    <string name="rb_dinheiro">dinheiro</string>
+    <string name="rb_cartao">cartão</string>
+    <string name="btn_confirmar_pedido">Confirmar pedido</string>
+    <string name="btn_cancelar_pedido">Cancelar pedido</string>
     <!-- Helpers -->
-    <string name="helper_optional">Opcional</string>
-    <string name="helper_required">Obrigatório</string>
-    <string name="title_activity_menu">MenuActivity</string>
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="helper_opcional">Opcional</string>
+    <string name="helper_obrigatorio">Obrigatório</string>
+    <string name="titulo_activity_menu">MenuActivity</string>
+    <string name="navigation_drawer_open">Abrir menu de navegação</string>
+    <string name="navigation_drawer_close">Fechar menu de navegação</string>
     <string name="nav_header_title">Android Studio</string>
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
     <!-- Recycler Views -->
-    <string name="recycler_view_opened">abertos</string>
-    <string name="recycler_view_closed">fechados</string>
-    <string name="recycler_view_dishes">pratos</string>
-    <string name="recycler_view_cart">seu carrinho</string>
-    <string name="recycler_view_order_analysis">em análise</string>
-    <string name="recycler_view_order_approved">aprovados</string>
-    <string name="recycler_view_order_denied">negados</string>
+    <string name="recycler_view_abertos">abertos</string>
+    <string name="recycler_view_fechados">fechados</string>
+    <string name="recycler_view_pratos">pratos</string>
+    <string name="recycler_view_carrinho">seu carrinho</string>
+    <string name="recycler_view_pedidos_em_analise">em análise</string>
+    <string name="recycler_view_pedidos_aprovados">aprovados</string>
+    <string name="recycler_view_pedidos_negados">negados</string>
 </resources>

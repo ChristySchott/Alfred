@@ -5,13 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBackground"
-    tools:context=".activity.MyInfosActivity">
+    tools:context=".activity.CadastroActivity">
 
-    <include
-        layout="@layout/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <include layout="@layout/content_my_infos" />
+    <include layout="@layout/content_cadastro" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

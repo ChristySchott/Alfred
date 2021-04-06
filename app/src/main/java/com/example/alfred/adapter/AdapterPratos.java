@@ -13,11 +13,11 @@ import com.example.alfred.model.Dish;
 
 import java.util.List;
 
-public class AdapterDishes extends RecyclerView.Adapter<AdapterDishes.MyViewHolder> {
+public class AdapterPratos extends RecyclerView.Adapter<AdapterPratos.MyViewHolder> {
 
     private List<Dish> dishList;
 
-    public AdapterDishes(List<Dish> list) {
+    public AdapterPratos(List<Dish> list) {
         this.dishList = list;
     }
 
@@ -25,7 +25,7 @@ public class AdapterDishes extends RecyclerView.Adapter<AdapterDishes.MyViewHold
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View listItem = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.adapter_dishes, parent, false);
+                .inflate(R.layout.adapter_pratos, parent, false);
 
         // Passamos o listItem como parâmetro para o MyViewHolder adaptar os dados
         return new MyViewHolder(listItem);

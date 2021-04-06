@@ -3,23 +3,12 @@ package com.example.alfred.activity;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.example.alfred.InfosApp;
 import com.example.alfred.R;
 import com.example.alfred.RecyclerItemClickListener;
-import com.example.alfred.adapter.AdapterRestaurants;
+import com.example.alfred.adapter.AdapterEmpresas;
 import com.example.alfred.model.Restaurant;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import android.view.View;
-
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
-
-import com.google.android.material.navigation.NavigationView;
-
-import androidx.drawerlayout.widget.DrawerLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -27,23 +16,22 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.view.Menu;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MenuActivity extends AppCompatActivity {
+public class TelaInicialActivity extends AppCompatActivity {
 
     // private AppBarConfiguration mAppBarConfiguration;
-    private RecyclerView recyclerViewOpenedRestaurants;
-    private List<Restaurant> restaurantList =  new ArrayList<>();
+    private RecyclerView recyclerViewEmpresasAbertas;
+    private List<Restaurant> listaEmpresas =  new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_menu);
+        setContentView(R.layout.activity_tela_inicial);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         /* DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -59,33 +47,33 @@ public class MenuActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController); */
 
-        recyclerViewOpenedRestaurants = findViewById(R.id.rvOpened);
+        recyclerViewEmpresasAbertas = findViewById(R.id.rvAbertos);
 
 
         // Listagem de Restaurantes
-        this.createRestaurants();
+        this.criarEmpresas();
 
         // Configurar adapter para o RecyclerView
-        AdapterRestaurants adapterRestaurants = new AdapterRestaurants(restaurantList);
+        AdapterEmpresas adapterEmpresas = new AdapterEmpresas(listaEmpresas);
 
         // Configurar RecyclerView
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
-        recyclerViewOpenedRestaurants.setLayoutManager(layoutManager);
-        recyclerViewOpenedRestaurants.setHasFixedSize(true);
-        recyclerViewOpenedRestaurants.addItemDecoration(new DividerItemDecoration(this, LinearLayout.VERTICAL));
-        recyclerViewOpenedRestaurants.setAdapter(adapterRestaurants);
+        recyclerViewEmpresasAbertas.setLayoutManager(layoutManager);
+        recyclerViewEmpresasAbertas.setHasFixedSize(true);
+        recyclerViewEmpresasAbertas.addItemDecoration(new DividerItemDecoration(this, LinearLayout.VERTICAL));
+        recyclerViewEmpresasAbertas.setAdapter(adapterEmpresas);
 
         // Evento de Clique em um item da Recycler View
-        recyclerViewOpenedRestaurants.addOnItemTouchListener(
+        recyclerViewEmpresasAbertas.addOnItemTouchListener(
                 new RecyclerItemClickListener(
                         getApplicationContext(),
-                        recyclerViewOpenedRestaurants,
+                        recyclerViewEmpresasAbertas,
                         new RecyclerItemClickListener.OnItemClickListener() {
                             @Override
                             public void onItemClick(View view, int position) {
-                                Restaurant myRestaurant = restaurantList.get(position);
+                                Restaurant myRestaurant = listaEmpresas.get(position);
 
-                                Intent it = new Intent(MenuActivity.this, RestaurantMenuActivity.class);
+                                Intent it = new Intent(TelaInicialActivity.this, CardapioActivity.class);
                                 it.putExtra("restaurant", myRestaurant);
                                 startActivity(it);
                             }
@@ -106,15 +94,15 @@ public class MenuActivity extends AppCompatActivity {
 
 
     // TODO - BUSCAR DO BANCO
-    public void createRestaurants() {
+    public void criarEmpresas() {
         Restaurant restaurant = new Restaurant("name", 5, "pizza", 5.5);
-        restaurantList.add(restaurant);
+        listaEmpresas.add(restaurant);
         Restaurant restaurant2 = new Restaurant("name", 5, "pizza", 5.5);
-        restaurantList.add(restaurant2);
+        listaEmpresas.add(restaurant2);
         Restaurant restaurant3 = new Restaurant("name", 5, "pizza", 5.5);
-        restaurantList.add(restaurant3);
+        listaEmpresas.add(restaurant3);
         Restaurant restaurant4 = new Restaurant("name", 5, "pizza", 5.5);
-        restaurantList.add(restaurant4);
+        listaEmpresas.add(restaurant4);
     }
 
 

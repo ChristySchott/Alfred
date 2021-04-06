@@ -40,7 +40,7 @@
                         android:orientation="horizontal">
 
                         <TextView
-                            android:id="@+id/txName"
+                            android:id="@+id/txCarrinhoNomr"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="12dp"
@@ -49,7 +49,7 @@
                             android:textColor="@color/colorPrimaryDark" />
 
                         <RatingBar
-                            android:id="@+id/rbRating"
+                            android:id="@+id/rbAvaliacao"
                             style="?android:attr/ratingBarStyleSmall"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -59,7 +59,7 @@
                     </LinearLayout>
 
                     <TextView
-                        android:id="@+id/txCityAndState"
+                        android:id="@+id/txCarrinhoCidadeEstado"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="12dp"
@@ -68,7 +68,7 @@
                         android:textSize="12sp" />
 
                     <TextView
-                        android:id="@+id/txStreet"
+                        android:id="@+id/txCarrinhoRua"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Rua 13 de Maio"
@@ -93,11 +93,11 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/title_content_cart"
+                    android:text="@string/titulo_conteudo_carrinho"
                     android:textColor="#FFFFFF" />
 
                 <TextView
-                    android:id="@+id/txTotalValue"
+                    android:id="@+id/txValorTotal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="end"
@@ -118,7 +118,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/recycler_view_header"
-                    android:text="@string/recycler_view_dishes" />
+                    android:text="@string/recycler_view_pratos" />
 
                 <View
                     android:layout_width="match_parent"
@@ -126,7 +126,7 @@
                     android:background="@color/divider" />
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rvDishes"
+                    android:id="@+id/rvPratos"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="16dp"
