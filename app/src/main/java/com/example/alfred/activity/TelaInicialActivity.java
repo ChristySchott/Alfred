@@ -4,7 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.alfred.R;
-import com.example.alfred.RecyclerItemClickListener;
+import com.example.alfred.listener.RecyclerItemClickListener;
 import com.example.alfred.adapter.AdapterEmpresas;
 import com.example.alfred.modelDominio.Empresa;
 

@@ -1,4 +1,4 @@
-package com.example.alfred;
+package com.example.alfred.listener;
 
 import android.content.Context;
 import android.view.GestureDetector;
