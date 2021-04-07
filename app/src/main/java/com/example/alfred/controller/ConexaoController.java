@@ -2,6 +2,7 @@ package com.example.alfred.controller;
 
 import com.example.alfred.modelDominio.Avaliacao;
 import com.example.alfred.modelDominio.Categoria;
+import com.example.alfred.modelDominio.Endereco;
 import com.example.alfred.modelDominio.Prato;
 import com.example.alfred.modelDominio.Usuario;
 
@@ -300,6 +301,49 @@ public class ConexaoController {
         } catch (Exception ex) {
             ex.printStackTrace();
             return null;
+        }
+    }
+
+    /* ENDEREÇO */
+    public Boolean enderecoInserir(Endereco endereco) {
+        String msg = "";
+        try {
+            out.writeObject("EnderecoInserir");
+            msg = (String) in.readObject();
+            out.writeObject(endereco);
+            msg = (String) in.readObject();
+            return msg.equals("ok");
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return false;
+        }
+    }
+
+    public Boolean enderecoAlterar(Endereco endereco) {
+        String msg = "";
+        try {
+            out.writeObject("EnderecoAlterar");
+            msg = (String) in.readObject();
+            out.writeObject(endereco);
+            msg = (String) in.readObject();
+            return msg.equals("ok");
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return false;
+        }
+    }
+
+    public Boolean enderecoExcluir(Endereco endereco) {
+        String msg = "";
+        try {
+            out.writeObject("EnderecoExcluir");
+            msg = (String) in.readObject();
+            out.writeObject(endereco);
+            msg = (String) in.readObject();
+            return msg.equals("ok");
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return false;
         }
     }
 
