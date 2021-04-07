@@ -14,7 +14,7 @@ import com.example.alfred.InfosApp;
 import com.example.alfred.R;
 import com.example.alfred.RecyclerItemClickListener;
 import com.example.alfred.adapter.AdapterPratos;
-import com.example.alfred.model.Dish;
+import com.example.alfred.modelDominio.Prato;
 import com.google.android.material.appbar.MaterialToolbar;
 
 import java.util.ArrayList;
@@ -23,7 +23,7 @@ import java.util.List;
 public class CardapioActivity extends AppCompatActivity {
 
     private RecyclerView recyclerViewPratos;
-    private List<Dish> dishList =  new ArrayList<>();
+    private List<Prato> pratoList =  new ArrayList<>();
     private InfosApp infosApp;
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +44,7 @@ public class CardapioActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         // Configurar adapter para o RecyclerView
-        AdapterPratos adapterPratos = new AdapterPratos(dishList);
+        AdapterPratos adapterPratos = new AdapterPratos(pratoList);
 
         // Configurar RecyclerView
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
@@ -81,13 +81,13 @@ public class CardapioActivity extends AppCompatActivity {
 
     // TODO - BUSCAR DO BANCO
     public void criarPratos() {
-        Dish restaurant = new Dish("name", "description",  5.5);
-        dishList.add(restaurant);
-        Dish restaurant2 = new Dish("name", "description",  5.5);
-        dishList.add(restaurant2);
-        Dish restaurant3 = new Dish("name", "description",  5.5);
-        dishList.add(restaurant3);
-        Dish restaurant4 = new Dish("name", "description", 5.5);
-        dishList.add(restaurant4);
+        Prato restaurant = new Prato("name", "description",  5.5, 1);
+        pratoList.add(restaurant);
+        Prato restaurant2 = new Prato("name", "description",  5.5, 1);
+        pratoList.add(restaurant2);
+        Prato restaurant3 = new Prato("name", "description",  5.5, 1);
+        pratoList.add(restaurant3);
+        Prato restaurant4 = new Prato("name", "description", 5.5, 1);
+        pratoList.add(restaurant4);
     }
 }

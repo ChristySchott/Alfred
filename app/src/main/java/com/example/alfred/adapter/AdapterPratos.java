@@ -9,16 +9,16 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.alfred.R;
-import com.example.alfred.model.Dish;
+import com.example.alfred.modelDominio.Prato;
 
 import java.util.List;
 
 public class AdapterPratos extends RecyclerView.Adapter<AdapterPratos.MyViewHolder> {
 
-    private List<Dish> dishList;
+    private List<Prato> pratoList;
 
-    public AdapterPratos(List<Dish> list) {
-        this.dishList = list;
+    public AdapterPratos(List<Prato> list) {
+        this.pratoList = list;
     }
 
     @NonNull
@@ -34,15 +34,15 @@ public class AdapterPratos extends RecyclerView.Adapter<AdapterPratos.MyViewHold
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
 
-        Dish dish = dishList.get(position);
-        holder.name.setText(dish.getName());
-        holder.description.setText(dish.getDescription());
-        holder.price.setText(dish.getPrice().toString());
+        Prato prato = pratoList.get(position);
+        holder.name.setText(prato.getNomePrato());
+        holder.description.setText(prato.getDescricaoPrato());
+        holder.price.setText(prato.getValorPratoString());
     }
 
     @Override
     public int getItemCount() {
-        return dishList.size();
+        return pratoList.size();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {

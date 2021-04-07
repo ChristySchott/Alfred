@@ -11,16 +11,16 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.alfred.R;
-import com.example.alfred.model.Restaurant;
+import com.example.alfred.modelDominio.Empresa;
 
 import java.util.List;
 
 public class AdapterEmpresas extends RecyclerView.Adapter<AdapterEmpresas.MyViewHolder> {
 
-    private List<Restaurant> restaurantList;
+    private List<Empresa> empresaList;
 
-    public AdapterEmpresas(List<Restaurant> list) {
-        this.restaurantList = list;
+    public AdapterEmpresas(List<Empresa> list) {
+        this.empresaList = list;
     }
 
     @NonNull
@@ -36,34 +36,34 @@ public class AdapterEmpresas extends RecyclerView.Adapter<AdapterEmpresas.MyView
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
 
-        Restaurant restaurant = restaurantList.get(position);
-        holder.name.setText(restaurant.getName());
-        holder.rating.setNumStars(restaurant.getRating());
-        holder.category.setText(restaurant.getCategory());
-        holder.averagePrice.setText(restaurant.getAveragePrice().toString());
+        Empresa empresa = empresaList.get(position);
+        holder.nome.setText(empresa.getNomeEmpresa());
+        holder.avaliacao.setNumStars(empresa.getNotaAvaliacao());
+        holder.categoria.setText(empresa.getNomeCategoria());
+        holder.precoMedio.setText(empresa.getNomeEmpresa());
     }
 
     @Override
     public int getItemCount() {
-        return restaurantList.size();
+        return empresaList.size();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
             ImageView image;
-            TextView name;
-            RatingBar rating;
-            TextView category;
-            TextView averagePrice;
+            TextView nome;
+            RatingBar avaliacao;
+            TextView categoria;
+            TextView precoMedio;
 
             public MyViewHolder(View itemView) {
                 super(itemView);
 
                 image = itemView.findViewById(R.id.ivRestaurantImage);
-                name = itemView.findViewById(R.id.txRestaurantName);
-                rating = itemView.findViewById(R.id.rbRestaurantRating);
-                category = itemView.findViewById(R.id.txRestaurantName);
-                averagePrice = itemView.findViewById(R.id.txRestaurantAveragePrice);
+                nome = itemView.findViewById(R.id.txRestaurantName);
+                avaliacao = itemView.findViewById(R.id.rbRestaurantRating);
+                categoria = itemView.findViewById(R.id.txRestaurantName);
+                precoMedio = itemView.findViewById(R.id.txRestaurantAveragePrice);
             }
         }
 }

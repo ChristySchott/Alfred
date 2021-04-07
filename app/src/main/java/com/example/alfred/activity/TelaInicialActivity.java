@@ -6,7 +6,7 @@ import android.os.Bundle;
 import com.example.alfred.R;
 import com.example.alfred.RecyclerItemClickListener;
 import com.example.alfred.adapter.AdapterEmpresas;
-import com.example.alfred.model.Restaurant;
+import com.example.alfred.modelDominio.Empresa;
 
 import android.view.View;
 
@@ -26,7 +26,7 @@ public class TelaInicialActivity extends AppCompatActivity {
 
     // private AppBarConfiguration mAppBarConfiguration;
     private RecyclerView recyclerViewEmpresasAbertas;
-    private List<Restaurant> listaEmpresas =  new ArrayList<>();
+    private List<Empresa> listaEmpresas =  new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,9 +50,6 @@ public class TelaInicialActivity extends AppCompatActivity {
         recyclerViewEmpresasAbertas = findViewById(R.id.rvAbertos);
 
 
-        // Listagem de Restaurantes
-        this.criarEmpresas();
-
         // Configurar adapter para o RecyclerView
         AdapterEmpresas adapterEmpresas = new AdapterEmpresas(listaEmpresas);
 
@@ -71,10 +68,10 @@ public class TelaInicialActivity extends AppCompatActivity {
                         new RecyclerItemClickListener.OnItemClickListener() {
                             @Override
                             public void onItemClick(View view, int position) {
-                                Restaurant myRestaurant = listaEmpresas.get(position);
+                                Empresa myEmpresa = listaEmpresas.get(position);
 
                                 Intent it = new Intent(TelaInicialActivity.this, CardapioActivity.class);
-                                it.putExtra("restaurant", myRestaurant);
+                                it.putExtra("restaurant", myEmpresa);
                                 startActivity(it);
                             }
 
@@ -93,17 +90,6 @@ public class TelaInicialActivity extends AppCompatActivity {
     }
 
 
-    // TODO - BUSCAR DO BANCO
-    public void criarEmpresas() {
-        Restaurant restaurant = new Restaurant("name", 5, "pizza", 5.5);
-        listaEmpresas.add(restaurant);
-        Restaurant restaurant2 = new Restaurant("name", 5, "pizza", 5.5);
-        listaEmpresas.add(restaurant2);
-        Restaurant restaurant3 = new Restaurant("name", 5, "pizza", 5.5);
-        listaEmpresas.add(restaurant3);
-        Restaurant restaurant4 = new Restaurant("name", 5, "pizza", 5.5);
-        listaEmpresas.add(restaurant4);
-    }
 
 
     /* @Override

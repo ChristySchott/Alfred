@@ -2,35 +2,35 @@ package com.example.alfred;
 
 import android.app.Application;
 
-import com.example.alfred.model.Dish;
-import com.example.alfred.model.Restaurant;
+import com.example.alfred.modelDominio.Prato;
+import com.example.alfred.modelDominio.Empresa;
 
 import java.util.ArrayList;
 
 public class InfosApp extends Application {
 
-    private ArrayList<Restaurant> restaurantList;
-    private ArrayList<Dish> dishList;
+    private ArrayList<Empresa> empresaList;
+    private ArrayList<Prato> pratoList;
 
     @Override
     public void onCreate() {
         super.onCreate();
-        restaurantList = new ArrayList<>();
+        empresaList = new ArrayList<>();
     }
 
-    public ArrayList<Restaurant> getRestaurantList() {
-        return restaurantList;
+    public ArrayList<Empresa> getEmpresaList() {
+        return empresaList;
     }
 
-    public void setRestaurantList(ArrayList<Restaurant> restaurantList){
-        this.restaurantList = restaurantList;
+    public void setEmpresaList(ArrayList<Empresa> empresaList){
+        this.empresaList = empresaList;
     }
 
-    public ArrayList<Dish> getDishList() {
-        return dishList;
+    public ArrayList<Prato> getPratoList() {
+        return pratoList;
     }
 
-    public void setDishList(ArrayList<Dish> dishList) {
-        this.dishList = dishList;
+    public void setPratoList(ArrayList<Prato> pratoList) {
+        this.pratoList = pratoList;
     }
 }
