@@ -30,18 +30,8 @@ public class CadastroActivity extends AppCompatActivity {
         // Configuração inicial dos componentes
         iniciarComponentes();
 
-        // Contexto
+//        // Contexto
         informacoesApp = (InformacoesApp) getApplicationContext();
-
-        // Cria o conexão controller, mas conecta somente 1 vez no Servidor durante toda a aplicacao.
-        Thread t = new Thread() {
-            @Override
-            public void run() {
-                ConexaoController ccont = new ConexaoController(informacoesApp);
-                ccont.Conectar();
-            }
-        };
-        t.start();
 
         btnCadastrar.setOnClickListener(new View.OnClickListener() {
             @Override
