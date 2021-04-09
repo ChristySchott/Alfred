@@ -10,7 +10,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
 
-import com.example.alfred.InfosApp;
+import com.example.alfred.InformacoesApp;
 import com.example.alfred.R;
 import com.example.alfred.listener.RecyclerItemClickListener;
 import com.example.alfred.adapter.AdapterPratos;
@@ -24,7 +24,7 @@ public class CardapioActivity extends AppCompatActivity {
 
     private RecyclerView recyclerViewPratos;
     private List<Prato> pratoList =  new ArrayList<>();
-    private InfosApp infosApp;
+    private InformacoesApp infosApp;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,7 +32,7 @@ public class CardapioActivity extends AppCompatActivity {
 
         recyclerViewPratos = findViewById(R.id.rvPratos);
 
-        infosApp = (InfosApp) getApplicationContext();
+        infosApp = (InformacoesApp) getApplicationContext();
 
         // Listagem de Pratos
         this.criarPratos();

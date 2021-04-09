@@ -1,19 +1,25 @@
 package com.example.alfred.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.alfred.InformacoesApp;
 import com.example.alfred.R;
+import com.example.alfred.controller.ConexaoController;
+import com.example.alfred.modelDominio.Cliente;
+import com.example.alfred.modelDominio.Usuario;
 import com.google.android.material.textfield.TextInputLayout;
 
 public class MainActivity extends AppCompatActivity {
 
     TextInputLayout txMainEmail, txMainSenha;
     Button btnMainEntrar, btnNaoPossuiConta, btnEsqueceuSenha;
+    InformacoesApp informacoesApp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,25 +29,63 @@ public class MainActivity extends AppCompatActivity {
         // Configuração inicial dos components
         iniciarComponentes();
 
+
+        // Contexto
+        informacoesApp = (InformacoesApp) getApplicationContext();
+
+        // Cria o conexão controller, mas conecta somente 1 vez no Servidor durante toda a aplicacao.
+        Thread t = new Thread(){
+            @Override
+            public void run() {
+                ConexaoController ccont = new ConexaoController(informacoesApp);
+                ccont.Conectar();
+            }
+        };
+        t.start();
+
+
+
         btnMainEntrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (txMainEmail.getEditText().getText().toString().equals("")){
-                    txMainEmail.setError("Informe o e-mail");
-                    txMainEmail.requestFocus();
-                } else if (txMainSenha.getEditText().getText().toString().equals("")){
-                    txMainSenha.setError("Informe a senha");
-                    txMainSenha.requestFocus();
-                } else {
-                    String email = txMainEmail.getEditText().getText().toString();
-                    String password = txMainSenha.getEditText().getText().toString();
+                Thread thread = new Thread() {
+                    @Override
+                    public void run() {
+                        ConexaoController ccont = new ConexaoController(informacoesApp);
 
-                    if (!email.equals("") && !password.equals("")){
-                        Intent it = new Intent(MainActivity.this, TelaInicialActivity.class);
-                        it.putExtra("email", email);
-                        startActivity(it);
+                        String email = txMainEmail.getEditText().getText().toString();
+                        String senha = txMainSenha.getEditText().getText().toString();
+
+                        if (email.equals("") || !Usuario.validaEmail(email)) {
+                            txMainEmail.setError("Informe o e-mail");
+                            txMainEmail.requestFocus();
+                        } else if (txMainSenha.getEditText().getText().toString().equals("")) {
+                            txMainSenha.setError("Informe a senha");
+                            txMainSenha.requestFocus();
+                        } else {
+
+                            if (!email.equals("") && !senha.equals("")) {
+                                Cliente clienteUsuario = new Cliente(email, senha);
+
+                                Cliente clienteSelecionado = ccont.efetuarLogin(clienteUsuario);
+
+                                Intent it = new Intent(MainActivity.this, TelaInicialActivity.class);
+                                it.putExtra("cliente", clienteSelecionado);
+                                startActivity(it);
+
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        Toast.makeText(MainActivity.this, "Usuário ou senha inválida!", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                            }
+                        }
+
                     }
-                }
+                };
+                thread.start();
+
             }
         });
 
@@ -69,4 +113,5 @@ public class MainActivity extends AppCompatActivity {
         btnNaoPossuiConta = findViewById(R.id.btnNaoPossuiConta);
         btnEsqueceuSenha = findViewById(R.id.btnEsqueceuSenha);
     }
+
 }

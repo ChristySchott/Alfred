@@ -1,13 +1,16 @@
 package com.example.alfred.controller;
 
+import com.example.alfred.InformacoesApp;
 import com.example.alfred.modelDominio.Avaliacao;
 import com.example.alfred.modelDominio.Categoria;
+import com.example.alfred.modelDominio.Cliente;
 import com.example.alfred.modelDominio.Endereco;
 import com.example.alfred.modelDominio.Prato;
 import com.example.alfred.modelDominio.Usuario;
 
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.net.Socket;
 import java.util.ArrayList;
 
 public class ConexaoController {
@@ -15,6 +18,22 @@ public class ConexaoController {
     private ObjectOutputStream out;
     private ObjectInputStream in;
     private int idUnico;
+    InformacoesApp informacoesApp;
+
+    public void Conectar(){
+        try{
+            System.out.println("Conectando no servidor...");
+            informacoesApp.socket = new Socket("10.0.2.2", 12345);
+            informacoesApp.out = new ObjectOutputStream(informacoesApp.socket.getOutputStream());
+            informacoesApp.in = new ObjectInputStream(informacoesApp.socket.getInputStream());
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public ConexaoController(InformacoesApp informacoesApp) {
+        this.informacoesApp = informacoesApp;
+    }
 
     public ConexaoController(ObjectInputStream in, ObjectOutputStream out, int idUnico) {
         this.in = in;
@@ -150,11 +169,40 @@ public class ConexaoController {
     }
 
     /* USUÁRIO */
-    public Usuario efetuarLogin(Usuario usr) {
+    public Cliente efetuarLogin(Cliente cl) {
         String msg;
         try {
-            out.writeObject("UsuarioEfetuarLogin");
+            out.writeObject("ClienteEfetuarLogin");
             msg = (String) in.readObject();
+            out.writeObject(cl);
+            Cliente clselecionado = (Cliente) in.readObject();
+            return clselecionado;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return null;
+        }
+    }
+
+    public Boolean clienteInserir(Cliente cl) {
+        String msg = "";
+        try {
+            out.writeObject("ClienteInserir");
+            msg = (String) in.readObject();
+            out.writeObject(cl);
+            msg = (String) in.readObject();
+            return msg.equals("ok");
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return false;
+        }
+    }
+
+    public Usuario buscarUsuario(Usuario usr) {
+        String msg;
+        try {
+            out.writeObject("BuscarUsuario");
+            msg = (String) in.readObject();
+
             out.writeObject(usr);
             Usuario usrselecionado = (Usuario) in.readObject();
             return usrselecionado;
@@ -168,20 +216,6 @@ public class ConexaoController {
         String msg = "";
         try {
             out.writeObject("UsuarioInserir");
-            msg = (String) in.readObject();
-            out.writeObject(usr);
-            msg = (String) in.readObject();
-            return msg.equals("ok");
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            return false;
-        }
-    }
-
-    public Boolean usuarioExcluir(Usuario usr) {
-        String msg = "";
-        try {
-            out.writeObject("UsuarioExcluir");
             msg = (String) in.readObject();
             out.writeObject(usr);
             msg = (String) in.readObject();
