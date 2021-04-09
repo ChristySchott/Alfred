@@ -2,7 +2,7 @@ package com.example.alfred;
 
 import android.app.Application;
 
-import com.example.alfred.modelDominio.Usuario;
+import modelDominio.Usuario;
 
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;

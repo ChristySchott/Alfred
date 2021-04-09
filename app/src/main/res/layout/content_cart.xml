@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="24dp"
-    tools:context=".activity.CarrinhoActivity"
+    tools:context="com.example.alfred.activity.CarrinhoActivity"
     tools:showIn="@layout/activity_carrinho">
 
     <ScrollView

@@ -1,4 +1,4 @@
-package com.example.alfred.adapter;
+package adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.alfred.R;
-import com.example.alfred.modelDominio.Prato;
+import modelDominio.Prato;
 
 import java.util.List;
 

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="24dp"
-    tools:context=".activity.MinhaContaActivity"
+    tools:context="com.example.alfred.activity.MinhaContaActivity"
     tools:showIn="@layout/activity_minha_conta">
 
     <TextView

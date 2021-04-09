@@ -13,18 +13,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.MeusPedidosActivity" android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".activity.CardapioActivity" android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name="com.example.alfred.activity.MeusPedidosActivity" android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name="com.example.alfred.activity.CardapioActivity" android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".activity.TelaInicialActivity"
+            android:name="com.example.alfred.activity.TelaInicialActivity"
             android:label="@string/titulo_activity_menu"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".activity.CarrinhoActivity" android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".activity.MinhaContaActivity" android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".activity.MinhasInfosActivity" android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".activity.RecuperarSenhaActivity" android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".activity.CadastroActivity" android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".activity.MainActivity" android:theme="@style/AppTheme.NoActionBar" android:launchMode="singleTop">
+        <activity android:name="com.example.alfred.activity.CarrinhoActivity" android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name="com.example.alfred.activity.MinhaContaActivity" android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name="com.example.alfred.activity.MinhasInfosActivity" android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name="com.example.alfred.activity.RecuperarSenhaActivity" android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name="com.example.alfred.activity.CadastroActivity" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name="com.example.alfred.activity.MainActivity" android:theme="@style/AppTheme.NoActionBar" android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

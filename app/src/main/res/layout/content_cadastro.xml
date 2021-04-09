@@ -7,7 +7,7 @@
     android:gravity="center"
     android:orientation="vertical"
     android:padding="24dp"
-    tools:context=".activity.CadastroActivity"
+    tools:context="com.example.alfred.activity.CadastroActivity"
     tools:showIn="@layout/activity_cadastro">
 
     <ImageView

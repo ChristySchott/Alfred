@@ -1,4 +1,4 @@
-package com.example.alfred.modelDominio;
+package modelDominio;
 
 import java.io.Serializable;
 

@@ -1,12 +1,14 @@
 package com.example.alfred.controller;
 
+import android.util.Log;
+
 import com.example.alfred.InformacoesApp;
-import com.example.alfred.modelDominio.Avaliacao;
-import com.example.alfred.modelDominio.Categoria;
-import com.example.alfred.modelDominio.Cliente;
-import com.example.alfred.modelDominio.Endereco;
-import com.example.alfred.modelDominio.Prato;
-import com.example.alfred.modelDominio.Usuario;
+import modelDominio.Avaliacao;
+import modelDominio.Categoria;
+import modelDominio.Cliente;
+import modelDominio.Endereco;
+import modelDominio.Prato;
+import modelDominio.Usuario;
 
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -44,10 +46,10 @@ public class ConexaoController {
     public Boolean avaliacaoInserir(Avaliacao avaliacao) {
         String msg = "";
         try {
-            out.writeObject("AvaliacaoInserir");
-            msg = (String) in.readObject();
-            out.writeObject(avaliacao);
-            msg = (String) in.readObject();
+            informacoesApp.out.writeObject("AvaliacaoInserir");
+            msg = (String) informacoesApp.in.readObject();
+            informacoesApp.out.writeObject(avaliacao);
+            msg = (String) informacoesApp.in.readObject();
             return msg.equals("ok");
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -58,10 +60,10 @@ public class ConexaoController {
     public Boolean avaliacaoAlterar(Avaliacao avaliacao) {
         String msg = "";
         try {
-            out.writeObject("AvaliacaoAlterar");
-            msg = (String) in.readObject();
-            out.writeObject(avaliacao);
-            msg = (String) in.readObject();
+            informacoesApp.out.writeObject("AvaliacaoAlterar");
+            msg = (String) informacoesApp.in.readObject();
+            informacoesApp.out.writeObject(avaliacao);
+            msg = (String) informacoesApp.in.readObject();
             return msg.equals("ok");
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -72,10 +74,10 @@ public class ConexaoController {
     public Boolean avaliacaoExcluir(Avaliacao avaliacao) {
         String msg = "";
         try {
-            out.writeObject("AvaliacaoExcluir");
-            msg = (String) in.readObject();
-            out.writeObject(avaliacao);
-            msg = (String) in.readObject();
+            informacoesApp.out.writeObject("AvaliacaoExcluir");
+            msg = (String) informacoesApp.in.readObject();
+            informacoesApp.out.writeObject(avaliacao);
+            msg = (String) informacoesApp.in.readObject();
             return msg.equals("ok");
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -86,9 +88,9 @@ public class ConexaoController {
     public ArrayList<Avaliacao> avaliacaoLista() {
         String msg;
         try {
-            out.writeObject("AvaliacaoLista");
-            msg = (String) in.readObject();
-            ArrayList<Avaliacao> listaAvaliacao = (ArrayList<Avaliacao>) in.readObject();
+            informacoesApp.out.writeObject("AvaliacaoLista");
+            msg = (String) informacoesApp.in.readObject();
+            ArrayList<Avaliacao> listaAvaliacao = (ArrayList<Avaliacao>) informacoesApp.in.readObject();
             return listaAvaliacao;
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -101,10 +103,10 @@ public class ConexaoController {
     public Boolean categoriaInserir(Categoria categoria) {
         String msg = "";
         try {
-            out.writeObject("CategoriaInserir");
-            msg = (String) in.readObject();
-            out.writeObject(categoria);
-            msg = (String) in.readObject();
+            informacoesApp.out.writeObject("CategoriaInserir");
+            msg = (String) informacoesApp.in.readObject();
+            informacoesApp.out.writeObject(categoria);
+            msg = (String) informacoesApp.in.readObject();
             return msg.equals("ok");
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -115,10 +117,10 @@ public class ConexaoController {
     public Boolean categoriaAlterar(Categoria categoria) {
         String msg = "";
         try {
-            out.writeObject("CategoriaAlterar");
-            msg = (String) in.readObject();
-            out.writeObject(categoria);
-            msg = (String) in.readObject();
+            informacoesApp.out.writeObject("CategoriaAlterar");
+            msg = (String) informacoesApp.in.readObject();
+            informacoesApp.out.writeObject(categoria);
+            msg = (String) informacoesApp.in.readObject();
             return msg.equals("ok");
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -129,10 +131,10 @@ public class ConexaoController {
     public Boolean categoriaExcluir(Categoria categoria) {
         String msg = "";
         try {
-            out.writeObject("CategoriaExcluir");
-            msg = (String) in.readObject();
-            out.writeObject(categoria);
-            msg = (String) in.readObject();
+            informacoesApp.out.writeObject("CategoriaExcluir");
+            msg = (String) informacoesApp.in.readObject();
+            informacoesApp.out.writeObject(categoria);
+            msg = (String) informacoesApp.in.readObject();
             return msg.equals("ok");
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -143,9 +145,9 @@ public class ConexaoController {
     public ArrayList<Categoria> categoriaLista() {
         String msg;
         try {
-            out.writeObject("CategoriaLista");
-            msg = (String) in.readObject();
-            ArrayList<Categoria> listaCategoria = (ArrayList<Categoria>) in.readObject();
+            informacoesApp.out.writeObject("CategoriaLista");
+            msg = (String) informacoesApp.in.readObject();
+            ArrayList<Categoria> listaCategoria = (ArrayList<Categoria>) informacoesApp.in.readObject();
             return listaCategoria;
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -157,10 +159,10 @@ public class ConexaoController {
     public ArrayList<Categoria> categoriaListaNome(String nome) {
         String msg;
         try {
-            out.writeObject("CategoriaListaNome");
-            msg = (String) in.readObject();
-            out.writeObject(nome);
-            ArrayList<Categoria> listaCategoriaNome = (ArrayList<Categoria>) in.readObject();
+            informacoesApp.out.writeObject("CategoriaListaNome");
+            msg = (String) informacoesApp.in.readObject();
+            informacoesApp.out.writeObject(nome);
+            ArrayList<Categoria> listaCategoriaNome = (ArrayList<Categoria>) informacoesApp.in.readObject();
             return listaCategoriaNome;
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -172,10 +174,10 @@ public class ConexaoController {
     public Cliente efetuarLogin(Cliente cl) {
         String msg;
         try {
-            out.writeObject("ClienteEfetuarLogin");
-            msg = (String) in.readObject();
-            out.writeObject(cl);
-            Cliente clselecionado = (Cliente) in.readObject();
+            informacoesApp.out.writeObject("ClienteEfetuarLogin");
+            msg = (String) informacoesApp.in.readObject();
+            informacoesApp.out.writeObject(cl);
+            Cliente clselecionado = (Cliente) informacoesApp.in.readObject();
             return clselecionado;
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -186,10 +188,10 @@ public class ConexaoController {
     public Boolean clienteInserir(Cliente cl) {
         String msg = "";
         try {
-            out.writeObject("ClienteInserir");
-            msg = (String) in.readObject();
-            out.writeObject(cl);
-            msg = (String) in.readObject();
+            informacoesApp.out.writeObject("ClienteInserir");
+            msg = (String) informacoesApp.in.readObject();
+            informacoesApp.out.writeObject(cl);
+            msg = (String) informacoesApp.in.readObject();
             return msg.equals("ok");
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -200,11 +202,11 @@ public class ConexaoController {
     public Usuario buscarUsuario(Usuario usr) {
         String msg;
         try {
-            out.writeObject("BuscarUsuario");
-            msg = (String) in.readObject();
+            informacoesApp.out.writeObject("BuscarUsuario");
+            msg = (String) informacoesApp.in.readObject();
 
-            out.writeObject(usr);
-            Usuario usrselecionado = (Usuario) in.readObject();
+            informacoesApp.out.writeObject(usr);
+            Usuario usrselecionado = (Usuario) informacoesApp.in.readObject();
             return usrselecionado;
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -215,10 +217,14 @@ public class ConexaoController {
     public Boolean usuarioInserir(Usuario usr) {
         String msg = "";
         try {
-            out.writeObject("UsuarioInserir");
-            msg = (String) in.readObject();
-            out.writeObject(usr);
-            msg = (String) in.readObject();
+            informacoesApp.out.writeObject("UsuarioInserir");
+            msg = (String) informacoesApp.in.readObject();
+            informacoesApp.out.writeObject(usr);
+            Log.d("2", msg);
+            msg = (String) informacoesApp.in.readObject();
+            Log.d("2", msg);
+
+
             return msg.equals("ok");
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -229,10 +235,10 @@ public class ConexaoController {
     public Boolean usuarioAlterar(Usuario usr) {
         String msg = "";
         try {
-            out.writeObject("UsuarioAlterar");
-            msg = (String) in.readObject();
-            out.writeObject(usr);
-            msg = (String) in.readObject();
+            informacoesApp.out.writeObject("UsuarioAlterar");
+            msg = (String) informacoesApp.in.readObject();
+            informacoesApp.out.writeObject(usr);
+            msg = (String) informacoesApp.in.readObject();
             return msg.equals("ok");
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -243,9 +249,9 @@ public class ConexaoController {
     public ArrayList<Usuario> usuarioLista() {
         String msg;
         try {
-            out.writeObject("UsuarioLista");
-            msg = (String) in.readObject();
-            ArrayList<Usuario> listausr = (ArrayList<Usuario>) in.readObject();
+            informacoesApp.out.writeObject("UsuarioLista");
+            msg = (String) informacoesApp.in.readObject();
+            ArrayList<Usuario> listausr = (ArrayList<Usuario>) informacoesApp.in.readObject();
             return listausr;
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -257,10 +263,10 @@ public class ConexaoController {
     public Boolean pratoInserir(Prato prato) {
         String msg = "";
         try {
-            out.writeObject("PratoInserir");
-            msg = (String) in.readObject();
-            out.writeObject(prato);
-            msg = (String) in.readObject();
+            informacoesApp.out.writeObject("PratoInserir");
+            msg = (String) informacoesApp.in.readObject();
+            informacoesApp.out.writeObject(prato);
+            msg = (String) informacoesApp.in.readObject();
             return msg.equals("ok");
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -271,10 +277,10 @@ public class ConexaoController {
     public Boolean pratoAlterar(Prato prato) {
         String msg = "";
         try {
-            out.writeObject("PratoAlterar");
-            msg = (String) in.readObject();
-            out.writeObject(prato);
-            msg = (String) in.readObject();
+            informacoesApp.out.writeObject("PratoAlterar");
+            msg = (String) informacoesApp.in.readObject();
+            informacoesApp.out.writeObject(prato);
+            msg = (String) informacoesApp.in.readObject();
             return msg.equals("ok");
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -285,10 +291,10 @@ public class ConexaoController {
     public Boolean pratoExcluir(Prato prato) {
         String msg = "";
         try {
-            out.writeObject("PratoExcluir");
-            msg = (String) in.readObject();
-            out.writeObject(prato);
-            msg = (String) in.readObject();
+            informacoesApp.out.writeObject("PratoExcluir");
+            msg = (String) informacoesApp.in.readObject();
+            informacoesApp.out.writeObject(prato);
+            msg = (String) informacoesApp.in.readObject();
             return msg.equals("ok");
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -299,9 +305,9 @@ public class ConexaoController {
     public ArrayList<Prato> pratoLista() {
         String msg;
         try {
-            out.writeObject("PratoLista");
-            msg = (String) in.readObject();
-            ArrayList<Prato> listaPrato = (ArrayList<Prato>) in.readObject();
+            informacoesApp.out.writeObject("PratoLista");
+            msg = (String) informacoesApp.in.readObject();
+            ArrayList<Prato> listaPrato = (ArrayList<Prato>) informacoesApp.in.readObject();
             return listaPrato;
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -313,10 +319,10 @@ public class ConexaoController {
     public ArrayList<Prato> pratoListaNome(String nome) {
         String msg;
         try {
-            out.writeObject("PratoListaNome");
-            msg = (String) in.readObject();
-            out.writeObject(nome);
-            ArrayList<Prato> listaPratoNome = (ArrayList<Prato>) in.readObject();
+            informacoesApp.out.writeObject("PratoListaNome");
+            msg = (String) informacoesApp.in.readObject();
+            informacoesApp.out.writeObject(nome);
+            ArrayList<Prato> listaPratoNome = (ArrayList<Prato>) informacoesApp.in.readObject();
             return listaPratoNome;
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -327,10 +333,10 @@ public class ConexaoController {
     public ArrayList<Prato> pratoListaEmpresa(String nome) {
         String msg;
         try {
-            out.writeObject("PratoListaEmpresa");
-            msg = (String) in.readObject();
-            out.writeObject(nome);
-            ArrayList<Prato> listaPratoEmpresa = (ArrayList<Prato>) in.readObject();
+            informacoesApp.out.writeObject("PratoListaEmpresa");
+            msg = (String) informacoesApp.in.readObject();
+            informacoesApp.out.writeObject(nome);
+            ArrayList<Prato> listaPratoEmpresa = (ArrayList<Prato>) informacoesApp.in.readObject();
             return listaPratoEmpresa;
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -342,10 +348,10 @@ public class ConexaoController {
     public Boolean enderecoInserir(Endereco endereco) {
         String msg = "";
         try {
-            out.writeObject("EnderecoInserir");
-            msg = (String) in.readObject();
-            out.writeObject(endereco);
-            msg = (String) in.readObject();
+            informacoesApp.out.writeObject("EnderecoInserir");
+            msg = (String) informacoesApp.in.readObject();
+            informacoesApp.out.writeObject(endereco);
+            msg = (String) informacoesApp.in.readObject();
             return msg.equals("ok");
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -356,10 +362,10 @@ public class ConexaoController {
     public Boolean enderecoAlterar(Endereco endereco) {
         String msg = "";
         try {
-            out.writeObject("EnderecoAlterar");
-            msg = (String) in.readObject();
-            out.writeObject(endereco);
-            msg = (String) in.readObject();
+            informacoesApp.out.writeObject("EnderecoAlterar");
+            msg = (String) informacoesApp.in.readObject();
+            informacoesApp.out.writeObject(endereco);
+            msg = (String) informacoesApp.in.readObject();
             return msg.equals("ok");
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -370,10 +376,10 @@ public class ConexaoController {
     public Boolean enderecoExcluir(Endereco endereco) {
         String msg = "";
         try {
-            out.writeObject("EnderecoExcluir");
-            msg = (String) in.readObject();
-            out.writeObject(endereco);
-            msg = (String) in.readObject();
+            informacoesApp.out.writeObject("EnderecoExcluir");
+            msg = (String) informacoesApp.in.readObject();
+            informacoesApp.out.writeObject(endereco);
+            msg = (String) informacoesApp.in.readObject();
             return msg.equals("ok");
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -385,7 +391,7 @@ public class ConexaoController {
     public void fim() {
         String msg;
         try {
-            out.writeObject("fim");
+            informacoesApp.out.writeObject("fim");
             in.close();
             out.close();
         } catch (Exception ex) {

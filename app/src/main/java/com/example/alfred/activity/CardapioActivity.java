@@ -13,8 +13,8 @@ import android.widget.LinearLayout;
 import com.example.alfred.InformacoesApp;
 import com.example.alfred.R;
 import com.example.alfred.listener.RecyclerItemClickListener;
-import com.example.alfred.adapter.AdapterPratos;
-import com.example.alfred.modelDominio.Prato;
+import adapter.AdapterPratos;
+import modelDominio.Prato;
 import com.google.android.material.appbar.MaterialToolbar;
 
 import java.util.ArrayList;

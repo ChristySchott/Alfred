@@ -5,8 +5,8 @@ import android.os.Bundle;
 
 import com.example.alfred.R;
 import com.example.alfred.listener.RecyclerItemClickListener;
-import com.example.alfred.adapter.AdapterEmpresas;
-import com.example.alfred.modelDominio.Empresa;
+import adapter.AdapterEmpresas;
+import modelDominio.Empresa;
 
 import android.view.View;
 

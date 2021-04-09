@@ -7,7 +7,7 @@
     android:gravity="center"
     android:orientation="vertical"
     android:padding="24dp"
-    tools:context=".activity.MainActivity"
+    tools:context="com.example.alfred.activity.MainActivity"
     tools:showIn="@layout/activity_main">
 
     <ImageView

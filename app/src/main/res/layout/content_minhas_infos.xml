@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="24dp"
-    tools:context=".activity.MinhasInfosActivity"
+    tools:context="com.example.alfred.activity.MinhasInfosActivity"
     tools:showIn="@layout/activity_minhas_infos">
 
     <ScrollView

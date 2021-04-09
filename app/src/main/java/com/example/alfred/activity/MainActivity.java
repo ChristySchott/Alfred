@@ -11,8 +11,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.alfred.InformacoesApp;
 import com.example.alfred.R;
 import com.example.alfred.controller.ConexaoController;
-import com.example.alfred.modelDominio.Cliente;
-import com.example.alfred.modelDominio.Usuario;
+import modelDominio.Cliente;
+import modelDominio.Usuario;
 import com.google.android.material.textfield.TextInputLayout;
 
 public class MainActivity extends AppCompatActivity {
