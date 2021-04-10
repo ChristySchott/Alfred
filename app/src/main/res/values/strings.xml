@@ -24,6 +24,7 @@
     <string name="tx_area">Area</string>
     <string name="tx_cidade">Cidade</string>
     <string name="tx_bairro">Bairro</string>
+    <string name="tx_estado">Estado</string>
     <string name="tx_rua">Rua</string>
     <string name="tx_numero_rua">Nº</string>
     <string name="tx_complemento">Complemento</string>
