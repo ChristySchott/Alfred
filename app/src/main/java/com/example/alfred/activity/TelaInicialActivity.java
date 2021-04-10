@@ -3,8 +3,10 @@ package com.example.alfred.activity;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.example.alfred.InformacoesApp;
 import com.example.alfred.R;
-import com.example.alfred.listener.RecyclerItemClickListener;
+import com.example.alfred.controller.ConexaoController;
+
 import adapter.AdapterEmpresas;
 import modelDominio.Empresa;
 
@@ -12,12 +14,13 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.widget.AdapterView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,8 +28,11 @@ import java.util.List;
 public class TelaInicialActivity extends AppCompatActivity {
 
     // private AppBarConfiguration mAppBarConfiguration;
-    private RecyclerView recyclerViewEmpresasAbertas;
-    private List<Empresa> listaEmpresas =  new ArrayList<>();
+    private RecyclerView rvEmpresasAbertas, rvEmpresasFechadas;
+    private List<Empresa> listaEmpresasAbertas =  new ArrayList<>();
+    private List<Empresa> listaEmpresasFechadas =  new ArrayList<>();
+    AdapterEmpresas adapterEmpresas;
+    InformacoesApp informacoesApp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,49 +53,94 @@ public class TelaInicialActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController); */
 
-        recyclerViewEmpresasAbertas = findViewById(R.id.rvAbertos);
+        // Iniciando os componentes
+        iniciarComponentes();
 
+        // Contexto
+        informacoesApp = (InformacoesApp) getApplicationContext();
 
-        // Configurar adapter para o RecyclerView
-        AdapterEmpresas adapterEmpresas = new AdapterEmpresas(listaEmpresas);
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
 
-        // Configurar RecyclerView
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
-        recyclerViewEmpresasAbertas.setLayoutManager(layoutManager);
-        recyclerViewEmpresasAbertas.setHasFixedSize(true);
-        recyclerViewEmpresasAbertas.addItemDecoration(new DividerItemDecoration(this, LinearLayout.VERTICAL));
-        recyclerViewEmpresasAbertas.setAdapter(adapterEmpresas);
-
-        // Evento de Clique em um item da Recycler View
-        recyclerViewEmpresasAbertas.addOnItemTouchListener(
-                new RecyclerItemClickListener(
-                        getApplicationContext(),
-                        recyclerViewEmpresasAbertas,
-                        new RecyclerItemClickListener.OnItemClickListener() {
-                            @Override
-                            public void onItemClick(View view, int position) {
-                                Empresa myEmpresa = listaEmpresas.get(position);
-
-                                Intent it = new Intent(TelaInicialActivity.this, CardapioActivity.class);
-                                it.putExtra("restaurant", myEmpresa);
-                                startActivity(it);
-                            }
-
-                            @Override
-                            public void onLongItemClick(View view, int position) {
-
-                            }
-
-                            @Override
-                            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-                            }
+                ConexaoController ccon = new ConexaoController(informacoesApp);
+                listaEmpresasAbertas = ccon.empresasAbertasLista();
+                if (listaEmpresasAbertas != null) {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            adapterEmpresas = new AdapterEmpresas(listaEmpresasAbertas, trataCliqueEmpresaAberta);
+                            rvEmpresasAbertas.setLayoutManager(new LinearLayoutManager(informacoesApp));
+                            rvEmpresasAbertas.setHasFixedSize(true);
+                            rvEmpresasAbertas.setItemAnimator(new DefaultItemAnimator());
+                            rvEmpresasAbertas.addItemDecoration(new DividerItemDecoration(informacoesApp, LinearLayout.VERTICAL));
+                            rvEmpresasAbertas.setAdapter(adapterEmpresas);
                         }
-                )
-        );
+                    });
+
+                } else {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(informacoesApp, "ATENÇÃO: Não foi possível obter a lista das empresas abertas!", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
+
+                listaEmpresasFechadas = ccon.empresasAbertasLista();
+                if (listaEmpresasFechadas != null) {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            adapterEmpresas = new AdapterEmpresas(listaEmpresasFechadas, trataCliqueEmpresaFechada);
+                            rvEmpresasFechadas.setLayoutManager(new LinearLayoutManager(informacoesApp));
+                            rvEmpresasFechadas.setHasFixedSize(true);
+                            rvEmpresasFechadas.setItemAnimator(new DefaultItemAnimator());
+                            rvEmpresasFechadas.addItemDecoration(new DividerItemDecoration(informacoesApp, LinearLayout.VERTICAL));
+                            rvEmpresasFechadas.setAdapter(adapterEmpresas);
+                        }
+                    });
+
+                } else {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(informacoesApp, "ATENÇÃO: Não foi possível obter a lista das empresas fechadas!", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
+
+            }
+        });
+        thread.start();
+
+
     }
 
+    AdapterEmpresas.EmpresaOnClickListener trataCliqueEmpresaAberta = new AdapterEmpresas.EmpresaOnClickListener() {
+        @Override
+        public void onClickEmpresa(View view, int position) {
+            Empresa minhaEmpresa = listaEmpresasAbertas.get(position);
+            Intent it = new Intent(TelaInicialActivity.this, CardapioActivity.class);
+            it.putExtra("empresa", minhaEmpresa);
+            startActivity(it);
+        }
+    };
 
+    AdapterEmpresas.EmpresaOnClickListener trataCliqueEmpresaFechada = new AdapterEmpresas.EmpresaOnClickListener() {
+        @Override
+        public void onClickEmpresa(View view, int position) {
+            Empresa minhaEmpresa = listaEmpresasFechadas.get(position);
+            Intent it = new Intent(TelaInicialActivity.this, CardapioActivity.class);
+            it.putExtra("empresa", minhaEmpresa);
+            startActivity(it);
+        }
+    };
+
+    public void iniciarComponentes() {
+        rvEmpresasAbertas = findViewById(R.id.rvAbertos);
+        rvEmpresasFechadas = findViewById(R.id.rvFechados);
+    }
 
 
     /* @Override

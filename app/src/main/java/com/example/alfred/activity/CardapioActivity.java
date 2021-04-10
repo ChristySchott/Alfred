@@ -103,7 +103,7 @@ public class CardapioActivity extends AppCompatActivity {
         public void onClickPrato(View view, int position) {
             Prato meuPrato = listaPratos.get(position);
 
-            // TODO - Criar PratoPedido aqui (informação para preencher AdapterPratosPedido)
+            // TODO - Criar PratoPedido aqui (informação para preencher AdapterCarrinho)
         }
     };
 
