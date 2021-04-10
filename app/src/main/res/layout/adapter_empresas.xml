@@ -10,7 +10,7 @@
         android:orientation="horizontal">
 
         <ImageView
-            android:id="@+id/ivRestaurantImage"
+            android:id="@+id/ivEmpresaImagem"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
@@ -25,7 +25,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/txRestaurantName"
+                    android:id="@+id/txEmpresaNome"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Nome do Restaurante" />
@@ -36,13 +36,13 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/txRestaurantCategory"
+                        android:id="@+id/txEmpresaCategoria"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Categoria" />
 
                     <TextView
-                        android:id="@+id/txRestaurantAveragePrice"
+                        android:id="@+id/txEmpresaPrecoMedio"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="R$ 0.00" />
@@ -52,7 +52,7 @@
             </LinearLayout>
 
             <RatingBar
-                android:id="@+id/rbRestaurantRating"
+                android:id="@+id/rbEmpresaAvaliacao"
                 style="?android:attr/ratingBarStyleSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
