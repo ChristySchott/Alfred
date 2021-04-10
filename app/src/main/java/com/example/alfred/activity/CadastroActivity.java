@@ -11,15 +11,18 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.alfred.InformacoesApp;
 import com.example.alfred.R;
 import com.example.alfred.controller.ConexaoController;
+import com.google.android.material.textfield.TextInputEditText;
+
 import modelDominio.Cliente;
 import modelDominio.Usuario;
-import com.google.android.material.textfield.TextInputLayout;
 
 public class CadastroActivity extends AppCompatActivity {
 
-    TextInputLayout txCadastrarEmail, txCadastrarSenha, txCadastrarConfirmarSenha;
+    TextInputEditText txCadastrarEmail, txCadastrarSenha, txCadastrarConfirmarSenha;
     Button btnCadastrar, btnPossuiConta;
     InformacoesApp informacoesApp;
+    Cliente clienteCadastrar, clienteSelecionado;
+    Usuario clienteUsuario, usuarioCriado;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,16 +32,16 @@ public class CadastroActivity extends AppCompatActivity {
         // Configuração inicial dos componentes
         iniciarComponentes();
 
-//        // Contexto
+       // Contexto
         informacoesApp = (InformacoesApp) getApplicationContext();
 
         btnCadastrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-
-                String email = txCadastrarEmail.getEditText().getText().toString();
-                String senha = txCadastrarSenha.getEditText().getText().toString();
+                String email = txCadastrarEmail.getText().toString();
+                String senha = txCadastrarSenha.getText().toString();
+                String confirmarSenha = txCadastrarConfirmarSenha.getText().toString();
 
                 if (email.equals("") || !Usuario.validaEmail(email)) {
                     txCadastrarEmail.setError("Informe o e-mail");
@@ -46,48 +49,76 @@ public class CadastroActivity extends AppCompatActivity {
                 } else if (senha.equals("")) {
                     txCadastrarSenha.setError("Informe a senha");
                     txCadastrarSenha.requestFocus();
+                } else if (confirmarSenha.equals("")) {
+                    txCadastrarConfirmarSenha.setError("Informe a confirmação de senha");
+                    txCadastrarConfirmarSenha.requestFocus();
                 } else {
 
-                    Thread thread = new Thread() {
-                        @Override
-                        public void run() {
+                    if (!confirmarSenha.equals(senha)) {
+                        txCadastrarSenha.setError("As senhas não coincidem");
+                        txCadastrarConfirmarSenha.setError("As senhas não coincidem");
+                        txCadastrarConfirmarSenha.requestFocus();
+                    } else {
 
-                            ConexaoController ccont = new ConexaoController(informacoesApp);
+                        clienteUsuario = new Usuario(email, senha);
 
-                            Cliente clienteUsuario = new Cliente(txCadastrarEmail.getEditText().getText().toString(), txCadastrarSenha.getEditText().getText().toString());
-                            boolean ok = ccont.usuarioInserir(clienteUsuario);
+                        Thread thread = new Thread() {
+                            @Override
+                            public void run() {
 
-                            if (ok) {
-                                Usuario usuarioCriado = ccont.buscarUsuario(clienteUsuario);
+                                ConexaoController ccont = new ConexaoController(informacoesApp);
 
-                                Cliente clienteCadastrar = new Cliente(usuarioCriado.getCodUsuario());
-                                boolean clienteInserido = ccont.clienteInserir(clienteCadastrar);
+                                boolean ok = ccont.usuarioInserir(clienteUsuario);
 
-                                if (clienteInserido) {
-                                    Cliente clienteSelecionado = ccont.efetuarLogin(clienteUsuario);
+                                if (ok) {
+                                    usuarioCriado = ccont.buscarUsuario(clienteUsuario);
 
-                                    Intent it = new Intent(CadastroActivity.this, TelaInicialActivity.class);
-                                    it.putExtra("cliente", clienteSelecionado);
-                                    startActivity(it);
+                                    if (usuarioCriado != null) {
+                                        runOnUiThread(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                Toast.makeText(CadastroActivity.this, "OI!", Toast.LENGTH_SHORT).show();
+                                            }
+                                        });
+
+                                        clienteCadastrar = new Cliente(usuarioCriado.getCodUsuario());
+                                        boolean clienteInserido = ccont.clienteInserir(clienteCadastrar);
+
+                                        if (clienteInserido) {
+                                            clienteSelecionado = ccont.efetuarLogin(clienteCadastrar);
+
+                                            Intent it = new Intent(CadastroActivity.this, TelaInicialActivity.class);
+                                            it.putExtra("cliente", clienteSelecionado);
+                                            startActivity(it);
+                                        } else {
+                                            runOnUiThread(new Runnable() {
+                                                @Override
+                                                public void run() {
+                                                    Toast.makeText(CadastroActivity.this, "Usuário já Cadastrado!", Toast.LENGTH_SHORT).show();
+                                                }
+                                            });
+                                        }
+                                    } else {
+                                        runOnUiThread(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                Toast.makeText(CadastroActivity.this, "Erro ao Cadastrar!", Toast.LENGTH_SHORT).show();
+                                            }
+                                        });
+                                    }
+
                                 } else {
                                     runOnUiThread(new Runnable() {
                                         @Override
                                         public void run() {
-                                            Toast.makeText(CadastroActivity.this, "Usuário já Cadastrado!", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(CadastroActivity.this, "Erro ao Cadastrar!", Toast.LENGTH_SHORT).show();
                                         }
                                     });
                                 }
-                            } else {
-                                runOnUiThread(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        Toast.makeText(CadastroActivity.this, "Erro ao Cadastrar!", Toast.LENGTH_SHORT).show();
-                                    }
-                                });
                             }
-                        }
-                    };
-                    thread.start();
+                        };
+                        thread.start();
+                    }
                 }
 
             }

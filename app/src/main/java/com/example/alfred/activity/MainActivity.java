@@ -11,13 +11,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.alfred.InformacoesApp;
 import com.example.alfred.R;
 import com.example.alfred.controller.ConexaoController;
+import com.google.android.material.textfield.TextInputEditText;
+
 import modelDominio.Cliente;
 import modelDominio.Usuario;
-import com.google.android.material.textfield.TextInputLayout;
 
 public class MainActivity extends AppCompatActivity {
 
-    TextInputLayout txMainEmail, txMainSenha;
+    TextInputEditText txMainEmail, txMainSenha;
     Button btnMainEntrar, btnNaoPossuiConta, btnEsqueceuSenha;
     InformacoesApp informacoesApp;
 
@@ -34,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         informacoesApp = (InformacoesApp) getApplicationContext();
 
         // Cria o conexão controller, mas conecta somente 1 vez no Servidor durante toda a aplicacao.
-        Thread t = new Thread(){
+        Thread t = new Thread() {
             @Override
             public void run() {
                 ConexaoController ccont = new ConexaoController(informacoesApp);
@@ -42,7 +43,6 @@ public class MainActivity extends AppCompatActivity {
             }
         };
         t.start();
-
 
 
         btnMainEntrar.setOnClickListener(new View.OnClickListener() {
@@ -53,13 +53,13 @@ public class MainActivity extends AppCompatActivity {
                     public void run() {
                         ConexaoController ccont = new ConexaoController(informacoesApp);
 
-                        String email = txMainEmail.getEditText().getText().toString();
-                        String senha = txMainSenha.getEditText().getText().toString();
+                        String email = txMainEmail.getText().toString();
+                        String senha = txMainSenha.getText().toString();
 
                         if (email.equals("") || !Usuario.validaEmail(email)) {
                             txMainEmail.setError("Informe o e-mail");
                             txMainEmail.requestFocus();
-                        } else if (txMainSenha.getEditText().getText().toString().equals("")) {
+                        } else if (txMainSenha.getText().toString().equals("")) {
                             txMainSenha.setError("Informe a senha");
                             txMainSenha.requestFocus();
                         } else {
