@@ -36,7 +36,7 @@ public class AdapterPratos extends RecyclerView.Adapter<AdapterPratos.MyViewHold
     @Override
     public void onBindViewHolder(@NonNull final MyViewHolder holder, final int position) {
         Prato prato = listaPratos.get(position);
-        holder.name.setText(prato.getNomePrato());
+        holder.nome.setText(prato.getNomePrato());
         holder.description.setText(prato.getDescricaoPrato());
         holder.preco.setText(prato.getValorPratoString());
 
@@ -57,14 +57,14 @@ public class AdapterPratos extends RecyclerView.Adapter<AdapterPratos.MyViewHold
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
-        TextView name;
+        TextView nome;
         TextView description;
         TextView preco;
 
         public MyViewHolder(View itemView) {
             super(itemView);
 
-            name = itemView.findViewById(R.id.txPratoNome);
+            nome = itemView.findViewById(R.id.txPratoNome);
             description = itemView.findViewById(R.id.txPratoDescricao);
             preco = itemView.findViewById(R.id.txPratoPreco);
         }

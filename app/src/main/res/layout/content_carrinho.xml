@@ -46,7 +46,6 @@
             </RadioGroup>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/txCarrinhoObservacao"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:hint="@string/tx_observacao"
@@ -55,6 +54,7 @@
                 app:helperTextTextColor="@color/colorPrimaryDark">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txCarrinhoObservacao"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@drawable/roundex_textfield"
@@ -82,7 +82,7 @@
                     android:background="@color/divider" />
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rvCarrinho"
+                    android:id="@+id/rvPratosPedido"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="16dp"
