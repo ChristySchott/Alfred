@@ -17,10 +17,12 @@ import java.util.List;
 
 public class AdapterEmpresas extends RecyclerView.Adapter<AdapterEmpresas.MyViewHolder> {
 
-    private List<Empresa> empresaList;
+    private List<Empresa> listaEmpresas;
+    private EmpresaOnClickListener empresaOnClickListener;
 
-    public AdapterEmpresas(List<Empresa> list) {
-        this.empresaList = list;
+    public AdapterEmpresas(List<Empresa> listaEmpresas, EmpresaOnClickListener empresaOnClickListener) {
+        this.listaEmpresas = listaEmpresas;
+        this.empresaOnClickListener = empresaOnClickListener;
     }
 
     @NonNull
@@ -34,18 +36,26 @@ public class AdapterEmpresas extends RecyclerView.Adapter<AdapterEmpresas.MyView
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-
-        Empresa empresa = empresaList.get(position);
+    public void onBindViewHolder(@NonNull final MyViewHolder holder, final int position) {
+        Empresa empresa = listaEmpresas.get(position);
         holder.nome.setText(empresa.getNomeEmpresa());
-        holder.avaliacao.setNumStars(empresa.getNotaAvaliacao());
-        holder.categoria.setText(empresa.getNomeCategoria());
-        holder.precoMedio.setText(empresa.getNomeEmpresa());
+        holder.avaliacao.setNumStars(empresa.getAvaliacaoEmpresa().getNotaAvaliacao());
+        holder.categoria.setText(empresa.getCategoriaEmpresa().getNomeCategoria());
+        holder.precoMedio.setText(empresa.getPrecoMedioString());
+
+        if (empresaOnClickListener != null) {
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    empresaOnClickListener.onClickEmpresa(holder.itemView,position);
+                }
+            });
+        }
     }
 
     @Override
     public int getItemCount() {
-        return empresaList.size();
+        return listaEmpresas.size();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
@@ -65,5 +75,9 @@ public class AdapterEmpresas extends RecyclerView.Adapter<AdapterEmpresas.MyView
                 categoria = itemView.findViewById(R.id.txRestaurantName);
                 precoMedio = itemView.findViewById(R.id.txRestaurantAveragePrice);
             }
+        }
+
+        public interface EmpresaOnClickListener {
+        public  void onClickEmpresa(View view, int position);
         }
 }
