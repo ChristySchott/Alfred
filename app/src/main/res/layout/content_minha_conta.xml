@@ -30,12 +30,12 @@
             android:src="@drawable/ic_password" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/txSenhaAtual"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:hint="@string/tx_senha_atual">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txSenhaAtual"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/roundex_textfield"
@@ -59,12 +59,12 @@
             android:layout_marginRight="16dp" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/txNovaSenha"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:hint="@string/tx_nova_senha">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txNovaSenha"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/roundex_textfield"
@@ -87,12 +87,12 @@
             android:layout_marginRight="16dp" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/txConfirmarNovaSenha"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:hint="@string/tx_confirmar_nova_senha">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txConfirmarNovaSenha"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/roundex_textfield"

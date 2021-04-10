@@ -53,7 +53,6 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/txCadastroSenha"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/tx_senha"
@@ -61,14 +60,15 @@
 
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txCadastroSenha"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:inputType="textPassword"
             android:background="@drawable/roundex_textfield" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/txCadastroConfirmarSenha"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/tx_confirmar_senha"
@@ -76,8 +76,10 @@
 
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txCadastroConfirmarSenha"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:inputType="textPassword"
             android:background="@drawable/roundex_textfield" />
 
     </com.google.android.material.textfield.TextInputLayout>

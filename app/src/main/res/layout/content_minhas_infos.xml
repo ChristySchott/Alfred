@@ -54,12 +54,12 @@
                     android:src="@drawable/ic_usericon" />
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/txMinhasInfosNome"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:hint="@string/tx_nome">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/txMinhasInfosNome"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@drawable/roundex_textfield"
@@ -81,12 +81,12 @@
                     android:layout_marginRight="16dp" />
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/txMinhasInfosSobrenome"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:hint="@string/tx_sobrenome">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/txMinhasInfosSobrenome"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@drawable/roundex_textfield"
@@ -110,7 +110,6 @@
                     android:src="@drawable/ic_birthday" />
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/txMinhasInfosDataNascimento"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:hint="@string/tx_data_nascimento"
@@ -118,6 +117,7 @@
                     app:boxCornerRadiusTopEnd="4dp">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/txMinhasInfosDataNascimento"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@drawable/roundex_textfield"
@@ -142,7 +142,6 @@
                     android:src="@drawable/ic_phone" />
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/txMinhasInfosTelefone"
                     android:layout_width="wrap_content"
                     android:layout_height="50dp"
                     android:layout_marginRight="12dp"
@@ -150,6 +149,7 @@
                     android:hint="@string/tx_telefone">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/txMinhasInfosTelefone"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@drawable/roundex_textfield"
@@ -158,13 +158,13 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/txMinhasInfosArea"
                     android:layout_width="wrap_content"
                     android:layout_height="50dp"
                     android:layout_weight="2"
                     android:hint="@string/tx_area">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/txMinhasInfosArea"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@drawable/roundex_textfield"
@@ -196,12 +196,12 @@
                     android:src="@drawable/ic_maps" />
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/txMinhasInfosCidade"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:hint="@string/tx_cidade">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/txMinhasInfosCidade"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@drawable/roundex_textfield"
@@ -223,12 +223,39 @@
                     android:layout_marginRight="16dp" />
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/txMinhasInfosBairro"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:hint="@string/tx_estado">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/txMinhasInfosEstado"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/roundex_textfield"
+                        android:paddingLeft="12dp" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:textAlignment="center">
+
+                <View
+                    android:layout_width="24dp"
+                    android:layout_height="20dp"
+                    android:layout_marginRight="16dp" />
+
+                <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:hint="@string/tx_bairro">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/txMinhasInfosBairro"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@drawable/roundex_textfield"
@@ -250,7 +277,6 @@
                     android:layout_marginRight="16dp" />
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/txMinhasInfosRua"
                     android:layout_width="wrap_content"
                     android:layout_height="50dp"
                     android:layout_marginRight="12dp"
@@ -258,6 +284,7 @@
                     android:hint="@string/tx_rua">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/txMinhasInfosRua"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@drawable/roundex_textfield"
@@ -266,13 +293,13 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/txMinhasInfosNumeroRua"
                     android:layout_width="wrap_content"
                     android:layout_height="50dp"
                     android:layout_weight="1"
                     android:hint="@string/tx_numero_rua">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/txMinhasInfosNumeroRua"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@drawable/roundex_textfield"
@@ -294,12 +321,12 @@
                     android:layout_marginRight="16dp" />
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/txMinhasInfosComplemento"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:hint="@string/tx_complemento">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/txMinhasInfosComplemento"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@drawable/roundex_textfield"
