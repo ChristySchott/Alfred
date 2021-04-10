@@ -40,14 +40,25 @@ public class Cliente extends Usuario implements Serializable {
         this.endereco = endereco;
     }
 
-    public Cliente(String nomeCliente, String sobrenomeCliente, Date dataNascimentoCliente, int areaCliente, int telefoneCliente, byte[] imageCliente) {
+    // TODO - Se der tempo adicionar imagem
+    public Cliente(String nomeCliente, String sobrenomeCliente, Date dataNascimentoCliente, int areaCliente, int telefoneCliente) {
         this.nomeCliente = nomeCliente;
         this.sobrenomeCliente = sobrenomeCliente;
         this.dataNascimentoCliente = dataNascimentoCliente;
         this.areaCliente = areaCliente;
         this.telefoneCliente = telefoneCliente;
-        this.imageCliente = imageCliente;
     }
+
+    public Cliente(int codCliente, int codUsuario, String emailUsuario, String senhaUsuario) {
+        super(codUsuario, emailUsuario, senhaUsuario);
+        this.codCliente = codCliente;
+    }
+
+    public Cliente(int codCliente, String emailUsuario, String senhaUsuario) {
+        super(emailUsuario, senhaUsuario);
+        this.codCliente = codCliente;
+    }
+
 
     public Cliente(String emailUsuario, String senhaUsuario) {
         super(emailUsuario, senhaUsuario);
@@ -134,4 +145,3 @@ public class Cliente extends Usuario implements Serializable {
     }
 
 }
-
