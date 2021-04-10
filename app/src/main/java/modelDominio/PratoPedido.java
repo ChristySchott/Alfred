@@ -5,12 +5,13 @@ import java.text.DecimalFormat;
 
 public class PratoPedido implements Serializable {
     private static final long serialVersionUID = 123456789L;
-    private int codPratoPedido;
+    private Prato prato;
     private int quantidadePratoPedido;
     private double valorUnidadePratoPedido;
 
     public PratoPedido(int codPratoPedido, int quantidadePratoPedido, double valorUnidadePratoPedido) {
-        this.codPratoPedido = codPratoPedido;
+        Prato prato = new Prato(codPratoPedido);
+        this.prato = prato;
         this.quantidadePratoPedido = quantidadePratoPedido;
         this.valorUnidadePratoPedido = valorUnidadePratoPedido;
     }
@@ -20,12 +21,12 @@ public class PratoPedido implements Serializable {
         this.valorUnidadePratoPedido = valorUnidadePratoPedido;
     }
 
-    public int getCodPratoPedido() {
-        return codPratoPedido;
+    public Prato getPrato() {
+        return prato;
     }
 
-    public void setCodPratoPedido(int codPratoPedido) {
-        this.codPratoPedido = codPratoPedido;
+    public void setPrato(Prato prato) {
+        this.prato = prato;
     }
 
     public int getQuantidadePratoPedido() {
@@ -52,7 +53,7 @@ public class PratoPedido implements Serializable {
 
     @Override
     public String toString() {
-        return "PratoPedido{" + "codPratoPedido=" + codPratoPedido + ", quantidadePratoPedido=" + quantidadePratoPedido + ", valorUnidadePratoPedido=" + valorUnidadePratoPedido + '}';
+        return "PratoPedido{" + "prato=" + prato + ", quantidadePratoPedido=" + quantidadePratoPedido + ", valorUnidadePratoPedido=" + valorUnidadePratoPedido + '}';
     }
 
 }

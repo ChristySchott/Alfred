@@ -6,10 +6,12 @@ import com.example.alfred.InformacoesApp;
 import modelDominio.Avaliacao;
 import modelDominio.Categoria;
 import modelDominio.Cliente;
+import modelDominio.Empresa;
 import modelDominio.Endereco;
 import modelDominio.Prato;
 import modelDominio.Usuario;
 
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
@@ -170,6 +172,37 @@ public class ConexaoController {
         }
     }
 
+    /* EMPRESA */
+    public ArrayList<Empresa> empresasAbertasLista() {
+        ArrayList<Empresa> listaEmpresas;
+        try {
+            informacoesApp.out.writeObject("EmpresaAbertaLista");
+            listaEmpresas = (ArrayList<Empresa>) informacoesApp.in.readObject();
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+            listaEmpresas = null;
+        } catch (ClassNotFoundException classe) {
+            classe.printStackTrace();
+            listaEmpresas = null;
+        }
+        return listaEmpresas;
+    }
+
+    public ArrayList<Empresa> empresasFechadasLista() {
+        ArrayList<Empresa> listaEmpresas;
+        try {
+            informacoesApp.out.writeObject("EmpresaFechadaLista");
+            listaEmpresas = (ArrayList<Empresa>) informacoesApp.in.readObject();
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+            listaEmpresas = null;
+        } catch (ClassNotFoundException classe) {
+            classe.printStackTrace();
+            listaEmpresas = null;
+        }
+        return listaEmpresas;
+    }
+
     /* USUÁRIO */
     public Cliente efetuarLogin(Cliente cl) {
         String msg;
@@ -201,31 +234,36 @@ public class ConexaoController {
 
     public Usuario buscarUsuario(Usuario usr) {
         String msg;
+        Usuario usrselecionado = null;
         try {
             informacoesApp.out.writeObject("BuscarUsuario");
             msg = (String) informacoesApp.in.readObject();
 
+            if (msg.equals("ok")) {
             informacoesApp.out.writeObject(usr);
-            Usuario usrselecionado = (Usuario) informacoesApp.in.readObject();
-            return usrselecionado;
+            usrselecionado = (Usuario) informacoesApp.in.readObject();
+            }
+
         } catch (Exception ex) {
             ex.printStackTrace();
-            return null;
+            usrselecionado = null;
         }
+
+        return usrselecionado;
     }
 
-    public Boolean usuarioInserir(Usuario usr) {
+    public Boolean  usuarioInserir(Usuario usr) {
         String msg = "";
         try {
             informacoesApp.out.writeObject("UsuarioInserir");
             msg = (String) informacoesApp.in.readObject();
-            informacoesApp.out.writeObject(usr);
-            Log.d("2", msg);
-            msg = (String) informacoesApp.in.readObject();
-            Log.d("2", msg);
 
+            if (msg.equals("ok")) {
+                informacoesApp.out.writeObject(usr);
+                return true;
+            }
 
-            return msg.equals("ok");
+            return false;
         } catch (Exception ex) {
             ex.printStackTrace();
             return false;
@@ -237,9 +275,13 @@ public class ConexaoController {
         try {
             informacoesApp.out.writeObject("UsuarioAlterar");
             msg = (String) informacoesApp.in.readObject();
-            informacoesApp.out.writeObject(usr);
-            msg = (String) informacoesApp.in.readObject();
-            return msg.equals("ok");
+
+            if (msg.equals("ok")) {
+                informacoesApp.out.writeObject(usr);
+                return true;
+            }
+
+            return false;
         } catch (Exception ex) {
             ex.printStackTrace();
             return false;
