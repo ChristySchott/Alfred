@@ -15,10 +15,12 @@ import java.util.List;
 
 public class AdapterPratos extends RecyclerView.Adapter<AdapterPratos.MyViewHolder> {
 
-    private List<Prato> pratoList;
+    private List<Prato> listaPratos;
+    private PratoOnClickListener pratoOnClickListener;
 
-    public AdapterPratos(List<Prato> list) {
-        this.pratoList = list;
+    public AdapterPratos(List<Prato> listaPratos, PratoOnClickListener pratoOnClickListener) {
+        this.listaPratos = listaPratos;
+        this.pratoOnClickListener = pratoOnClickListener;
     }
 
     @NonNull
@@ -32,31 +34,44 @@ public class AdapterPratos extends RecyclerView.Adapter<AdapterPratos.MyViewHold
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-
-        Prato prato = pratoList.get(position);
+    public void onBindViewHolder(@NonNull final MyViewHolder holder, final int position) {
+        Prato prato = listaPratos.get(position);
         holder.name.setText(prato.getNomePrato());
         holder.description.setText(prato.getDescricaoPrato());
-        holder.price.setText(prato.getValorPratoString());
+        holder.preco.setText(prato.getValorPratoString());
+
+        if (pratoOnClickListener != null) {
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    pratoOnClickListener.onClickPrato(holder.itemView, position);
+                }
+            });
+        }
     }
 
     @Override
     public int getItemCount() {
-        return pratoList.size();
+        return listaPratos.size();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
         TextView name;
         TextView description;
-        TextView price;
+        TextView preco;
 
         public MyViewHolder(View itemView) {
             super(itemView);
 
-            name = itemView.findViewById(R.id.txDishName);
-            description = itemView.findViewById(R.id.txDishDescription);
-            price = itemView.findViewById(R.id.txDishPrice);
+            name = itemView.findViewById(R.id.txPratoNome);
+            description = itemView.findViewById(R.id.txPratoDescricao);
+            preco = itemView.findViewById(R.id.txPratoPreco);
         }
     }
+
+    public interface PratoOnClickListener {
+        void onClickPrato(View view, int position);
+    }
+
 }

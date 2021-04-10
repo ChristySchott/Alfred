@@ -11,9 +11,10 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.alfred.R;
-import modelDominio.Empresa;
 
 import java.util.List;
+
+import modelDominio.Empresa;
 
 public class AdapterEmpresas extends RecyclerView.Adapter<AdapterEmpresas.MyViewHolder> {
 
@@ -47,7 +48,7 @@ public class AdapterEmpresas extends RecyclerView.Adapter<AdapterEmpresas.MyView
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    empresaOnClickListener.onClickEmpresa(holder.itemView,position);
+                    empresaOnClickListener.onClickEmpresa(holder.itemView, position);
                 }
             });
         }
@@ -58,26 +59,26 @@ public class AdapterEmpresas extends RecyclerView.Adapter<AdapterEmpresas.MyView
         return listaEmpresas.size();
     }
 
+    public interface EmpresaOnClickListener {
+        void onClickEmpresa(View view, int position);
+    }
+
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
-            ImageView image;
-            TextView nome;
-            RatingBar avaliacao;
-            TextView categoria;
-            TextView precoMedio;
+        ImageView image;
+        TextView nome;
+        RatingBar avaliacao;
+        TextView categoria;
+        TextView precoMedio;
 
-            public MyViewHolder(View itemView) {
-                super(itemView);
+        public MyViewHolder(View itemView) {
+            super(itemView);
 
-                image = itemView.findViewById(R.id.ivRestaurantImage);
-                nome = itemView.findViewById(R.id.txRestaurantName);
-                avaliacao = itemView.findViewById(R.id.rbRestaurantRating);
-                categoria = itemView.findViewById(R.id.txRestaurantName);
-                precoMedio = itemView.findViewById(R.id.txRestaurantAveragePrice);
-            }
+            image = itemView.findViewById(R.id.ivEmpresaImagem);
+            nome = itemView.findViewById(R.id.txEmpresaNome);
+            avaliacao = itemView.findViewById(R.id.rbEmpresaAvaliacao);
+            categoria = itemView.findViewById(R.id.txEmpresaCategoria);
+            precoMedio = itemView.findViewById(R.id.txEmpresaPrecoMedio);
         }
-
-        public interface EmpresaOnClickListener {
-        public  void onClickEmpresa(View view, int position);
-        }
+    }
 }
