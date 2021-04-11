@@ -18,7 +18,13 @@
         <activity
             android:name="com.example.alfred.activity.TelaInicialActivity"
             android:label="@string/titulo_activity_menu"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name="com.example.alfred.activity.CarrinhoActivity" android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name="com.example.alfred.activity.MinhaContaActivity" android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name="com.example.alfred.activity.MinhasInfosActivity" android:theme="@style/AppTheme.NoActionBar" />

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/nav_meus_pedidos">
+
+    <fragment
+        android:id="@+id/nav_meus_pedidos"
+        android:name="com.example.alfred.activity.MeusPedidosActivity"
+        android:label="@string/drawer_meus_pedidos"
+        tools:layout="@layout/activity_meus_pedidos" />
+
+    <fragment
+        android:id="@+id/nav_minhas_infos"
+        android:name="com.example.alfred.activity.MinhasInfosActivity"
+        android:label="@string/drawer_minhas_infos"
+        tools:layout="@layout/activity_minhas_infos" />
+
+    <fragment
+        android:id="@+id/nav_minha_senha"
+        android:name="com.example.alfred.activity.MinhaContaActivity"
+        android:label="@string/drawer_minha_senha"
+        tools:layout="@layout/activity_minha_conta" />
+
+</navigation>
