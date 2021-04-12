@@ -71,42 +71,34 @@ public class CadastroActivity extends AppCompatActivity {
                                 boolean ok = ccont.usuarioInserir(clienteUsuario);
 
                                 if (ok) {
-                                    usuarioCriado = ccont.buscarUsuario(clienteUsuario);
+                                        usuarioCriado = ccont.buscarUsuario(clienteUsuario);
 
-                                    if (usuarioCriado != null) {
-                                        runOnUiThread(new Runnable() {
-                                            @Override
-                                            public void run() {
-                                                Toast.makeText(CadastroActivity.this, "OI!", Toast.LENGTH_SHORT).show();
+                                        if (usuarioCriado != null) {
+                                            clienteCadastrar = new Cliente(usuarioCriado.getCodUsuario());
+                                            boolean clienteInserido = ccont.clienteInserir(clienteCadastrar);
+
+                                            if (clienteInserido) {
+                                                clienteSelecionado = ccont.efetuarLogin(clienteCadastrar);
+
+                                                Intent it = new Intent(CadastroActivity.this, MainActivity.class);
+                                                it.putExtra("cliente", clienteSelecionado);
+                                                startActivity(it);
+                                            } else {
+                                                runOnUiThread(new Runnable() {
+                                                    @Override
+                                                    public void run() {
+                                                        Toast.makeText(CadastroActivity.this, "Usuário já Cadastrado!", Toast.LENGTH_SHORT).show();
+                                                    }
+                                                });
                                             }
-                                        });
-
-                                        clienteCadastrar = new Cliente(usuarioCriado.getCodUsuario());
-                                        boolean clienteInserido = ccont.clienteInserir(clienteCadastrar);
-
-                                        if (clienteInserido) {
-                                            clienteSelecionado = ccont.efetuarLogin(clienteCadastrar);
-
-                                            Intent it = new Intent(CadastroActivity.this, TelaInicialActivity.class);
-                                            it.putExtra("cliente", clienteSelecionado);
-                                            startActivity(it);
                                         } else {
                                             runOnUiThread(new Runnable() {
                                                 @Override
                                                 public void run() {
-                                                    Toast.makeText(CadastroActivity.this, "Usuário já Cadastrado!", Toast.LENGTH_SHORT).show();
+                                                    Toast.makeText(CadastroActivity.this, "Erro!", Toast.LENGTH_SHORT).show();
                                                 }
                                             });
                                         }
-                                    } else {
-                                        runOnUiThread(new Runnable() {
-                                            @Override
-                                            public void run() {
-                                                Toast.makeText(CadastroActivity.this, "Erro ao Cadastrar!", Toast.LENGTH_SHORT).show();
-                                            }
-                                        });
-                                    }
-
                                 } else {
                                     runOnUiThread(new Runnable() {
                                         @Override
@@ -139,5 +131,11 @@ public class CadastroActivity extends AppCompatActivity {
         txCadastrarConfirmarSenha = findViewById(R.id.txCadastroConfirmarSenha);
         btnCadastrar = findViewById(R.id.btnCadastro);
         btnPossuiConta = findViewById(R.id.btnPossuiConta);
+    }
+
+    public void limpaCampos() {
+        txCadastrarEmail.setText("");
+        txCadastrarSenha.setText("");
+        txCadastrarConfirmarSenha.setText("");
     }
 }
