@@ -3,6 +3,13 @@ package com.example.alfred.controller;
 import android.util.Log;
 
 import com.example.alfred.InformacoesApp;
+
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.Socket;
+import java.util.ArrayList;
+
 import modelDominio.Avaliacao;
 import modelDominio.Categoria;
 import modelDominio.Cliente;
@@ -11,29 +18,12 @@ import modelDominio.Endereco;
 import modelDominio.Prato;
 import modelDominio.Usuario;
 
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.net.Socket;
-import java.util.ArrayList;
-
 public class ConexaoController {
     public Usuario usuario;
+    InformacoesApp informacoesApp;
     private ObjectOutputStream out;
     private ObjectInputStream in;
     private int idUnico;
-    InformacoesApp informacoesApp;
-
-    public void Conectar(){
-        try{
-            System.out.println("Conectando no servidor...");
-            informacoesApp.socket = new Socket("10.0.2.2", 12345);
-            informacoesApp.out = new ObjectOutputStream(informacoesApp.socket.getOutputStream());
-            informacoesApp.in = new ObjectInputStream(informacoesApp.socket.getInputStream());
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-    }
 
     public ConexaoController(InformacoesApp informacoesApp) {
         this.informacoesApp = informacoesApp;
@@ -43,6 +33,17 @@ public class ConexaoController {
         this.in = in;
         this.out = out;
         this.idUnico = idUnico;
+    }
+
+    public void Conectar() {
+        try {
+            System.out.println("Conectando no servidor...");
+            informacoesApp.socket = new Socket("10.0.2.2", 12345);
+            informacoesApp.out = new ObjectOutputStream(informacoesApp.socket.getOutputStream());
+            informacoesApp.in = new ObjectInputStream(informacoesApp.socket.getInputStream());
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
 
     public Boolean avaliacaoInserir(Avaliacao avaliacao) {
@@ -206,17 +207,23 @@ public class ConexaoController {
     /* USUÁRIO */
     public Cliente efetuarLogin(Cliente cl) {
         String msg;
+        Cliente clienteSelecionado = null;
         try {
             informacoesApp.out.writeObject("ClienteEfetuarLogin");
             msg = (String) informacoesApp.in.readObject();
-            informacoesApp.out.writeObject(cl);
-            Cliente clselecionado = (Cliente) informacoesApp.in.readObject();
-            return clselecionado;
+
+            if (msg.equals("ok")) {
+                informacoesApp.out.writeObject(cl);
+                clienteSelecionado = (Cliente) informacoesApp.in.readObject();
+            }
         } catch (Exception ex) {
             ex.printStackTrace();
-            return null;
+            clienteSelecionado = null;
         }
+
+        return clienteSelecionado;
     }
+
 
     public Boolean clienteInserir(Cliente cl) {
         String msg = "";
@@ -240,19 +247,20 @@ public class ConexaoController {
             msg = (String) informacoesApp.in.readObject();
 
             if (msg.equals("ok")) {
-            informacoesApp.out.writeObject(usr);
-            usrselecionado = (Usuario) informacoesApp.in.readObject();
+                informacoesApp.out.writeObject(usr);
+                usrselecionado = (Usuario) informacoesApp.in.readObject();
             }
 
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            usrselecionado = null;
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+        } catch (ClassNotFoundException classe) {
+            classe.printStackTrace();
         }
 
         return usrselecionado;
     }
 
-    public Boolean  usuarioInserir(Usuario usr) {
+    public Boolean usuarioInserir(Usuario usr) {
         String msg = "";
         try {
             informacoesApp.out.writeObject("UsuarioInserir");

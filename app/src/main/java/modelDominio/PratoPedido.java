@@ -44,7 +44,7 @@ public class PratoPedido implements Serializable {
     public void setValorUnidadePratoPedido(double valorUnidadePratoPedido) {
         this.valorUnidadePratoPedido = valorUnidadePratoPedido;
     }
-
+    
     public String getValorUnidadePratoPedidoString(){
         String pattern = "###,##0.00";
         DecimalFormat decimalFormat = new DecimalFormat(pattern);

@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
     TextInputEditText txMainEmail, txMainSenha;
     Button btnMainEntrar, btnNaoPossuiConta, btnEsqueceuSenha;
     InformacoesApp informacoesApp;
+    Cliente clienteUsuario, clienteSelecionado;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +30,8 @@ public class MainActivity extends AppCompatActivity {
 
         // Configuração inicial dos components
         iniciarComponentes();
+
+        limpaCampos();
 
 
         // Contexto
@@ -65,20 +68,22 @@ public class MainActivity extends AppCompatActivity {
                         } else {
 
                             if (!email.equals("") && !senha.equals("")) {
-                                Cliente clienteUsuario = new Cliente(email, senha);
+                                clienteUsuario = new Cliente(email, senha);
 
-                                Cliente clienteSelecionado = ccont.efetuarLogin(clienteUsuario);
+                                clienteSelecionado = ccont.efetuarLogin(clienteUsuario);
 
-                                Intent it = new Intent(MainActivity.this, TelaInicialActivity.class);
-                                it.putExtra("cliente", clienteSelecionado);
-                                startActivity(it);
-
-                                runOnUiThread(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        Toast.makeText(MainActivity.this, "Usuário ou senha inválida!", Toast.LENGTH_SHORT).show();
-                                    }
-                                });
+                                if (clienteSelecionado != null) {
+                                    Intent it = new Intent(MainActivity.this, MinhasInfosActivity.class);
+                                    it.putExtra("cliente", clienteSelecionado);
+                                    startActivity(it);
+                                } else {
+                                    runOnUiThread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            Toast.makeText(MainActivity.this, "Usuário ou senha inválida!", Toast.LENGTH_SHORT).show();
+                                        }
+                                    });
+                                }
                             }
                         }
 
@@ -112,6 +117,11 @@ public class MainActivity extends AppCompatActivity {
         btnMainEntrar = findViewById(R.id.btnMainEntrar);
         btnNaoPossuiConta = findViewById(R.id.btnNaoPossuiConta);
         btnEsqueceuSenha = findViewById(R.id.btnEsqueceuSenha);
+    }
+
+    public void limpaCampos() {
+        txMainEmail.setText("");
+        txMainSenha.setText("");
     }
 
 }

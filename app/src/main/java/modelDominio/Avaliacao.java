@@ -28,7 +28,7 @@ public class Avaliacao implements Serializable {
     public Avaliacao(int codAvaliacao) {
         this.codAvaliacao = codAvaliacao;
     }
-
+    
     public int getCodAvaliacao() {
         return codAvaliacao;
     }
@@ -73,6 +73,6 @@ public class Avaliacao implements Serializable {
     public String toString() {
         return "Avaliacao{" + "codAvaliacao=" + codAvaliacao + ", descricaoAvaliacao=" + descricaoAvaliacao + ", notaAvaliacao=" + notaAvaliacao + ", codCliente=" + codCliente + ", codEmpresa=" + codEmpresa + '}';
     }
-
-
+    
+    
 }

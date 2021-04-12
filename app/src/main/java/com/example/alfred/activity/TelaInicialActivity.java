@@ -7,11 +7,6 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -20,7 +15,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.alfred.InformacoesApp;
 import com.example.alfred.R;
 import com.example.alfred.controller.ConexaoController;
-import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +26,6 @@ public class TelaInicialActivity extends AppCompatActivity {
 
     AdapterEmpresas adapterEmpresas;
     InformacoesApp informacoesApp;
-    private AppBarConfiguration mAppBarConfiguration;
     private RecyclerView rvEmpresasAbertas, rvEmpresasFechadas;
 
     private List<Empresa> listaEmpresasAbertas = new ArrayList<>();
@@ -61,29 +54,6 @@ public class TelaInicialActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tela_inicial);
-
-        //Cria referencia para toda a área do NavigationDrawer
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-
-        //Cria referencia para a área de navegação
-        NavigationView navigationView = findViewById(R.id.nav_view);
-
-        // Define configurações do NavigationDrawer
-        mAppBarConfiguration = new AppBarConfiguration.Builder(R.id.nav_meus_pedidos, R.id.nav_minhas_infos, R.id.nav_minha_senha)
-                .setDrawerLayout(drawer)
-                .build();
-
-        //Configura area que irá carregar os fragments
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-
-        //Configura menu superior de navegaçao
-        NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
-
-        //Configura navegacao para o NavigationView
-        NavigationUI.setupWithNavController(navigationView, navController);
-
-        // Iniciando os componentes
-        iniciarComponentes();
 
         // Contexto
         informacoesApp = (InformacoesApp) getApplicationContext();
@@ -149,14 +119,6 @@ public class TelaInicialActivity extends AppCompatActivity {
     public void iniciarComponentes() {
         rvEmpresasAbertas = findViewById(R.id.rvAbertos);
         rvEmpresasFechadas = findViewById(R.id.rvFechados);
-    }
-
-
-    @Override
-    public boolean onSupportNavigateUp() {
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-        return NavigationUI.navigateUp(navController, mAppBarConfiguration)
-                || super.onSupportNavigateUp();
     }
 
 }

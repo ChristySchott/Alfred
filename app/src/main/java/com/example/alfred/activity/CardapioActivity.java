@@ -51,9 +51,9 @@ public class CardapioActivity extends AppCompatActivity {
         if( bundle != null ){
             empresaSelecionada = (Empresa) bundle.getSerializable("empresa");
             txCardapioNome.setText(empresaSelecionada.getNomeEmpresa());
-            txCardapioCidade.setText(empresaSelecionada.getEnderecoEmpresa().getCidadeEndereco());
-            txCardapioEstado.setText(empresaSelecionada.getEnderecoEmpresa().getEstadoEndereco());
-            txCardapioRua.setText(empresaSelecionada.getEnderecoEmpresa().getRuaEndereco());
+            txCardapioCidade.setText(empresaSelecionada.getCidadeUsuario().getNomeCidade());
+            txCardapioEstado.setText(empresaSelecionada.getEstadoUsuario().getNomeEstado());
+            txCardapioRua.setText(empresaSelecionada.getRuaUsuario());
             rbCardapioAvaliacao.setNumStars(empresaSelecionada.getAvaliacaoEmpresa().getNotaAvaliacao());
         }
 

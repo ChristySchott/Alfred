@@ -7,58 +7,46 @@ import java.util.Date;
 
 public class Cliente extends Usuario implements Serializable {
     private static final long serialVersionUID = 123456789L;
-
+    
     private int codCliente;
     private String nomeCliente;
     private String sobrenomeCliente;
     private Date dataNascimentoCliente;
     private int areaCliente;  //Telavez mudar para areaTelefoneCliente
     private int telefoneCliente;
-    private byte[] imageCliente;
-    private Endereco endereco;
-
-    public Cliente(
-            int codCliente,
-            String nomeCliente,
-            String sobrenomeCliente,
-            Date dataNascimentoCliente,
-            int areaCliente,
-            int telefoneCliente,
-            byte[] imageCliente,
-            Endereco endereco,
-            String EmailUsuario,
-            String senhaUsuario
-    ) {
-        super(EmailUsuario, senhaUsuario);
+    private byte[] imagemCliente;
+    
+    
+    public Cliente(int codCliente, String nomeCliente, String sobrenomeCliente, Date dataNascimentoCliente, int areaCliente, int telefoneCliente, byte[] imagemCliente, int codUsuario, String emailUsuario, Cidade cidadeUsuario, Estado estadoUsuario, String ruaUsuario, String bairroUsuario, String complementoUsuario, int numeroUsuario) {
+        super(codUsuario, emailUsuario, cidadeUsuario, estadoUsuario, ruaUsuario, bairroUsuario, complementoUsuario, numeroUsuario);
         this.codCliente = codCliente;
         this.nomeCliente = nomeCliente;
         this.sobrenomeCliente = sobrenomeCliente;
         this.dataNascimentoCliente = dataNascimentoCliente;
         this.areaCliente = areaCliente;
         this.telefoneCliente = telefoneCliente;
-        this.imageCliente = imageCliente;
-        this.endereco = endereco;
+        this.imagemCliente = imagemCliente;
     }
+    
 
-    // TODO - Se der tempo adicionar imagem
-    public Cliente(String nomeCliente, String sobrenomeCliente, Date dataNascimentoCliente, int areaCliente, int telefoneCliente) {
+    public Cliente(String nomeCliente, String sobrenomeCliente, Date dataNascimentoCliente, int areaCliente, int telefoneCliente, byte[] imagemCliente) {
         this.nomeCliente = nomeCliente;
         this.sobrenomeCliente = sobrenomeCliente;
         this.dataNascimentoCliente = dataNascimentoCliente;
         this.areaCliente = areaCliente;
         this.telefoneCliente = telefoneCliente;
+        this.imagemCliente = imagemCliente;
     }
-
+    
     public Cliente(int codCliente, int codUsuario, String emailUsuario, String senhaUsuario) {
         super(codUsuario, emailUsuario, senhaUsuario);
         this.codCliente = codCliente;
     }
-
+    
     public Cliente(int codCliente, String emailUsuario, String senhaUsuario) {
         super(emailUsuario, senhaUsuario);
         this.codCliente = codCliente;
     }
-
 
     public Cliente(String emailUsuario, String senhaUsuario) {
         super(emailUsuario, senhaUsuario);
@@ -67,7 +55,7 @@ public class Cliente extends Usuario implements Serializable {
     public Cliente(int codCliente) {
         this.codCliente = codCliente;
     }
-
+    
     public int getCodCliente() {
         return codCliente;
     }
@@ -116,32 +104,22 @@ public class Cliente extends Usuario implements Serializable {
         this.telefoneCliente = telefoneCliente;
     }
 
-    public byte[] getImageCliente() {
-        return imageCliente;
+    public byte[] getImagemCliente() {
+        return imagemCliente;
     }
 
-    public void setImageCliente(byte[] imageCliente) {
-        this.imageCliente = imageCliente;
+    public void setImagemCliente(byte[] imagemCliente) {
+        this.imagemCliente = imagemCliente;
     }
-
+    
     public String getDataNascimentoClienteString(){
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         return sdf.format(dataNascimentoCliente);
     }
 
-    public Endereco getEndereco() {
-        return endereco;
-    }
-
-    public void setEndereco(Endereco endereco) {
-        this.endereco = endereco;
-    }
-
-
-
     @Override
     public String toString() {
         return "Cliente{" + "codCliente=" + codCliente + ", nomeCliente=" + nomeCliente + ", sobrenomeCliente=" + sobrenomeCliente + ", dataNascimentoCliente=" + dataNascimentoCliente + ", areaCliente=" + areaCliente + ", telefoneCliente=" + telefoneCliente + '}' + super.toString();
     }
-
+    
 }
