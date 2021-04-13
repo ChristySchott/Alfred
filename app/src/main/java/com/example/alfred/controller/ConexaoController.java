@@ -1,7 +1,5 @@
 package com.example.alfred.controller;
 
-import android.util.Log;
-
 import com.example.alfred.InformacoesApp;
 
 import java.io.IOException;
@@ -248,6 +246,7 @@ public class ConexaoController {
 
             if (msg.equals("ok")) {
                 informacoesApp.out.writeObject(usr);
+                msg = (String) informacoesApp.in.readObject();
                 usrselecionado = (Usuario) informacoesApp.in.readObject();
             }
 

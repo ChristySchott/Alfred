@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 
 public class Usuario implements Serializable {
     private static final long serialVersionUID = 123456789L;
-    
+
     private int codUsuario;
     private String emailUsuario;
     private String senhaUsuario;
@@ -42,7 +42,7 @@ public class Usuario implements Serializable {
     public Usuario(int codUsuario) {
         this.codUsuario = codUsuario;
     }
-    
+
     public Usuario(String emailUsuario) {
         this.emailUsuario = emailUsuario;
     }
@@ -51,7 +51,7 @@ public class Usuario implements Serializable {
         this.codUsuario = codUsuario;
         this.emailUsuario = emailUsuario;
     }
-    
+
     // Não entendi o porque mas só funciona se isso existir ????
     public Usuario() {}
 
@@ -126,11 +126,11 @@ public class Usuario implements Serializable {
     public void setNumeroUsuario(int numeroUsuario) {
         this.numeroUsuario = numeroUsuario;
     }
-    
+
     public String getNumeroUsuarioToString() {
         return Integer.toString(numeroUsuario);
     }
-    
+
     //Referência https://receitasdecodigo.com.br/java/validar-email-em-java
     public static boolean validaEmail(String email) {
         boolean emailValido = false;
@@ -142,8 +142,8 @@ public class Usuario implements Serializable {
                 emailValido = true;
             }
         }
-        
+
         return emailValido;
     }
-    
+
 }
