@@ -12,14 +12,11 @@ import com.example.alfred.R;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.textfield.TextInputEditText;
 
-import modelDominio.Endereco;
-
 public class MinhasInfosActivity extends AppCompatActivity {
 
     TextInputEditText txMinhasInfosNome, txMinhasInfosSobrenome, txMinhasInfosDataNascimento, txMinhasInfosTelefone, txMinhasInfosArea, txMinhasInfosCidade, txMinhasInfosBairro, txMinhasInfosRua, txMinhasInfosNumeroRua, txMinhasInfosComplemento, txMinhasInfosEstado;
     Button btnMinhaContaCancelar, btnMinhaContaSalvar;
     InformacoesApp informacoesApp;
-    Endereco endereco;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,11 +29,6 @@ public class MinhasInfosActivity extends AppCompatActivity {
         // Contexto
         informacoesApp = (InformacoesApp) getApplicationContext();
 
-        // Configuração da Toolbar
-        MaterialToolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle("Minhas Infos");
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         btnMinhaContaCancelar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,16 +85,13 @@ public class MinhasInfosActivity extends AppCompatActivity {
                     txMinhasInfosNumeroRua.setError("Informe o número da rua");
                     txMinhasInfosNumeroRua.requestFocus();
                 } else {
-                    endereco = new Endereco(cidade, estado, rua, bairro, complemento);
-
-                    // TODO - Criar alterarCliente no controller
                     }
 
             }
         });
     }
 
-    private void iniciarComponentes() {
+    public void iniciarComponentes() {
         txMinhasInfosNome = findViewById(R.id.txMinhasInfosNome);
         txMinhasInfosSobrenome = findViewById(R.id.txMinhasInfosSobrenome);
         txMinhasInfosDataNascimento = findViewById(R.id.txMinhasInfosDataNascimento);
@@ -114,8 +103,8 @@ public class MinhasInfosActivity extends AppCompatActivity {
         txMinhasInfosRua = findViewById(R.id.txMinhasInfosRua);
         txMinhasInfosNumeroRua = findViewById(R.id.txMinhasInfosNumeroRua);
         txMinhasInfosComplemento = findViewById(R.id.txMinhasInfosComplemento);
-        btnMinhaContaCancelar = findViewById(R.id.btnMinhaContaCancelar);
-        btnMinhaContaSalvar = findViewById(R.id.btnMinhaContaSalvar);
+        btnMinhaContaCancelar = findViewById(R.id.btnMinhasInfosCancelar);
+        btnMinhaContaSalvar = findViewById(R.id.btnMinhasInfosSalvar);
     }
 
 }

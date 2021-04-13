@@ -21,7 +21,8 @@ public class MainActivity extends AppCompatActivity {
     TextInputEditText txMainEmail, txMainSenha;
     Button btnMainEntrar, btnNaoPossuiConta, btnEsqueceuSenha;
     InformacoesApp informacoesApp;
-    Cliente clienteUsuario, clienteSelecionado;
+    Cliente cliente;
+    Usuario usuario;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,13 +69,15 @@ public class MainActivity extends AppCompatActivity {
                         } else {
 
                             if (!email.equals("") && !senha.equals("")) {
-                                clienteUsuario = new Cliente(email, senha);
+                                cliente = new Cliente(email, senha);
+                                usuario = new Usuario(email, senha);
 
-                                clienteSelecionado = ccont.efetuarLogin(clienteUsuario);
+                                informacoesApp.cliente = ccont.efetuarLogin(cliente);
 
-                                if (clienteSelecionado != null) {
-                                    Intent it = new Intent(MainActivity.this, MinhasInfosActivity.class);
-                                    it.putExtra("cliente", clienteSelecionado);
+                                if (informacoesApp.cliente != null) {
+                                    informacoesApp.usuario = ccont.buscarUsuario(usuario);
+                                    // TODO - Navegar para minhas infos e mudar la
+                                    Intent it = new Intent(MainActivity.this, MinhaContaActivity.class);
                                     startActivity(it);
                                 } else {
                                     runOnUiThread(new Runnable() {

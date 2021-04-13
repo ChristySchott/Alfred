@@ -15,7 +15,7 @@ public class Cliente extends Usuario implements Serializable {
     private int areaCliente;  //Telavez mudar para areaTelefoneCliente
     private int telefoneCliente;
     private byte[] imagemCliente;
-    
+
     
     public Cliente(int codCliente, String nomeCliente, String sobrenomeCliente, Date dataNascimentoCliente, int areaCliente, int telefoneCliente, byte[] imagemCliente, int codUsuario, String emailUsuario, Cidade cidadeUsuario, Estado estadoUsuario, String ruaUsuario, String bairroUsuario, String complementoUsuario, int numeroUsuario) {
         super(codUsuario, emailUsuario, cidadeUsuario, estadoUsuario, ruaUsuario, bairroUsuario, complementoUsuario, numeroUsuario);
@@ -55,7 +55,7 @@ public class Cliente extends Usuario implements Serializable {
     public Cliente(int codUsuario) {
         super(codUsuario);
     }
-    
+
     public int getCodCliente() {
         return codCliente;
     }

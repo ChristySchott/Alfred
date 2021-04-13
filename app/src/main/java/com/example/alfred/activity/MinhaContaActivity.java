@@ -32,6 +32,8 @@ public class MinhaContaActivity extends AppCompatActivity {
         // Configuração inicial dos componentes
         iniciarComponentes();
 
+        limpaCampos();
+
         informacoesApp = (InformacoesApp) getApplicationContext();
 
         // Configuração da Toolbar
@@ -53,17 +55,18 @@ public class MinhaContaActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String senhaAtual = txSenhaAtual.getText().toString();
-                final String senhaNova = txNovaSenha.getText().toString();
+                String senhaNova = txNovaSenha.getText().toString();
                 String confirmarSenha = txConfirmarNovaSenha.getText().toString();
 
-                final int codUsuarioLogado = informacoesApp.user.getCodUsuario();
-                final String emailUsuarioLogado = informacoesApp.user.getEmailUsuario();
-                String senhaUsuarioLogado = informacoesApp.user.getSenhaUsuario();
+                final int codUsuarioLogado = informacoesApp.usuario.getCodUsuario();
+                final String emailUsuarioLogado = informacoesApp.usuario.getEmailUsuario();
+                final String senhaUsuarioLogado = informacoesApp.usuario.getSenhaUsuario();
+
 
                 if (senhaAtual.equals("")) {
                     txSenhaAtual.setError("Informe a senha atual");
                     txSenhaAtual.requestFocus();
-                } else if (!senhaNova.equals(senhaUsuarioLogado)) {
+                } else if (!senhaAtual.equals(senhaUsuarioLogado)) {
                     txSenhaAtual.setError("Senha incorreta");
                     txSenhaAtual.requestFocus();
                 } else if (senhaNova.equals("")) {
@@ -81,6 +84,7 @@ public class MinhaContaActivity extends AppCompatActivity {
                     } else {
 
                         usuario = new Usuario(codUsuarioLogado, emailUsuarioLogado, senhaNova);
+
                         Thread thread = new Thread() {
                             @Override
                             public void run() {
@@ -90,10 +94,10 @@ public class MinhaContaActivity extends AppCompatActivity {
                                 boolean ok = ccont.usuarioAlterar(usuario);
 
                                 if (ok) {
-                                    limpaCampos();
                                     runOnUiThread(new Runnable() {
                                         @Override
                                         public void run() {
+                                            limpaCampos();
                                             Toast.makeText(MinhaContaActivity.this, "Senha atualizada com sucesso!", Toast.LENGTH_SHORT).show();
                                         }
                                     });

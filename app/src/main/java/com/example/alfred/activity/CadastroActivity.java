@@ -32,6 +32,8 @@ public class CadastroActivity extends AppCompatActivity {
         // Configuração inicial dos componentes
         iniciarComponentes();
 
+        limpaCampos();
+
        // Contexto
         informacoesApp = (InformacoesApp) getApplicationContext();
 
@@ -87,7 +89,7 @@ public class CadastroActivity extends AppCompatActivity {
                                                 runOnUiThread(new Runnable() {
                                                     @Override
                                                     public void run() {
-                                                        Toast.makeText(CadastroActivity.this, "Usuário já Cadastrado!", Toast.LENGTH_SHORT).show();
+                                                        Toast.makeText(CadastroActivity.this, "Cliente não inserido!", Toast.LENGTH_SHORT).show();
                                                     }
                                                 });
                                             }
