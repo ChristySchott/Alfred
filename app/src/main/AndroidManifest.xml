@@ -13,8 +13,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.example.alfred.activity.MeusPedidosActivity" android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name="com.example.alfred.activity.CardapioActivity" android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name="com.example.alfred.activity.MeusPedidosActivity" android:theme="@style/AppTheme.NoActionBar" android:parentActivityName=".activity.TelaInicialActivity"></activity>
+        <activity android:name="com.example.alfred.activity.CardapioActivity" android:theme="@style/AppTheme.NoActionBar" android:parentActivityName=".activity.TelaInicialActivity"/>
         <activity
             android:name="com.example.alfred.activity.TelaInicialActivity"
             android:label="@string/titulo_activity_menu"
@@ -25,9 +25,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.example.alfred.activity.CarrinhoActivity" android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name="com.example.alfred.activity.MinhaContaActivity" android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name="com.example.alfred.activity.MinhasInfosActivity" android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name="com.example.alfred.activity.CarrinhoActivity" android:theme="@style/AppTheme.NoActionBar" android:parentActivityName=".activity.CardapioActivity"/>
+        <activity android:name="com.example.alfred.activity.MinhaContaActivity" android:theme="@style/AppTheme.NoActionBar" android:parentActivityName=".activity.TelaInicialActivity"/>
+        <activity android:name="com.example.alfred.activity.MinhasInfosActivity" android:theme="@style/AppTheme.NoActionBar" android:parentActivityName=".activity.TelaInicialActivity" />
         <activity android:name="com.example.alfred.activity.RecuperarSenhaActivity" android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name="com.example.alfred.activity.CadastroActivity" android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name="com.example.alfred.activity.MainActivity" android:theme="@style/AppTheme.NoActionBar" android:launchMode="singleTop">

@@ -1,4 +1,4 @@
-package adapter;
+package com.example.alfred.adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -40,9 +40,9 @@ public class AdapterEmpresas extends RecyclerView.Adapter<AdapterEmpresas.MyView
     public void onBindViewHolder(@NonNull final MyViewHolder holder, final int position) {
         Empresa empresa = listaEmpresas.get(position);
         holder.nome.setText(empresa.getNomeEmpresa());
-        holder.avaliacao.setNumStars(empresa.getAvaliacaoEmpresa().getNotaAvaliacao());
-        holder.categoria.setText(empresa.getCategoriaEmpresa().getNomeCategoria());
-        holder.precoMedio.setText(empresa.getPrecoMedioString());
+        holder.avaliacao.setNumStars(1);
+        holder.categoria.setText("");
+        holder.precoMedio.setText("");
 
         if (empresaOnClickListener != null) {
             holder.itemView.setOnClickListener(new View.OnClickListener() {
