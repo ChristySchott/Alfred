@@ -1,14 +1,16 @@
 package com.example.alfred.activity;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -18,7 +20,7 @@ import com.example.alfred.InformacoesApp;
 import com.example.alfred.R;
 import com.example.alfred.controller.ConexaoController;
 
-import adapter.AdapterPratos;
+import com.example.alfred.adapter.AdapterPratos;
 import modelDominio.Empresa;
 import modelDominio.Prato;
 import com.google.android.material.appbar.MaterialToolbar;
@@ -44,6 +46,7 @@ public class CardapioActivity extends AppCompatActivity {
         // Iniciando componentes
         iniciarComponentes();
 
+        // Contexto
         informacoesApp = (InformacoesApp) getApplicationContext();
 
         // Recuperar empresa selecionada
@@ -51,14 +54,15 @@ public class CardapioActivity extends AppCompatActivity {
         if( bundle != null ){
             empresaSelecionada = (Empresa) bundle.getSerializable("empresa");
             txCardapioNome.setText(empresaSelecionada.getNomeEmpresa());
-            txCardapioCidade.setText(empresaSelecionada.getCidadeUsuario().getNomeCidade());
-            txCardapioEstado.setText(empresaSelecionada.getEstadoUsuario().getNomeEstado());
-            txCardapioRua.setText(empresaSelecionada.getRuaUsuario());
+            // TODO - Setar essas infos após o join das tabelas
+            // txCardapioCidade.setText(empresaSelecionada.getCidadeUsuario().getNomeCidade());
+            // txCardapioEstado.setText(empresaSelecionada.getEstadoUsuario().getNomeEstado());
+            // txCardapioRua.setText(empresaSelecionada.getRuaUsuario());
             rbCardapioAvaliacao.setNumStars(empresaSelecionada.getAvaliacaoEmpresa().getNotaAvaliacao());
         }
 
         // Configuração da Toolbar
-        MaterialToolbar toolbar = findViewById(R.id.toolbar);
+        MaterialToolbar toolbar = findViewById(R.id.toolbarMaterial);
         toolbar.setTitle("Cardápio");
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -69,7 +73,7 @@ public class CardapioActivity extends AppCompatActivity {
             public void run() {
 
                 ConexaoController ccon = new ConexaoController(informacoesApp);
-                listaPratos = ccon.pratoListaNome(empresaSelecionada.getNomeEmpresa());
+                listaPratos = ccon.pratoListaEmpresa(empresaSelecionada.getCodEmpresa());
                 if (listaPratos != null) {
                     runOnUiThread(new Runnable() {
                         @Override
@@ -101,9 +105,7 @@ public class CardapioActivity extends AppCompatActivity {
     AdapterPratos.PratoOnClickListener trataCliquePrato = new AdapterPratos.PratoOnClickListener() {
         @Override
         public void onClickPrato(View view, int position) {
-            Prato meuPrato = listaPratos.get(position);
-
-            // TODO - Criar PratoPedido aqui (informação para preencher AdapterCarrinho)
+            confirmarQuantidade(position);
         }
     };
 
@@ -117,5 +119,37 @@ public class CardapioActivity extends AppCompatActivity {
         rvPratos = findViewById(R.id.rvPratos);
     }
 
+    private void confirmarQuantidade(final int posicao){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Quantidade");
+        builder.setMessage("Digite a quantidade");
+
+        // TODO - MUDAR PARA BOTÕES
+        final EditText editQuantidade = new EditText(this);
+        editQuantidade.setText("1");
+
+        builder.setView( editQuantidade );
+
+        builder.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                String quantidade = editQuantidade.getText().toString();
+
+                // TODO - Construir prato pedido
+                // Prato recuperado
+                Prato pratoSelecionado = listaPratos.get(posicao);
+            }
+        });
+
+        builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+        AlertDialog dialog = builder.create();
+        dialog.show();
+
+    }
 
 }
