@@ -2,6 +2,7 @@ package com.example.alfred.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -19,16 +20,17 @@ import com.example.alfred.controller.ConexaoController;
 import java.util.ArrayList;
 import java.util.List;
 
-import adapter.AdapterEmpresas;
+import com.example.alfred.adapter.AdapterEmpresas;
 import modelDominio.Empresa;
 
 public class TelaInicialActivity extends AppCompatActivity {
 
     AdapterEmpresas adapterEmpresas;
     InformacoesApp informacoesApp;
-    private RecyclerView rvEmpresasAbertas, rvEmpresasFechadas;
+    RecyclerView rvEmpresasAbertas, rvEmpresasFechadas;
 
     private List<Empresa> listaEmpresasAbertas = new ArrayList<>();
+
     AdapterEmpresas.EmpresaOnClickListener trataCliqueEmpresaAberta = new AdapterEmpresas.EmpresaOnClickListener() {
         @Override
         public void onClickEmpresa(View view, int position) {
@@ -54,6 +56,9 @@ public class TelaInicialActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tela_inicial);
+
+        // Iniciar Componentes
+        iniciarComponentes();
 
         // Contexto
         informacoesApp = (InformacoesApp) getApplicationContext();
@@ -86,7 +91,7 @@ public class TelaInicialActivity extends AppCompatActivity {
                     });
                 }
 
-                listaEmpresasFechadas = ccon.empresasAbertasLista();
+                listaEmpresasFechadas = ccon.empresasFechadasLista();
                 if (listaEmpresasFechadas != null) {
                     runOnUiThread(new Runnable() {
                         @Override

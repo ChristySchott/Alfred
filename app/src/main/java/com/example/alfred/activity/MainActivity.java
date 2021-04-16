@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
     Button btnMainEntrar, btnNaoPossuiConta, btnEsqueceuSenha;
     InformacoesApp informacoesApp;
     Cliente cliente;
-    Usuario usuario;
+    Usuario usuario, usuarioRetornado;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,33 +52,40 @@ public class MainActivity extends AppCompatActivity {
         btnMainEntrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Thread thread = new Thread() {
-                    @Override
-                    public void run() {
-                        ConexaoController ccont = new ConexaoController(informacoesApp);
 
-                        String email = txMainEmail.getText().toString();
-                        String senha = txMainSenha.getText().toString();
+                String email = txMainEmail.getText().toString();
+                String senha = txMainSenha.getText().toString();
 
-                        if (email.equals("") || !Usuario.validaEmail(email)) {
-                            txMainEmail.setError("Informe o e-mail");
-                            txMainEmail.requestFocus();
-                        } else if (txMainSenha.getText().toString().equals("")) {
-                            txMainSenha.setError("Informe a senha");
-                            txMainSenha.requestFocus();
-                        } else {
+                if (email.equals("") || !Usuario.validaEmail(email)) {
+                    txMainEmail.setError("Informe o e-mail");
+                    txMainEmail.requestFocus();
+                } else if (txMainSenha.getText().toString().equals("")) {
+                    txMainSenha.setError("Informe a senha");
+                    txMainSenha.requestFocus();
+                } else {
 
-                            if (!email.equals("") && !senha.equals("")) {
-                                cliente = new Cliente(email, senha);
-                                usuario = new Usuario(email, senha);
-
+                    if (!email.equals("") && !senha.equals("")) {
+                        cliente = new Cliente(email, senha);
+                        usuario = new Usuario(email, senha);
+                        Thread thread = new Thread() {
+                            @Override
+                            public void run() {
+                                ConexaoController ccont = new ConexaoController(informacoesApp);
                                 informacoesApp.cliente = ccont.efetuarLogin(cliente);
 
+                                // TODO - Unificar cliente em InformacoesApp
                                 if (informacoesApp.cliente != null) {
-                                    informacoesApp.usuario = ccont.buscarUsuario(usuario);
-                                    // TODO - Navegar para minhas infos e mudar la
-                                    Intent it = new Intent(MainActivity.this, MinhaContaActivity.class);
-                                    startActivity(it);
+                                    usuarioRetornado = ccont.buscarUsuario(usuario);
+                                    informacoesApp.usuario = usuarioRetornado;
+
+                                    if (usuarioRetornado.getRuaUsuario() != null && !usuarioRetornado.getRuaUsuario().equals("")) {
+                                        Intent it = new Intent(MainActivity.this, TelaInicialActivity.class);
+                                        startActivity(it);
+                                    } else {
+                                        Intent it = new Intent(MainActivity.this, MinhasInfosActivity.class);
+                                        startActivity(it);
+                                    }
+
                                 } else {
                                     runOnUiThread(new Runnable() {
                                         @Override
@@ -88,13 +95,14 @@ public class MainActivity extends AppCompatActivity {
                                     });
                                 }
                             }
-                        }
-
+                        };
+                        thread.start();
                     }
-                };
-                thread.start();
+                }
 
             }
+
+
         });
 
         btnNaoPossuiConta.setOnClickListener(new View.OnClickListener() {
