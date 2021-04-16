@@ -1,5 +1,7 @@
 package com.example.alfred.controller;
 
+import android.util.Log;
+
 import com.example.alfred.InformacoesApp;
 
 import java.io.IOException;
@@ -10,9 +12,11 @@ import java.util.ArrayList;
 
 import modelDominio.Avaliacao;
 import modelDominio.Categoria;
+import modelDominio.Cidade;
 import modelDominio.Cliente;
 import modelDominio.Empresa;
 import modelDominio.Endereco;
+import modelDominio.Estado;
 import modelDominio.Prato;
 import modelDominio.Usuario;
 
@@ -176,6 +180,7 @@ public class ConexaoController {
         ArrayList<Empresa> listaEmpresas;
         try {
             informacoesApp.out.writeObject("EmpresaAbertaLista");
+            String msg = (String) informacoesApp.in.readObject();
             listaEmpresas = (ArrayList<Empresa>) informacoesApp.in.readObject();
         } catch (IOException ioe) {
             ioe.printStackTrace();
@@ -191,6 +196,7 @@ public class ConexaoController {
         ArrayList<Empresa> listaEmpresas;
         try {
             informacoesApp.out.writeObject("EmpresaFechadaLista");
+            String msg = (String) informacoesApp.in.readObject();
             listaEmpresas = (ArrayList<Empresa>) informacoesApp.in.readObject();
         } catch (IOException ioe) {
             ioe.printStackTrace();
@@ -222,6 +228,20 @@ public class ConexaoController {
         return clienteSelecionado;
     }
 
+    public Boolean recuperarSenha(String emailUsuario) {
+        String msg = "";
+        try {
+            informacoesApp.out.writeObject("ClienteInserir");
+            msg = (String) informacoesApp.in.readObject();
+            informacoesApp.out.writeObject(emailUsuario);
+            msg = (String) informacoesApp.in.readObject();
+            return msg.equals("ok");
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return false;
+        }
+    }
+
 
     public Boolean clienteInserir(Cliente cl) {
         String msg = "";
@@ -231,6 +251,24 @@ public class ConexaoController {
             informacoesApp.out.writeObject(cl);
             msg = (String) informacoesApp.in.readObject();
             return msg.equals("ok");
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return false;
+        }
+    }
+
+    public Boolean clienteAlterar(Cliente cl) {
+        String msg = "";
+        try {
+            informacoesApp.out.writeObject("ClienteAlterar");
+            msg = (String) informacoesApp.in.readObject();
+
+            if (msg.equals("ok")) {
+                informacoesApp.out.writeObject(cl);
+                return true;
+            }
+
+            return false;
         } catch (Exception ex) {
             ex.printStackTrace();
             return false;
@@ -294,146 +332,71 @@ public class ConexaoController {
         }
     }
 
-    public ArrayList<Usuario> usuarioLista() {
+    public ArrayList<Prato> pratoListaEmpresa(int codEmpresa) {
         String msg;
-        try {
-            informacoesApp.out.writeObject("UsuarioLista");
-            msg = (String) informacoesApp.in.readObject();
-            ArrayList<Usuario> listausr = (ArrayList<Usuario>) informacoesApp.in.readObject();
-            return listausr;
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            return null;
-        }
-    }
-
-    /* PRATO */
-    public Boolean pratoInserir(Prato prato) {
-        String msg = "";
-        try {
-            informacoesApp.out.writeObject("PratoInserir");
-            msg = (String) informacoesApp.in.readObject();
-            informacoesApp.out.writeObject(prato);
-            msg = (String) informacoesApp.in.readObject();
-            return msg.equals("ok");
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            return false;
-        }
-    }
-
-    public Boolean pratoAlterar(Prato prato) {
-        String msg = "";
-        try {
-            informacoesApp.out.writeObject("PratoAlterar");
-            msg = (String) informacoesApp.in.readObject();
-            informacoesApp.out.writeObject(prato);
-            msg = (String) informacoesApp.in.readObject();
-            return msg.equals("ok");
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            return false;
-        }
-    }
-
-    public Boolean pratoExcluir(Prato prato) {
-        String msg = "";
-        try {
-            informacoesApp.out.writeObject("PratoExcluir");
-            msg = (String) informacoesApp.in.readObject();
-            informacoesApp.out.writeObject(prato);
-            msg = (String) informacoesApp.in.readObject();
-            return msg.equals("ok");
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            return false;
-        }
-    }
-
-    public ArrayList<Prato> pratoLista() {
-        String msg;
-        try {
-            informacoesApp.out.writeObject("PratoLista");
-            msg = (String) informacoesApp.in.readObject();
-            ArrayList<Prato> listaPrato = (ArrayList<Prato>) informacoesApp.in.readObject();
-            return listaPrato;
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            return null;
-        }
-    }
-
-
-    public ArrayList<Prato> pratoListaNome(String nome) {
-        String msg;
-        try {
-            informacoesApp.out.writeObject("PratoListaNome");
-            msg = (String) informacoesApp.in.readObject();
-            informacoesApp.out.writeObject(nome);
-            ArrayList<Prato> listaPratoNome = (ArrayList<Prato>) informacoesApp.in.readObject();
-            return listaPratoNome;
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            return null;
-        }
-    }
-
-    public ArrayList<Prato> pratoListaEmpresa(String nome) {
-        String msg;
+        ArrayList<Prato> listaPrato;
         try {
             informacoesApp.out.writeObject("PratoListaEmpresa");
             msg = (String) informacoesApp.in.readObject();
-            informacoesApp.out.writeObject(nome);
-            ArrayList<Prato> listaPratoEmpresa = (ArrayList<Prato>) informacoesApp.in.readObject();
-            return listaPratoEmpresa;
+            if (msg.equals("ok")) {
+                informacoesApp.out.writeObject(codEmpresa);
+                listaPrato = (ArrayList<Prato>) informacoesApp.in.readObject();
+            } else {
+                listaPrato = null;
+            }
         } catch (Exception ex) {
             ex.printStackTrace();
-            return null;
+            listaPrato = null;
         }
+
+        return listaPrato;
     }
 
-    /* ENDEREÇO */
-    public Boolean enderecoInserir(Endereco endereco) {
-        String msg = "";
+
+    /* CIDADE - ESTADO */
+    public ArrayList<Estado> listaEstados() {
+        String msg;
+        ArrayList<Estado> listaEstados;
         try {
-            informacoesApp.out.writeObject("EnderecoInserir");
+            informacoesApp.out.writeObject("ListaEstados");
             msg = (String) informacoesApp.in.readObject();
-            informacoesApp.out.writeObject(endereco);
-            msg = (String) informacoesApp.in.readObject();
-            return msg.equals("ok");
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            return false;
+            if (msg.equals("ok")) {
+                listaEstados = (ArrayList<Estado>) informacoesApp.in.readObject();
+            } else {
+                listaEstados = null;
+            }
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+            listaEstados = null;
+        } catch (ClassNotFoundException classe) {
+            classe.printStackTrace();
+            listaEstados = null;
         }
+        return listaEstados;
     }
 
-    public Boolean enderecoAlterar(Endereco endereco) {
-        String msg = "";
+    public ArrayList<Cidade> listaCidadesEstado(Estado estado) {
+        String msg;
+        ArrayList<Cidade> listaCidades;
         try {
-            informacoesApp.out.writeObject("EnderecoAlterar");
+            informacoesApp.out.writeObject("ListaCidadesEstado");
             msg = (String) informacoesApp.in.readObject();
-            informacoesApp.out.writeObject(endereco);
-            msg = (String) informacoesApp.in.readObject();
-            return msg.equals("ok");
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            return false;
+            if (msg.equals("ok")) {
+                informacoesApp.out.writeObject(estado);
+                listaCidades = (ArrayList<Cidade>) informacoesApp.in.readObject();
+            } else {
+                listaCidades = null;
+            }
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+            listaCidades = null;
+        } catch (ClassNotFoundException classe) {
+            classe.printStackTrace();
+            listaCidades = null;
         }
+        return listaCidades;
     }
 
-    public Boolean enderecoExcluir(Endereco endereco) {
-        String msg = "";
-        try {
-            informacoesApp.out.writeObject("EnderecoExcluir");
-            msg = (String) informacoesApp.in.readObject();
-            informacoesApp.out.writeObject(endereco);
-            msg = (String) informacoesApp.in.readObject();
-            return msg.equals("ok");
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            return false;
-        }
-    }
 
     /* FIM */
     public void fim() {
