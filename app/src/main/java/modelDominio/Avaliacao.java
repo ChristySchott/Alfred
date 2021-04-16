@@ -25,10 +25,15 @@ public class Avaliacao implements Serializable {
         this.codEmpresa = codEmpresa;
     }
 
+    public Avaliacao(int codAvaliacao, int notaAvaliacao) {
+        this.codAvaliacao = codAvaliacao;
+        this.notaAvaliacao = notaAvaliacao;
+    }
+
     public Avaliacao(int codAvaliacao) {
         this.codAvaliacao = codAvaliacao;
     }
-    
+
     public int getCodAvaliacao() {
         return codAvaliacao;
     }
@@ -73,6 +78,6 @@ public class Avaliacao implements Serializable {
     public String toString() {
         return "Avaliacao{" + "codAvaliacao=" + codAvaliacao + ", descricaoAvaliacao=" + descricaoAvaliacao + ", notaAvaliacao=" + notaAvaliacao + ", codCliente=" + codCliente + ", codEmpresa=" + codEmpresa + '}';
     }
-    
-    
+
+
 }

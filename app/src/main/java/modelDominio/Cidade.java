@@ -13,7 +13,7 @@ import java.io.Serializable;
  */
 public class Cidade implements Serializable {
     private static final long serialVersionUID = 123456789L;
-    
+
     private int codCidade;
     private String nomeCidade;
     private int codEstado;
@@ -56,6 +56,11 @@ public class Cidade implements Serializable {
     public void setCodEstado(int codEstado) {
         this.codEstado = codEstado;
     }
-    
-    
+
+    // Sobrescrevemos este método para mostrar apenas o nome da cidade no componente Spinner, do Android.
+    @Override
+    public String toString() {
+        return nomeCidade;
+    }
+
 }
