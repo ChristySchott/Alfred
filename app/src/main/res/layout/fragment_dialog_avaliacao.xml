@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/dialogAvaliacoa"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingTop="24dp"
+    android:paddingBottom="24dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Avaliação"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="16dp" />
+
+
+    <RatingBar
+        android:id="@+id/rbAvaliarEmpresa"
+        style="?android:attr/ratingBarStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:isIndicator="true"
+        android:numStars="5"
+        android:stepSize="0.1" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:hint="@string/tx_comentario">
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txAvaliarEmpresaComentario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/roundex_textfield"
+            android:paddingTop="16dp"
+            android:paddingLeft="16dp"
+            android:gravity="top"
+            android:inputType="textMultiLine"
+            android:lines="4" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+</LinearLayout>

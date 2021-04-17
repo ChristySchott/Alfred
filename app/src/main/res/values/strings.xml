@@ -30,6 +30,7 @@
     <string name="tx_complemento">Complemento</string>
     <string name="tx_pesquisar_restaurantes">pesquisar restaurante</string>
     <string name="tx_observacao">Observação</string>
+    <string name="tx_comentario">Comentário</string>
     <string name="tx_senha_atual">Senha atual</string>
     <string name="tx_nova_senha">Nova senha</string>
     <string name="tx_confirmar_nova_senha">Confirmar nova senha</string>
@@ -57,6 +58,7 @@
     <string name="btn_cancelar_pedido">Cancelar pedido</string>
     <!-- Helpers -->
     <string name="helper_opcional">Opcional</string>
+    <string name="helper_comentario">Comentário</string>
     <string name="helper_obrigatorio">Obrigatório</string>
     <string name="titulo_activity_menu">MenuActivity</string>
     <string name="navigation_drawer_open">Abrir menu de navegação</string>
