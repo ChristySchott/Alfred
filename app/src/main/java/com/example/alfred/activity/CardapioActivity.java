@@ -1,5 +1,19 @@
 package com.example.alfred.activity;
 
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.RatingBar;
+import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
@@ -7,37 +21,39 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.DialogInterface;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.RatingBar;
-import android.widget.TextView;
-import android.widget.Toast;
-
 import com.example.alfred.InformacoesApp;
 import com.example.alfred.R;
-import com.example.alfred.controller.ConexaoController;
-
 import com.example.alfred.adapter.AdapterPratos;
-import modelDominio.Empresa;
-import modelDominio.Prato;
+import com.example.alfred.controller.ConexaoController;
 import com.google.android.material.appbar.MaterialToolbar;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import modelDominio.Empresa;
+import modelDominio.Prato;
+
 public class CardapioActivity extends AppCompatActivity {
 
-    private List<Prato> listaPratos =  new ArrayList<>();
     Empresa empresaSelecionada;
     AdapterPratos adapterPratos;
     InformacoesApp informacoesApp;
-
     TextView txCardapioNome, txCardapioCidade, txCardapioEstado, txCardapioRua;
     RatingBar rbCardapioAvaliacao;
     RecyclerView rvPratos;
+
+    // Componentes do Dialog
+    TextView txQuantidadePreco, txQuantidade;
+    Button btnQuantidadeDiminuir, btnQuantidadeAumentar;
+    Integer quantidadeSelecionada = 1;
+
+    private List<Prato> listaPratos = new ArrayList<>();
+    AdapterPratos.PratoOnClickListener trataCliquePrato = new AdapterPratos.PratoOnClickListener() {
+        @Override
+        public void onClickPrato(View view, int position) {
+            confirmarQuantidade(position);
+        }
+    };
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,7 +67,7 @@ public class CardapioActivity extends AppCompatActivity {
 
         // Recuperar empresa selecionada
         Bundle bundle = getIntent().getExtras();
-        if( bundle != null ){
+        if (bundle != null) {
             empresaSelecionada = (Empresa) bundle.getSerializable("empresa");
             txCardapioNome.setText(empresaSelecionada.getNomeEmpresa());
             // TODO - Setar essas infos após o join das tabelas
@@ -102,14 +118,6 @@ public class CardapioActivity extends AppCompatActivity {
 
     }
 
-    AdapterPratos.PratoOnClickListener trataCliquePrato = new AdapterPratos.PratoOnClickListener() {
-        @Override
-        public void onClickPrato(View view, int position) {
-            confirmarQuantidade(position);
-        }
-    };
-
-
     public void iniciarComponentes() {
         txCardapioNome = findViewById(R.id.txCardapioNome);
         txCardapioCidade = findViewById(R.id.txCardapioCidade);
@@ -119,25 +127,49 @@ public class CardapioActivity extends AppCompatActivity {
         rvPratos = findViewById(R.id.rvPratos);
     }
 
-    private void confirmarQuantidade(final int posicao){
+    private void confirmarQuantidade(final int posicao) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Quantidade");
-        builder.setMessage("Digite a quantidade");
 
-        // TODO - MUDAR PARA BOTÕES
-        final EditText editQuantidade = new EditText(this);
-        editQuantidade.setText("1");
+        Prato pratoSelecionado = listaPratos.get(posicao);
+        builder.setTitle(pratoSelecionado.getNomePrato());
 
-        builder.setView( editQuantidade );
+
+        ViewGroup viewGroup = findViewById(R.id.content_cardapio);
+        View view = getLayoutInflater().inflate(R.layout.fragment_dialog_quantidade, viewGroup, false);
+
+        builder.setView(view);
+
+        txQuantidadePreco = view.findViewById(R.id.txQuantidadePreco);
+        txQuantidade = view.findViewById(R.id.txQuantidade);
+        btnQuantidadeDiminuir = view.findViewById(R.id.btnQuantidadeDiminuir);
+        btnQuantidadeAumentar = view.findViewById(R.id.btnQuantidadeAumentar);
+
+        txQuantidadePreco.setText("R$ " + pratoSelecionado.getValorPratoString());
+
+        btnQuantidadeDiminuir.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (quantidadeSelecionada > 1) {
+                    quantidadeSelecionada = quantidadeSelecionada - 1;
+                    txQuantidade.setText(quantidadeSelecionada.toString());
+                }
+            }
+        });
+
+
+        btnQuantidadeAumentar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                quantidadeSelecionada = quantidadeSelecionada + 1;
+                txQuantidade.setText(quantidadeSelecionada.toString());
+            }
+        });
 
         builder.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                String quantidade = editQuantidade.getText().toString();
 
                 // TODO - Construir prato pedido
-                // Prato recuperado
-                Prato pratoSelecionado = listaPratos.get(posicao);
             }
         });
 
@@ -149,7 +181,30 @@ public class CardapioActivity extends AppCompatActivity {
         });
         AlertDialog dialog = builder.create();
         dialog.show();
-
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_cardapio, menu);
+
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()){
+            case R.id.menuPedido :
+                // TODO - Adicionar validação (verificar se usuário tem um prato selecionado no pedido)
+                // TODO - Enviar uma lista de PratoPedido para popular adapter no carrino
+                Intent it = new Intent(CardapioActivity.this, CarrinhoActivity.class);
+                startActivity(it);
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
 
 }

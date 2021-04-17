@@ -3,6 +3,9 @@ package com.example.alfred.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -21,6 +24,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.example.alfred.adapter.AdapterEmpresas;
+import com.google.android.material.appbar.MaterialToolbar;
+import com.miguelcatalan.materialsearchview.MaterialSearchView;
+
 import modelDominio.Empresa;
 
 public class TelaInicialActivity extends AppCompatActivity {
@@ -28,6 +34,7 @@ public class TelaInicialActivity extends AppCompatActivity {
     AdapterEmpresas adapterEmpresas;
     InformacoesApp informacoesApp;
     RecyclerView rvEmpresasAbertas, rvEmpresasFechadas;
+    MaterialSearchView searchView;
 
     private List<Empresa> listaEmpresasAbertas = new ArrayList<>();
 
@@ -62,6 +69,26 @@ public class TelaInicialActivity extends AppCompatActivity {
 
         // Contexto
         informacoesApp = (InformacoesApp) getApplicationContext();
+
+        MaterialToolbar toolbar = findViewById(R.id.toolbarMaterial);
+        // TODO - Pegar o nome do cliente
+        toolbar.setTitle("Bernardo Haab");
+        setSupportActionBar(toolbar);
+
+        //Configuração do search view
+        searchView.setHint("pesquisar empresas");
+        searchView.setOnQueryTextListener(new MaterialSearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                // Adicionar filtros as empresas
+                return true;
+            }
+        });
 
         Thread thread = new Thread(new Runnable() {
             @Override
@@ -122,8 +149,38 @@ public class TelaInicialActivity extends AppCompatActivity {
     }
 
     public void iniciarComponentes() {
+        searchView = findViewById(R.id.materialSearchView);
         rvEmpresasAbertas = findViewById(R.id.rvAbertos);
         rvEmpresasFechadas = findViewById(R.id.rvFechados);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_tela_inicial, menu);
+
+        //Configurar botao de pesquisa
+        MenuItem item = menu.findItem(R.id.menuPesquisa);
+        searchView.setMenuItem(item);
+
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()){
+            case R.id.menuSair :
+                deslogarUsuario();
+                break;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void deslogarUsuario() {
+        // TODO - Deslogar
     }
 
 }

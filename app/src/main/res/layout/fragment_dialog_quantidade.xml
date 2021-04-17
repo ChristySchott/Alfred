@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:id="@+id/dialogQuantidade"
+    android:layout_height="match_parent"
+    android:paddingTop="24dp"
+    android:paddingBottom="24dp"
+    android:layout_gravity="center">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="16dp"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimaryDark"
+            android:text="valor por unidade:  "/>
+
+        <TextView
+            android:id="@+id/txQuantidadePreco"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorMoney"
+            android:text="R$ 15,00" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+
+    <Button
+        android:id="@+id/btnQuantidadeDiminuir"
+        android:background="@drawable/ic_sub"
+        android:layout_width="20dp"
+        android:layout_height="20dp" />
+
+    <TextView
+        android:id="@+id/txQuantidade"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="35dp"
+        android:layout_marginRight="35dp"
+        android:textColor="@color/colorPrimaryDark"
+        android:text="1"/>
+
+    <Button
+        android:id="@+id/btnQuantidadeAumentar"
+        android:background="@drawable/ic_add"
+        android:layout_width="20dp"
+        android:layout_height="20dp" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

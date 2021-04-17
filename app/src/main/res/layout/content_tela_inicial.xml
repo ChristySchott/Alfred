@@ -6,8 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="24dp"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:showIn="@layout/app_bar_menu">
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
     <fragment
         android:id="@+id/nav_host_fragment"
@@ -21,7 +20,8 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginTop="64dp">
 
         <LinearLayout
             android:layout_width="fill_parent"
