@@ -37,7 +37,7 @@ public class MinhaContaActivity extends AppCompatActivity {
         informacoesApp = (InformacoesApp) getApplicationContext();
 
         // Configuração da Toolbar
-        MaterialToolbar toolbar = findViewById(R.id.toolbar);
+        MaterialToolbar toolbar = findViewById(R.id.toolbarMaterial);
         toolbar.setTitle("Minha Conta");
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

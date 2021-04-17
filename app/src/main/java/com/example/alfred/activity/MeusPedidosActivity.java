@@ -14,7 +14,7 @@ public class MeusPedidosActivity extends AppCompatActivity {
         setContentView(R.layout.activity_meus_pedidos);
 
         // Configuração da Toolbar
-        MaterialToolbar toolbar = findViewById(R.id.toolbar);
+        MaterialToolbar toolbar = findViewById(R.id.toolbarMaterial);
         toolbar.setTitle("Meus Pedidos");
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

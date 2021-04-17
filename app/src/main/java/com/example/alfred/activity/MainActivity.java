@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
                                         Intent it = new Intent(MainActivity.this, TelaInicialActivity.class);
                                         startActivity(it);
                                     } else {
-                                        Intent it = new Intent(MainActivity.this, MinhasInfosActivity.class);
+                                        Intent it = new Intent(MainActivity.this, TelaInicialActivity.class);
                                         startActivity(it);
                                     }
 
