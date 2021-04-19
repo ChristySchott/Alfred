@@ -28,6 +28,18 @@ public class Usuario implements Serializable {
         this.numeroUsuario = numeroUsuario;
     }
 
+    public Usuario(int codUsuario, String emailUsuario, String senhaUsuario, Cidade cidadeUsuario, Estado estadoUsuario, String ruaUsuario, String bairroUsuario, String complementoUsuario, int numeroUsuario) {
+        this.codUsuario = codUsuario;
+        this.emailUsuario = emailUsuario;
+        this.senhaUsuario = senhaUsuario;
+        this.cidadeUsuario = cidadeUsuario;
+        this.estadoUsuario = estadoUsuario;
+        this.ruaUsuario = ruaUsuario;
+        this.bairroUsuario = bairroUsuario;
+        this.complementoUsuario = complementoUsuario;
+        this.numeroUsuario = numeroUsuario;
+    }
+
     public Usuario(int codUsuario, String emailUsuario, String senhaUsuario) {
         this.codUsuario = codUsuario;
         this.emailUsuario = emailUsuario;
@@ -146,4 +158,8 @@ public class Usuario implements Serializable {
         return emailValido;
     }
 
+    @Override
+    public String toString() {
+        return "Usuario{" + "codUsuario=" + codUsuario + ", emailUsuario=" + emailUsuario + ", senhaUsuario=" + senhaUsuario + ", cidadeUsuario=" + cidadeUsuario + ", estadoUsuario=" + estadoUsuario + ", ruaUsuario=" + ruaUsuario + ", bairroUsuario=" + bairroUsuario + ", complementoUsuario=" + complementoUsuario + ", numeroUsuario=" + numeroUsuario + '}';
+    }
 }

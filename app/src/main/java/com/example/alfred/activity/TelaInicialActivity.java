@@ -70,9 +70,11 @@ public class TelaInicialActivity extends AppCompatActivity {
         // Contexto
         informacoesApp = (InformacoesApp) getApplicationContext();
 
+        String nome = informacoesApp.cliente.getNomeCliente();
+        String sobrenome = informacoesApp.cliente.getSobrenomeCliente();
+
         MaterialToolbar toolbar = findViewById(R.id.toolbarMaterial);
-        // TODO - Pegar o nome do cliente
-        toolbar.setTitle("Bernardo Haab");
+        toolbar.setTitle(nome + " " + sobrenome);
         setSupportActionBar(toolbar);
 
         //Configuração do search view

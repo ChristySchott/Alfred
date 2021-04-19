@@ -144,7 +144,20 @@ public class MinhasInfosActivity extends AppCompatActivity {
                 // Informações do usuário logado
                 final int codUsuario = informacoesApp.usuario.getCodUsuario();
                 final String emailUsuario = informacoesApp.usuario.getEmailUsuario();
+                final String senhaUsuario = informacoesApp.usuario.getSenhaUsuario();
+                final String bairroUsuario = informacoesApp.usuario.getBairroUsuario();
+                final String ruaUsuario = informacoesApp.usuario.getRuaUsuario();
+                final String complementoUsuario = informacoesApp.usuario.getComplementoUsuario();
+                final String numeroRuaUsuario = String.valueOf(informacoesApp.usuario.getNumeroUsuario());
+
                 final int codCliente = informacoesApp.cliente.getCodCliente();
+                final String nomeCliente = informacoesApp.cliente.getNomeCliente();
+                final String sobrenomeCliente = informacoesApp.cliente.getSobrenomeCliente();
+                final String dataNascimentoClienteString = informacoesApp.cliente.getDataNascimentoClienteString();
+                final String telefoneCliente = String.valueOf(informacoesApp.cliente.getTelefoneCliente());
+                final String areaCliente = String.valueOf(informacoesApp.cliente.getAreaCliente());
+
+
 
                 String nome = txMinhasInfosNome.getText().toString();
                 String sobrenome = txMinhasInfosSobrenome.getText().toString();
@@ -157,6 +170,35 @@ public class MinhasInfosActivity extends AppCompatActivity {
                 String rua = txMinhasInfosRua.getText().toString();
                 String numeroRua = txMinhasInfosNumeroRua.getText().toString();
                 String complemento = txMinhasInfosComplemento.getText().toString();
+
+                if (bairroUsuario != null && !bairroUsuario.equals("")) {
+                    txMinhasInfosBairro.setText(bairroUsuario);
+                }
+                if (telefoneCliente != null && !telefoneCliente.equals("")) {
+                    txMinhasInfosTelefone.setText(telefoneCliente);
+                }
+                if (complementoUsuario != null && !complementoUsuario.equals("")) {
+                    txMinhasInfosComplemento.setText(complementoUsuario);
+                }
+                if (nomeCliente != null && !nomeCliente.equals("")) {
+                    txMinhasInfosNome.setText(nomeCliente);
+                }
+                if (sobrenomeCliente != null && !sobrenomeCliente.equals("")) {
+                    txMinhasInfosSobrenome.setText(sobrenomeCliente);
+                }
+                if (dataNascimentoClienteString != null && !dataNascimentoClienteString.equals("")) {
+                    txMinhasInfosDataNascimento.setText(dataNascimentoClienteString);
+                }
+                if (areaCliente != null && !areaCliente.equals("")) {
+                    txMinhasInfosArea.setText(areaCliente);
+                }
+                if (numeroRuaUsuario != null && !numeroRuaUsuario.equals("")) {
+                    txMinhasInfosNumeroRua.setText(numeroRuaUsuario);
+                }
+                if (ruaUsuario != null && !ruaUsuario.equals("")) {
+                    txMinhasInfosRua.setText(ruaUsuario);
+                }
+
 
                 if (nome.equals("")) {
                     txMinhasInfosNome.setError("Informe o nome");
@@ -188,7 +230,7 @@ public class MinhasInfosActivity extends AppCompatActivity {
                     txMinhasInfosNumeroRua.requestFocus();
                 } else {
 
-                    usuario = new Usuario(codUsuario, emailUsuario, cidadeSelecionada, estadoSelecionado, rua, bairro, complemento, Integer.parseInt(numeroRua));
+                    usuario = new Usuario(codUsuario, emailUsuario, senhaUsuario, cidadeSelecionada, estadoSelecionado, rua, bairro, complemento, Integer.parseInt(numeroRua));
                     cliente = new Cliente(codCliente, nome, sobrenome, new Date(dataNascimento), Integer.parseInt(area), Integer.parseInt(telefone));
 
                     Thread thread = new Thread() {
