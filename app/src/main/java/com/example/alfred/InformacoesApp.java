@@ -15,7 +15,6 @@ public class InformacoesApp extends Application {
     public ObjectInputStream in;
     public ObjectOutputStream out;
 
-    public Usuario usuario;
     public Cliente cliente;
 
     @Override

@@ -142,20 +142,19 @@ public class MinhasInfosActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 // Informações do usuário logado
-                final int codUsuario = informacoesApp.usuario.getCodUsuario();
-                final String emailUsuario = informacoesApp.usuario.getEmailUsuario();
-                final String senhaUsuario = informacoesApp.usuario.getSenhaUsuario();
-                final String bairroUsuario = informacoesApp.usuario.getBairroUsuario();
-                final String ruaUsuario = informacoesApp.usuario.getRuaUsuario();
-                final String complementoUsuario = informacoesApp.usuario.getComplementoUsuario();
-                final String numeroRuaUsuario = String.valueOf(informacoesApp.usuario.getNumeroUsuario());
+                final int codUsuario = informacoesApp.cliente.getCodUsuario();
+                final String emailUsuario = informacoesApp.cliente.getEmailUsuario();
+                final String senhaUsuario = informacoesApp.cliente.getSenhaUsuario();
+                final String bairroUsuario = informacoesApp.cliente.getBairroUsuario();
+                final String cidadeUsuario = informacoesApp.cliente.getCidadeUsuario().getNomeCidade();
+                final String estadoUsuario = informacoesApp.cliente.getEstadoUsuario().getNomeEstado();
+                final String complementoUsuario = informacoesApp.cliente.getComplementoUsuario();
 
                 final int codCliente = informacoesApp.cliente.getCodCliente();
                 final String nomeCliente = informacoesApp.cliente.getNomeCliente();
                 final String sobrenomeCliente = informacoesApp.cliente.getSobrenomeCliente();
                 final String dataNascimentoClienteString = informacoesApp.cliente.getDataNascimentoClienteString();
                 final String telefoneCliente = String.valueOf(informacoesApp.cliente.getTelefoneCliente());
-                final String areaCliente = String.valueOf(informacoesApp.cliente.getAreaCliente());
 
 
 
@@ -174,31 +173,30 @@ public class MinhasInfosActivity extends AppCompatActivity {
                 if (bairroUsuario != null && !bairroUsuario.equals("")) {
                     txMinhasInfosBairro.setText(bairroUsuario);
                 }
+                if (cidadeUsuario != null && !cidadeUsuario.equals("")) {
+                    txMinhasInfosNome.setText(cidadeUsuario);
+                }
+                if (estadoUsuario != null && !estadoUsuario.equals("")) {
+                    txMinhasInfosNome.setText(estadoUsuario);
+                }
                 if (telefoneCliente != null && !telefoneCliente.equals("")) {
-                    txMinhasInfosTelefone.setText(telefoneCliente);
+                    txMinhasInfosNome.setText(telefoneCliente);
                 }
                 if (complementoUsuario != null && !complementoUsuario.equals("")) {
-                    txMinhasInfosComplemento.setText(complementoUsuario);
+                    txMinhasInfosNome.setText(complementoUsuario);
                 }
                 if (nomeCliente != null && !nomeCliente.equals("")) {
                     txMinhasInfosNome.setText(nomeCliente);
                 }
                 if (sobrenomeCliente != null && !sobrenomeCliente.equals("")) {
-                    txMinhasInfosSobrenome.setText(sobrenomeCliente);
+                    txMinhasInfosNome.setText(sobrenomeCliente);
                 }
                 if (dataNascimentoClienteString != null && !dataNascimentoClienteString.equals("")) {
-                    txMinhasInfosDataNascimento.setText(dataNascimentoClienteString);
+                    txMinhasInfosNome.setText(dataNascimentoClienteString);
                 }
-                if (areaCliente != null && !areaCliente.equals("")) {
-                    txMinhasInfosArea.setText(areaCliente);
+                if (telefoneCliente != null && !telefoneCliente.equals("")) {
+                    txMinhasInfosNome.setText(telefoneCliente);
                 }
-                if (numeroRuaUsuario != null && !numeroRuaUsuario.equals("")) {
-                    txMinhasInfosNumeroRua.setText(numeroRuaUsuario);
-                }
-                if (ruaUsuario != null && !ruaUsuario.equals("")) {
-                    txMinhasInfosRua.setText(ruaUsuario);
-                }
-
 
                 if (nome.equals("")) {
                     txMinhasInfosNome.setError("Informe o nome");
@@ -244,7 +242,6 @@ public class MinhasInfosActivity extends AppCompatActivity {
 
                             if (okUsuario && okCliente) {
                                 informacoesApp.cliente = cliente;
-                                informacoesApp.usuario = usuario;
                                 runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {

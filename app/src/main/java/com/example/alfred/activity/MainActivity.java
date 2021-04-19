@@ -22,7 +22,6 @@ public class MainActivity extends AppCompatActivity {
     Button btnMainEntrar, btnNaoPossuiConta, btnEsqueceuSenha;
     InformacoesApp informacoesApp;
     Cliente cliente;
-    Usuario usuario, usuarioRetornado;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +32,6 @@ public class MainActivity extends AppCompatActivity {
         iniciarComponentes();
 
         limpaCampos();
-
 
         // Contexto
         informacoesApp = (InformacoesApp) getApplicationContext();
@@ -66,19 +64,17 @@ public class MainActivity extends AppCompatActivity {
 
                     if (!email.equals("") && !senha.equals("")) {
                         cliente = new Cliente(email, senha);
-                        usuario = new Usuario(email, senha);
                         Thread thread = new Thread() {
                             @Override
                             public void run() {
                                 ConexaoController ccont = new ConexaoController(informacoesApp);
-                                informacoesApp.cliente = ccont.efetuarLogin(cliente);
+                                cliente = ccont.efetuarLogin(cliente);
 
                                 // TODO - Unificar cliente em InformacoesApp
-                                if (informacoesApp.cliente != null) {
-                                    usuarioRetornado = ccont.buscarUsuario(usuario);
-                                    informacoesApp.usuario = usuarioRetornado;
+                                if (cliente != null) {
+                                    informacoesApp.cliente = cliente;
 
-                                    if (usuarioRetornado.getRuaUsuario() != null && !usuarioRetornado.getRuaUsuario().equals("")) {
+                                    if (!informacoesApp.cliente.getNomeCliente().equals("")) {
                                         Intent it = new Intent(MainActivity.this, TelaInicialActivity.class);
                                         startActivity(it);
                                     } else {
