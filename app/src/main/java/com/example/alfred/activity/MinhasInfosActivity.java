@@ -201,10 +201,13 @@ public class MinhasInfosActivity extends AppCompatActivity {
                             boolean okCliente = ccont.clienteAlterar(cliente);
 
                             if (okUsuario && okCliente) {
+                                informacoesApp.cliente = cliente;
+                                informacoesApp.usuario = usuario;
                                 runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {
-                                        Toast.makeText(MinhasInfosActivity.this, "Usuário atualizado com sucesso!", Toast.LENGTH_SHORT).show();
+                                        Intent it = new Intent(MinhasInfosActivity.this, TelaInicialActivity.class);
+                                        startActivity(it);
                                     }
                                 });
                             } else {
