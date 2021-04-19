@@ -284,6 +284,7 @@ public class ConexaoController {
 
             if (msg.equals("ok")) {
                 informacoesApp.out.writeObject(usr);
+                informacoesApp.in.readObject();
                 usrselecionado = (Usuario) informacoesApp.in.readObject();
             }
 
