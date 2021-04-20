@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
                                 if (cliente != null) {
                                     informacoesApp.cliente = cliente;
 
-                                    if (!informacoesApp.cliente.getNomeCliente().equals("")) {
+                                    if (informacoesApp.cliente.getNomeCliente() != null &&  !informacoesApp.cliente.getNomeCliente().equals("")) {
                                         Intent it = new Intent(MainActivity.this, TelaInicialActivity.class);
                                         startActivity(it);
                                     } else {
