@@ -148,16 +148,21 @@ public class ConexaoController {
     }
 
     public ArrayList<Categoria> categoriaLista() {
-        String msg;
+        ArrayList<Categoria> listaCategoria;
         try {
             informacoesApp.out.writeObject("CategoriaLista");
-            msg = (String) informacoesApp.in.readObject();
-            ArrayList<Categoria> listaCategoria = (ArrayList<Categoria>) informacoesApp.in.readObject();
-            return listaCategoria;
+            String msg = (String) informacoesApp.in.readObject();
+            if (msg.equals("ok")) {
+                listaCategoria = (ArrayList<Categoria>) informacoesApp.in.readObject();
+            } else {
+                listaCategoria = null;
+            }
         } catch (Exception ex) {
             ex.printStackTrace();
-            return null;
+            listaCategoria = null;
         }
+
+        return listaCategoria;
     }
 
 

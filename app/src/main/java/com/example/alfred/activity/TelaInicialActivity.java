@@ -26,6 +26,7 @@ import com.example.alfred.adapter.AdapterEmpresas;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
 
+import modelDominio.Categoria;
 import modelDominio.Empresa;
 
 public class TelaInicialActivity extends AppCompatActivity {
@@ -37,6 +38,7 @@ public class TelaInicialActivity extends AppCompatActivity {
     String filtroEmpresasNome = "";
 
     private List<Empresa> listaEmpresasAbertas = new ArrayList<>();
+    private List<Categoria> listaCategoria = new ArrayList<>();
 
     AdapterEmpresas.EmpresaOnClickListener trataCliqueEmpresaAberta = new AdapterEmpresas.EmpresaOnClickListener() {
         @Override
@@ -106,14 +108,6 @@ public class TelaInicialActivity extends AppCompatActivity {
                                     rvEmpresasAbertas.setAdapter(adapterEmpresas);
                                 }
                             });
-
-                        } else {
-                            runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    Toast.makeText(informacoesApp, "ATENÇÃO: Não foi possível obter a lista das empresas abertas!", Toast.LENGTH_SHORT).show();
-                                }
-                            });
                         }
 
                         listaEmpresasFechadas = ccon.empresasFechadasLista(filtroEmpresasNome);
@@ -127,14 +121,6 @@ public class TelaInicialActivity extends AppCompatActivity {
                                     rvEmpresasFechadas.setItemAnimator(new DefaultItemAnimator());
                                     rvEmpresasFechadas.addItemDecoration(new DividerItemDecoration(informacoesApp, LinearLayout.VERTICAL));
                                     rvEmpresasFechadas.setAdapter(adapterEmpresas);
-                                }
-                            });
-
-                        } else {
-                            runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    Toast.makeText(informacoesApp, "ATENÇÃO: Não foi possível obter a lista das empresas fechadas!", Toast.LENGTH_SHORT).show();
                                 }
                             });
                         }
@@ -193,6 +179,18 @@ public class TelaInicialActivity extends AppCompatActivity {
                         @Override
                         public void run() {
                             Toast.makeText(informacoesApp, "ATENÇÃO: Não foi possível obter a lista das empresas fechadas!", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
+
+                listaCategoria = ccon.categoriaLista();
+                if (listaCategoria != null) {
+                    // TODO - Configurar adapter de categorias
+                } else {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(informacoesApp, "ATENÇÃO: Não foi possível obter a lista das categorias", Toast.LENGTH_SHORT).show();
                         }
                     });
                 }
