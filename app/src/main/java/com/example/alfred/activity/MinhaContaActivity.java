@@ -58,9 +58,9 @@ public class MinhaContaActivity extends AppCompatActivity {
                 String senhaNova = txNovaSenha.getText().toString();
                 String confirmarSenha = txConfirmarNovaSenha.getText().toString();
 
-                final int codUsuarioLogado = informacoesApp.usuario.getCodUsuario();
-                final String emailUsuarioLogado = informacoesApp.usuario.getEmailUsuario();
-                final String senhaUsuarioLogado = informacoesApp.usuario.getSenhaUsuario();
+                final int codUsuarioLogado = informacoesApp.cliente.getCodUsuario();
+                final String emailUsuarioLogado = informacoesApp.cliente.getEmailUsuario();
+                final String senhaUsuarioLogado = informacoesApp.cliente.getSenhaUsuario();
 
 
                 if (senhaAtual.equals("")) {

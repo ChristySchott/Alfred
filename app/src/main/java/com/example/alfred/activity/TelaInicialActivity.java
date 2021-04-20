@@ -2,7 +2,6 @@ package com.example.alfred.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -35,6 +34,7 @@ public class TelaInicialActivity extends AppCompatActivity {
     InformacoesApp informacoesApp;
     RecyclerView rvEmpresasAbertas, rvEmpresasFechadas;
     MaterialSearchView searchView;
+    String filtroEmpresasNome = "";
 
     private List<Empresa> listaEmpresasAbertas = new ArrayList<>();
 
@@ -70,7 +70,7 @@ public class TelaInicialActivity extends AppCompatActivity {
         // Contexto
         informacoesApp = (InformacoesApp) getApplicationContext();
 
-        String nome = informacoesApp.cliente.getNomeCliente();
+        final String nome = informacoesApp.cliente.getNomeCliente();
         String sobrenome = informacoesApp.cliente.getSobrenomeCliente();
 
         MaterialToolbar toolbar = findViewById(R.id.toolbarMaterial);
@@ -87,7 +87,61 @@ public class TelaInicialActivity extends AppCompatActivity {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                // Adicionar filtros as empresas
+                filtroEmpresasNome = newText;
+                Thread thread = new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        ConexaoController ccon = new ConexaoController(informacoesApp);
+                        listaEmpresasAbertas = ccon.empresasAbertasLista(filtroEmpresasNome);
+                        if (listaEmpresasAbertas != null) {
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    adapterEmpresas = new AdapterEmpresas(listaEmpresasAbertas, trataCliqueEmpresaAberta);
+                                    rvEmpresasAbertas.setLayoutManager(new LinearLayoutManager(informacoesApp));
+                                    rvEmpresasAbertas.setHasFixedSize(true);
+                                    rvEmpresasAbertas.setItemAnimator(new DefaultItemAnimator());
+                                    rvEmpresasAbertas.addItemDecoration(new DividerItemDecoration(informacoesApp, LinearLayout.VERTICAL));
+                                    rvEmpresasAbertas.setAdapter(adapterEmpresas);
+                                }
+                            });
+
+                        } else {
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast.makeText(informacoesApp, "ATENÇÃO: Não foi possível obter a lista das empresas abertas!", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                        }
+
+                        listaEmpresasFechadas = ccon.empresasFechadasLista(filtroEmpresasNome);
+                        if (listaEmpresasFechadas != null) {
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    adapterEmpresas = new AdapterEmpresas(listaEmpresasFechadas, trataCliqueEmpresaFechada);
+                                    rvEmpresasFechadas.setLayoutManager(new LinearLayoutManager(informacoesApp));
+                                    rvEmpresasFechadas.setHasFixedSize(true);
+                                    rvEmpresasFechadas.setItemAnimator(new DefaultItemAnimator());
+                                    rvEmpresasFechadas.addItemDecoration(new DividerItemDecoration(informacoesApp, LinearLayout.VERTICAL));
+                                    rvEmpresasFechadas.setAdapter(adapterEmpresas);
+                                }
+                            });
+
+                        } else {
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast.makeText(informacoesApp, "ATENÇÃO: Não foi possível obter a lista das empresas fechadas!", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                        }
+
+                    }
+                });
+                thread.start();
                 return true;
             }
         });
@@ -97,7 +151,7 @@ public class TelaInicialActivity extends AppCompatActivity {
             public void run() {
 
                 ConexaoController ccon = new ConexaoController(informacoesApp);
-                listaEmpresasAbertas = ccon.empresasAbertasLista();
+                listaEmpresasAbertas = ccon.empresasAbertasLista(filtroEmpresasNome);
                 if (listaEmpresasAbertas != null) {
                     runOnUiThread(new Runnable() {
                         @Override
@@ -120,7 +174,7 @@ public class TelaInicialActivity extends AppCompatActivity {
                     });
                 }
 
-                listaEmpresasFechadas = ccon.empresasFechadasLista();
+                listaEmpresasFechadas = ccon.empresasFechadasLista(filtroEmpresasNome);
                 if (listaEmpresasFechadas != null) {
                     runOnUiThread(new Runnable() {
                         @Override
