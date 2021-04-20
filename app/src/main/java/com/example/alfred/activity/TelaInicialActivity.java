@@ -17,12 +17,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.alfred.InformacoesApp;
 import com.example.alfred.R;
+import com.example.alfred.adapter.AdapterCategorias;
 import com.example.alfred.controller.ConexaoController;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import com.example.alfred.adapter.AdapterEmpresas;
+import com.example.alfred.utils.PaddingItemDecoration;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
 
@@ -32,8 +34,9 @@ import modelDominio.Empresa;
 public class TelaInicialActivity extends AppCompatActivity {
 
     AdapterEmpresas adapterEmpresas;
+    AdapterCategorias adapterCategorias;
     InformacoesApp informacoesApp;
-    RecyclerView rvEmpresasAbertas, rvEmpresasFechadas;
+    RecyclerView rvEmpresasAbertas, rvEmpresasFechadas, rvCategorias;
     MaterialSearchView searchView;
     String filtroEmpresasNome = "";
 
@@ -58,6 +61,16 @@ public class TelaInicialActivity extends AppCompatActivity {
             Intent it = new Intent(TelaInicialActivity.this, CardapioActivity.class);
             it.putExtra("empresa", minhaEmpresa);
             startActivity(it);
+        }
+    };
+
+    AdapterCategorias.CategoriaOnClickListener trateCliqueCategoria = new AdapterCategorias.CategoriaOnClickListener() {
+        @Override
+        public void onClickCategoria(View view, int position) {
+            Categoria minhaCategoria = listaCategoria.get(position);
+            int codCategoria = minhaCategoria.getCodCategoria();
+
+            // TODO - Adicionar filtro
         }
     };
 
@@ -185,7 +198,16 @@ public class TelaInicialActivity extends AppCompatActivity {
 
                 listaCategoria = ccon.categoriaLista();
                 if (listaCategoria != null) {
-                    // TODO - Configurar adapter de categorias
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            adapterCategorias = new AdapterCategorias(listaCategoria, trateCliqueCategoria);
+                            rvCategorias.setLayoutManager(new LinearLayoutManager(informacoesApp, LinearLayoutManager.HORIZONTAL, false));
+                            rvCategorias.setHasFixedSize(true);
+                            rvCategorias.addItemDecoration(new PaddingItemDecoration(50));
+                            rvCategorias.setAdapter(adapterCategorias);
+                        }
+                    });
                 } else {
                     runOnUiThread(new Runnable() {
                         @Override
@@ -206,6 +228,7 @@ public class TelaInicialActivity extends AppCompatActivity {
         searchView = findViewById(R.id.materialSearchView);
         rvEmpresasAbertas = findViewById(R.id.rvAbertos);
         rvEmpresasFechadas = findViewById(R.id.rvFechados);
+        rvCategorias = findViewById(R.id.rvCategorias);
     }
 
     @Override

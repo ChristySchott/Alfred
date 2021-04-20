@@ -23,10 +23,22 @@
         android:layout_height="match_parent"
         android:layout_marginTop="64dp">
 
+
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:orientation="vertical">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvCategorias"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
+                android:layout_marginBottom="16dp"
+                tools:layout_editor_absoluteX="1dp"
+                tools:layout_editor_absoluteY="20dp" />
 
 
             <LinearLayout
