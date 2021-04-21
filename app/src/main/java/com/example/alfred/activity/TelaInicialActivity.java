@@ -38,7 +38,7 @@ public class TelaInicialActivity extends AppCompatActivity {
     InformacoesApp informacoesApp;
     RecyclerView rvEmpresasAbertas, rvEmpresasFechadas, rvCategorias;
     MaterialSearchView searchView;
-    String filtroEmpresasNome = "";
+    String filtroEmpresasNome = "", filtroCodCategoria = "";
 
     private List<Empresa> listaEmpresasAbertas = new ArrayList<>();
     private List<Categoria> listaCategoria = new ArrayList<>();
@@ -68,9 +68,53 @@ public class TelaInicialActivity extends AppCompatActivity {
         @Override
         public void onClickCategoria(View view, int position) {
             Categoria minhaCategoria = listaCategoria.get(position);
-            int codCategoria = minhaCategoria.getCodCategoria();
+            String codCategoria = String.valueOf(minhaCategoria.getCodCategoria());
 
-            // TODO - Adicionar filtro
+            if (codCategoria == filtroCodCategoria) {
+                filtroCodCategoria = "";
+            } else {
+                filtroCodCategoria = codCategoria;
+            }
+
+            Thread thread = new Thread(new Runnable() {
+                @Override
+                public void run() {
+
+                    ConexaoController ccon = new ConexaoController(informacoesApp);
+                    listaEmpresasAbertas = ccon.empresasAbertasLista(filtroEmpresasNome, filtroCodCategoria);
+                    if (listaEmpresasAbertas != null) {
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                adapterEmpresas = new AdapterEmpresas(listaEmpresasAbertas, trataCliqueEmpresaAberta);
+                                rvEmpresasAbertas.setLayoutManager(new LinearLayoutManager(informacoesApp));
+                                rvEmpresasAbertas.setHasFixedSize(true);
+                                rvEmpresasAbertas.setItemAnimator(new DefaultItemAnimator());
+                                rvEmpresasAbertas.addItemDecoration(new DividerItemDecoration(informacoesApp, LinearLayout.VERTICAL));
+                                rvEmpresasAbertas.setAdapter(adapterEmpresas);
+                            }
+                        });
+                    }
+
+                    listaEmpresasFechadas = ccon.empresasFechadasLista(filtroEmpresasNome, filtroCodCategoria);
+                    if (listaEmpresasFechadas != null) {
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                adapterEmpresas = new AdapterEmpresas(listaEmpresasFechadas, trataCliqueEmpresaFechada);
+                                rvEmpresasFechadas.setLayoutManager(new LinearLayoutManager(informacoesApp));
+                                rvEmpresasFechadas.setHasFixedSize(true);
+                                rvEmpresasFechadas.setItemAnimator(new DefaultItemAnimator());
+                                rvEmpresasFechadas.addItemDecoration(new DividerItemDecoration(informacoesApp, LinearLayout.VERTICAL));
+                                rvEmpresasFechadas.setAdapter(adapterEmpresas);
+                            }
+                        });
+                    }
+
+                }
+            });
+            thread.start();
+
         }
     };
 
@@ -108,7 +152,7 @@ public class TelaInicialActivity extends AppCompatActivity {
                     public void run() {
 
                         ConexaoController ccon = new ConexaoController(informacoesApp);
-                        listaEmpresasAbertas = ccon.empresasAbertasLista(filtroEmpresasNome);
+                        listaEmpresasAbertas = ccon.empresasAbertasLista(filtroEmpresasNome, filtroCodCategoria);
                         if (listaEmpresasAbertas != null) {
                             runOnUiThread(new Runnable() {
                                 @Override
@@ -123,7 +167,7 @@ public class TelaInicialActivity extends AppCompatActivity {
                             });
                         }
 
-                        listaEmpresasFechadas = ccon.empresasFechadasLista(filtroEmpresasNome);
+                        listaEmpresasFechadas = ccon.empresasFechadasLista(filtroEmpresasNome, filtroCodCategoria);
                         if (listaEmpresasFechadas != null) {
                             runOnUiThread(new Runnable() {
                                 @Override
@@ -150,7 +194,7 @@ public class TelaInicialActivity extends AppCompatActivity {
             public void run() {
 
                 ConexaoController ccon = new ConexaoController(informacoesApp);
-                listaEmpresasAbertas = ccon.empresasAbertasLista(filtroEmpresasNome);
+                listaEmpresasAbertas = ccon.empresasAbertasLista(filtroEmpresasNome, filtroCodCategoria);
                 if (listaEmpresasAbertas != null) {
                     runOnUiThread(new Runnable() {
                         @Override
@@ -173,7 +217,7 @@ public class TelaInicialActivity extends AppCompatActivity {
                     });
                 }
 
-                listaEmpresasFechadas = ccon.empresasFechadasLista(filtroEmpresasNome);
+                listaEmpresasFechadas = ccon.empresasFechadasLista(filtroEmpresasNome, filtroCodCategoria);
                 if (listaEmpresasFechadas != null) {
                     runOnUiThread(new Runnable() {
                         @Override

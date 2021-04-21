@@ -46,10 +46,10 @@ public class Categoria implements Serializable {
     public void setImagemCategoria(byte[] imagemCategoria) {
         this.imagemCategoria = imagemCategoria;
     }
-    
+
     @Override
     public String toString() {
-        return "Categoria{" + "codCategoria=" + codCategoria + ", nomeCategoria=" + nomeCategoria + '}';
+        return "Categoria{" + "codCategoria=" + codCategoria + ", nomeCategoria=" + nomeCategoria + ", imagemCategoria=" + imagemCategoria + '}';
     }
     
 }

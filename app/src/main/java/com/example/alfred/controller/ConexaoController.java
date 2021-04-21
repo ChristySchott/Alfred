@@ -181,13 +181,14 @@ public class ConexaoController {
     }
 
     /* EMPRESA */
-    public ArrayList<Empresa> empresasAbertasLista(String nome) {
+    public ArrayList<Empresa> empresasAbertasLista(String nome, String codCategoria) {
         ArrayList<Empresa> listaEmpresas;
         try {
             informacoesApp.out.writeObject("EmpresaAbertaLista");
             String msg = (String) informacoesApp.in.readObject();
             if (msg.equals("ok")) {
                 informacoesApp.out.writeObject(nome);
+                informacoesApp.out.writeObject(codCategoria);
                 listaEmpresas = (ArrayList<Empresa>) informacoesApp.in.readObject();
             } else {
                 listaEmpresas = null;
@@ -202,13 +203,14 @@ public class ConexaoController {
         return listaEmpresas;
     }
 
-    public ArrayList<Empresa> empresasFechadasLista(String nome) {
+    public ArrayList<Empresa> empresasFechadasLista(String nome, String codCategoria) {
         ArrayList<Empresa> listaEmpresas;
         try {
             informacoesApp.out.writeObject("EmpresaFechadaLista");
             String msg = (String) informacoesApp.in.readObject();
             if (msg.equals("ok")) {
                 informacoesApp.out.writeObject(nome);
+                informacoesApp.out.writeObject(codCategoria);
                 listaEmpresas = (ArrayList<Empresa>) informacoesApp.in.readObject();
             } else {
                 listaEmpresas = null;

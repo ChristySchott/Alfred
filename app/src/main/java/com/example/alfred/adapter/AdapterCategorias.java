@@ -1,5 +1,8 @@
 package com.example.alfred.adapter;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +21,7 @@ import modelDominio.Categoria;
 public class AdapterCategorias extends RecyclerView.Adapter<AdapterCategorias.MyViewHolder> {
 
     private List<Categoria> listaCategorias;
+    Bitmap image;
     private AdapterCategorias.CategoriaOnClickListener categoriaOnClickListener;
 
     public AdapterCategorias(List<Categoria> listaCategorias, AdapterCategorias.CategoriaOnClickListener categoriaOnClickListener) {
@@ -38,6 +42,9 @@ public class AdapterCategorias extends RecyclerView.Adapter<AdapterCategorias.My
     @Override
     public void onBindViewHolder(@NonNull final AdapterCategorias.MyViewHolder holder, final int position) {
         Categoria categoria = listaCategorias.get(position);
+        Log.d("categorai", categoria.toString());
+        image = getImage(categoria.getImagemCategoria());
+        holder.imagem.setImageBitmap(image);
         holder.nome.setText(categoria.getNomeCategoria());
 
         if (categoriaOnClickListener != null) {
@@ -70,5 +77,9 @@ public class AdapterCategorias extends RecyclerView.Adapter<AdapterCategorias.My
             imagem = itemView.findViewById(R.id.ivCategoriaImagem);
             nome = itemView.findViewById(R.id.txCategoriaNome);
         }
+    }
+
+    public static Bitmap getImage(byte[] image) {
+        return BitmapFactory.decodeByteArray(image, 0, image.length);
     }
 }
