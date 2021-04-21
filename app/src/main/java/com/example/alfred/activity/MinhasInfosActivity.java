@@ -145,18 +145,29 @@ public class MinhasInfosActivity extends AppCompatActivity {
                 final int codUsuario = informacoesApp.cliente.getCodUsuario();
                 final String emailUsuario = informacoesApp.cliente.getEmailUsuario();
                 final String senhaUsuario = informacoesApp.cliente.getSenhaUsuario();
-                final String bairroUsuario = informacoesApp.cliente.getBairroUsuario();
-                final String cidadeUsuario = informacoesApp.cliente.getCidadeUsuario().getNomeCidade();
-                final String estadoUsuario = informacoesApp.cliente.getEstadoUsuario().getNomeEstado();
-                final String complementoUsuario = informacoesApp.cliente.getComplementoUsuario();
-
                 final int codCliente = informacoesApp.cliente.getCodCliente();
-                final String nomeCliente = informacoesApp.cliente.getNomeCliente();
-                final String sobrenomeCliente = informacoesApp.cliente.getSobrenomeCliente();
-                final String dataNascimentoClienteString = informacoesApp.cliente.getDataNascimentoClienteString();
-                final String telefoneCliente = String.valueOf(informacoesApp.cliente.getTelefoneCliente());
 
+                if (informacoesApp.cliente.getNomeCliente() != null &&  !informacoesApp.cliente.getNomeCliente().equals("")) {
+                    final String bairroUsuario = informacoesApp.cliente.getBairroUsuario();
+                    final String cidadeUsuario = informacoesApp.cliente.getCidadeUsuario().getNomeCidade();
+                    final String estadoUsuario = informacoesApp.cliente.getEstadoUsuario().getNomeEstado();
+                    final String complementoUsuario = informacoesApp.cliente.getComplementoUsuario();
 
+                    final String nomeCliente = informacoesApp.cliente.getNomeCliente();
+                    final String sobrenomeCliente = informacoesApp.cliente.getSobrenomeCliente();
+                    final String dataNascimentoClienteString = informacoesApp.cliente.getDataNascimentoClienteString();
+                    final String telefoneCliente = String.valueOf(informacoesApp.cliente.getTelefoneCliente());
+
+                    txMinhasInfosBairro.setText(bairroUsuario);
+                    txMinhasInfosNome.setText(cidadeUsuario);
+                    txMinhasInfosNome.setText(estadoUsuario);
+                    txMinhasInfosNome.setText(telefoneCliente);
+                    txMinhasInfosNome.setText(complementoUsuario);
+                    txMinhasInfosNome.setText(nomeCliente);
+                    txMinhasInfosNome.setText(sobrenomeCliente);
+                    txMinhasInfosNome.setText(dataNascimentoClienteString);
+                    txMinhasInfosNome.setText(telefoneCliente);
+                }
 
                 String nome = txMinhasInfosNome.getText().toString();
                 String sobrenome = txMinhasInfosSobrenome.getText().toString();
@@ -169,34 +180,6 @@ public class MinhasInfosActivity extends AppCompatActivity {
                 String rua = txMinhasInfosRua.getText().toString();
                 String numeroRua = txMinhasInfosNumeroRua.getText().toString();
                 String complemento = txMinhasInfosComplemento.getText().toString();
-
-                if (bairroUsuario != null && !bairroUsuario.equals("")) {
-                    txMinhasInfosBairro.setText(bairroUsuario);
-                }
-                if (cidadeUsuario != null && !cidadeUsuario.equals("")) {
-                    txMinhasInfosNome.setText(cidadeUsuario);
-                }
-                if (estadoUsuario != null && !estadoUsuario.equals("")) {
-                    txMinhasInfosNome.setText(estadoUsuario);
-                }
-                if (telefoneCliente != null && !telefoneCliente.equals("")) {
-                    txMinhasInfosNome.setText(telefoneCliente);
-                }
-                if (complementoUsuario != null && !complementoUsuario.equals("")) {
-                    txMinhasInfosNome.setText(complementoUsuario);
-                }
-                if (nomeCliente != null && !nomeCliente.equals("")) {
-                    txMinhasInfosNome.setText(nomeCliente);
-                }
-                if (sobrenomeCliente != null && !sobrenomeCliente.equals("")) {
-                    txMinhasInfosNome.setText(sobrenomeCliente);
-                }
-                if (dataNascimentoClienteString != null && !dataNascimentoClienteString.equals("")) {
-                    txMinhasInfosNome.setText(dataNascimentoClienteString);
-                }
-                if (telefoneCliente != null && !telefoneCliente.equals("")) {
-                    txMinhasInfosNome.setText(telefoneCliente);
-                }
 
                 if (nome.equals("")) {
                     txMinhasInfosNome.setError("Informe o nome");
@@ -227,8 +210,8 @@ public class MinhasInfosActivity extends AppCompatActivity {
                     txMinhasInfosNumeroRua.setError("Informe o número da rua");
                     txMinhasInfosNumeroRua.requestFocus();
                 } else {
-
-                    usuario = new Usuario(codUsuario, emailUsuario, senhaUsuario, cidadeSelecionada, estadoSelecionado, rua, bairro, complemento, Integer.parseInt(numeroRua));
+                    String complementoFinal = complemento.equals("") ? complemento : null;
+                    usuario = new Usuario(codUsuario, emailUsuario, senhaUsuario, cidadeSelecionada, estadoSelecionado, rua, bairro, complementoFinal, Integer.parseInt(numeroRua));
                     cliente = new Cliente(codCliente, nome, sobrenome, new Date(dataNascimento), Integer.parseInt(area), Integer.parseInt(telefone));
 
                     Thread thread = new Thread() {
