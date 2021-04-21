@@ -3,6 +3,7 @@ package com.example.alfred.activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -38,7 +39,7 @@ public class CardapioActivity extends AppCompatActivity {
     Empresa empresaSelecionada;
     AdapterPratos adapterPratos;
     InformacoesApp informacoesApp;
-    TextView txCardapioNome, txCardapioCidade, txCardapioEstado, txCardapioRua;
+    TextView txCardapioNome, txCardapioCidade, txCardapioEstado, txCardapioRua, txValorTotal;
     RatingBar rbCardapioAvaliacao;
     RecyclerView rvPratos;
 
@@ -46,6 +47,7 @@ public class CardapioActivity extends AppCompatActivity {
     TextView txQuantidadePreco, txQuantidade;
     Button btnQuantidadeDiminuir, btnQuantidadeAumentar;
     Integer quantidadeSelecionada = 1;
+    Double valorTotalCarrinho = 0.00;
 
     private List<Prato> listaPratos = new ArrayList<>();
     AdapterPratos.PratoOnClickListener trataCliquePrato = new AdapterPratos.PratoOnClickListener() {
@@ -125,6 +127,7 @@ public class CardapioActivity extends AppCompatActivity {
         txCardapioRua = findViewById(R.id.txCardapioRua);
         rbCardapioAvaliacao = findViewById(R.id.rbCardapioAvaliacao);
         rvPratos = findViewById(R.id.rvPratos);
+        txValorTotal = findViewById(R.id.txValorTotal);
     }
 
     private void confirmarQuantidade(final int posicao) {
@@ -133,6 +136,9 @@ public class CardapioActivity extends AppCompatActivity {
         Prato pratoSelecionado = listaPratos.get(posicao);
         builder.setTitle(pratoSelecionado.getNomePrato());
 
+        quantidadeSelecionada = 1;
+
+        final Double pratoPreco = pratoSelecionado.getValorPrato();
 
         ViewGroup viewGroup = findViewById(R.id.content_cardapio);
         View view = getLayoutInflater().inflate(R.layout.fragment_dialog_quantidade, viewGroup, false);
@@ -168,8 +174,10 @@ public class CardapioActivity extends AppCompatActivity {
         builder.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-
                 // TODO - Construir prato pedido
+                Log.d("qnt", quantidadeSelecionada.toString());
+                valorTotalCarrinho = valorTotalCarrinho + (pratoPreco * quantidadeSelecionada);
+                txValorTotal.setText("R$ " + valorTotalCarrinho.toString());
             }
         });
 

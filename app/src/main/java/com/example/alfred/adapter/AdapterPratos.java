@@ -38,7 +38,7 @@ public class AdapterPratos extends RecyclerView.Adapter<AdapterPratos.MyViewHold
         Prato prato = listaPratos.get(position);
         holder.nome.setText(prato.getNomePrato());
         holder.description.setText(prato.getDescricaoPrato());
-        holder.preco.setText(prato.getValorPratoString());
+        holder.preco.setText("R$ " + prato.getValorPratoString());
 
         if (pratoOnClickListener != null) {
             holder.itemView.setOnClickListener(new View.OnClickListener() {
