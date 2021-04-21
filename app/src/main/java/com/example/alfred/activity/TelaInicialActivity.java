@@ -1,5 +1,6 @@
 package com.example.alfred.activity;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -9,7 +10,11 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -18,15 +23,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.alfred.InformacoesApp;
 import com.example.alfred.R;
 import com.example.alfred.adapter.AdapterCategorias;
+import com.example.alfred.adapter.AdapterEmpresas;
 import com.example.alfred.controller.ConexaoController;
+import com.example.alfred.utils.PaddingItemDecoration;
+import com.google.android.material.appbar.MaterialToolbar;
+import com.google.android.material.navigation.NavigationView;
+import com.miguelcatalan.materialsearchview.MaterialSearchView;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import com.example.alfred.adapter.AdapterEmpresas;
-import com.example.alfred.utils.PaddingItemDecoration;
-import com.google.android.material.appbar.MaterialToolbar;
-import com.miguelcatalan.materialsearchview.MaterialSearchView;
 
 import modelDominio.Categoria;
 import modelDominio.Empresa;
@@ -41,8 +46,6 @@ public class TelaInicialActivity extends AppCompatActivity {
     String filtroEmpresasNome = "", filtroCodCategoria = "";
 
     private List<Empresa> listaEmpresasAbertas = new ArrayList<>();
-    private List<Categoria> listaCategoria = new ArrayList<>();
-
     AdapterEmpresas.EmpresaOnClickListener trataCliqueEmpresaAberta = new AdapterEmpresas.EmpresaOnClickListener() {
         @Override
         public void onClickEmpresa(View view, int position) {
@@ -52,7 +55,7 @@ public class TelaInicialActivity extends AppCompatActivity {
             startActivity(it);
         }
     };
-
+    private List<Categoria> listaCategoria = new ArrayList<>();
     private List<Empresa> listaEmpresasFechadas = new ArrayList<>();
     AdapterEmpresas.EmpresaOnClickListener trataCliqueEmpresaFechada = new AdapterEmpresas.EmpresaOnClickListener() {
         @Override
@@ -136,6 +139,26 @@ public class TelaInicialActivity extends AppCompatActivity {
         toolbar.setTitle(nome + " " + sobrenome);
         setSupportActionBar(toolbar);
 
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                int id = item.getItemId();
+
+                if (id == R.id.nav_meus_pedidos) {
+                    Intent it = new Intent(TelaInicialActivity.this, MeusPedidosActivity.class);
+                    startActivity(it);
+                } else if (id == R.id.nav_minha_senha) {
+                    Intent it = new Intent(TelaInicialActivity.this, MinhaContaActivity.class);
+                    startActivity(it);
+                } else if (id == R.id.nav_minhas_infos) {
+                    Intent it = new Intent(TelaInicialActivity.this, MinhasInfosActivity.class);
+                    startActivity(it);
+                }
+
+                return true;
+            }
+        });
         //Configuração do search view
         searchView.setHint("pesquisar empresas");
         searchView.setOnQueryTextListener(new MaterialSearchView.OnQueryTextListener() {
@@ -291,8 +314,8 @@ public class TelaInicialActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        switch (item.getItemId()){
-            case R.id.menuSair :
+        switch (item.getItemId()) {
+            case R.id.menuSair:
                 deslogarUsuario();
                 break;
         }
