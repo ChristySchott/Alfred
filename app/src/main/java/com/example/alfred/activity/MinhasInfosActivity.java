@@ -1,12 +1,14 @@
 package com.example.alfred.activity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -17,6 +19,7 @@ import com.example.alfred.R;
 import com.example.alfred.controller.ConexaoController;
 import com.example.alfred.utils.Mascara;
 import com.google.android.material.appbar.MaterialToolbar;
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.ArrayList;
@@ -31,6 +34,8 @@ public class MinhasInfosActivity extends AppCompatActivity {
 
     TextInputEditText txMinhasInfosNome, txMinhasInfosSobrenome, txMinhasInfosDataNascimento, txMinhasInfosTelefone, txMinhasInfosArea, txMinhasInfosBairro, txMinhasInfosRua, txMinhasInfosNumeroRua, txMinhasInfosComplemento;
     Button btnMinhaContaCancelar, btnMinhaContaSalvar;
+    ImageView ivMinhasInfosFoto;
+    MaterialButton btnMinhaContaFoto;
     InformacoesApp informacoesApp;
     Spinner spinnerCidade, spinnerEstado;
     Cliente cliente;
@@ -40,6 +45,10 @@ public class MinhasInfosActivity extends AppCompatActivity {
     ArrayList<Estado> listaEstados;
     ArrayList<Cidade> listaCidades;
     ArrayAdapter adapterEstados, adapterCidades;
+    byte[] imagemSelecionada;
+
+    // Resultado esperado na seleção da imagem
+    int SELECIONA_IMAGEM = 200;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +63,6 @@ public class MinhasInfosActivity extends AppCompatActivity {
         toolbar.setTitle("Minhas Infos");
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
 
         // Adiciona máscara no campo data
         txMinhasInfosDataNascimento.addTextChangedListener(Mascara.insert("##/##/####", txMinhasInfosDataNascimento));
@@ -127,6 +135,13 @@ public class MinhasInfosActivity extends AppCompatActivity {
             }
         };
         spinnerCidade.setOnItemSelectedListener(escolheCidade);
+
+        btnMinhaContaFoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selecionarImagem();
+            }
+        });
 
 
         btnMinhaContaCancelar.setOnClickListener(new View.OnClickListener() {
@@ -261,9 +276,35 @@ public class MinhasInfosActivity extends AppCompatActivity {
         txMinhasInfosComplemento = findViewById(R.id.txMinhasInfosComplemento);
         btnMinhaContaCancelar = findViewById(R.id.btnMinhasInfosCancelar);
         btnMinhaContaSalvar = findViewById(R.id.btnMinhasInfosSalvar);
+        btnMinhaContaFoto = findViewById(R.id.btnMinhasInfosFoto);
         spinnerCidade = findViewById(R.id.spinner_cidades);
         spinnerEstado = findViewById(R.id.spinner_estados);
+        ivMinhasInfosFoto = findViewById(R.id.ivMinhasInfosFoto);
     }
+
+    void selecionarImagem() {
+
+        Intent i = new Intent();
+        i.setType("image/*");
+        i.setAction(Intent.ACTION_GET_CONTENT);
+
+        startActivityForResult(Intent.createChooser(i, "Seleciona Foto"), SELECIONA_IMAGEM);
+    }
+
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (resultCode == RESULT_OK) {
+            if (requestCode == SELECIONA_IMAGEM) {
+                Uri selectedImageUri = data.getData();
+                if (null != selectedImageUri) {
+                    // TODO - Salvar imagem em algum estado local
+                    ivMinhasInfosFoto.setImageURI(selectedImageUri);
+                }
+            }
+        }
+    }
+
 
     // Sobrescrevemos a função ao clicar na seta para retornar
     @Override

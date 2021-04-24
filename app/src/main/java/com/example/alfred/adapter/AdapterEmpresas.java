@@ -39,6 +39,7 @@ public class AdapterEmpresas extends RecyclerView.Adapter<AdapterEmpresas.MyView
     @Override
     public void onBindViewHolder(@NonNull final MyViewHolder holder, final int position) {
         Empresa empresa = listaEmpresas.get(position);
+
         holder.nome.setText(empresa.getNomeEmpresa());
         holder.avaliacao.setNumStars(empresa.getAvaliacaoEmpresa().getNotaAvaliacao());
         holder.categoria.setText(empresa.getCategoriaEmpresa().getNomeCategoria());

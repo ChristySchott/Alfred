@@ -12,6 +12,7 @@ import com.example.alfred.InformacoesApp;
 import com.example.alfred.R;
 import com.example.alfred.controller.ConexaoController;
 import com.google.android.material.appbar.MaterialToolbar;
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 
 import modelDominio.Usuario;
@@ -19,7 +20,7 @@ import modelDominio.Usuario;
 public class MinhaContaActivity extends AppCompatActivity {
 
     TextInputEditText txSenhaAtual, txNovaSenha, txConfirmarNovaSenha;
-    Button btnMinhaContaCancelar, btnMinhaContaSalvar;
+    Button btnMinhaContaCancelar, btnMinhaContaSalvar    ;
     InformacoesApp informacoesApp;
 
     Usuario usuario;

@@ -35,9 +35,31 @@
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:id="@+id/ivMinhasInfosFoto"
+                    android:layout_width="130dp"
+                    android:layout_height="130dp"
+                    android:layout_below="@id/ivMinhasInfosFoto"
+                    android:translationX="20dp"
                     android:src="@drawable/ic_profile" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnMinhasInfosFoto"
+                    android:background="@color/colorMoney"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="45dp"
+                    android:translationX="-40dp"
+                    app:icon="@drawable/ic_camera"
+                    app:iconSize="24dp"
+                    app:iconPadding="0dp"
+                    android:insetLeft="0dp"
+                    android:insetTop="0dp"
+                    android:insetRight="0dp"
+                    android:insetBottom="0dp"
+                    style="@style/Widget.MaterialComponents.Button.Icon"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
+                    app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MyApp.Button.Circle"
+                    />
 
             </LinearLayout>
 
