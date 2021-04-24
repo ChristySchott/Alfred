@@ -1,7 +1,5 @@
 package com.example.alfred.controller;
 
-import android.util.Log;
-
 import com.example.alfred.InformacoesApp;
 
 import java.io.IOException;
@@ -15,9 +13,10 @@ import modelDominio.Categoria;
 import modelDominio.Cidade;
 import modelDominio.Cliente;
 import modelDominio.Empresa;
-import modelDominio.Endereco;
 import modelDominio.Estado;
+import modelDominio.Pedido;
 import modelDominio.Prato;
+import modelDominio.PratoPedido;
 import modelDominio.Usuario;
 
 public class ConexaoController {
@@ -62,34 +61,6 @@ public class ConexaoController {
         }
     }
 
-    public Boolean avaliacaoAlterar(Avaliacao avaliacao) {
-        String msg = "";
-        try {
-            informacoesApp.out.writeObject("AvaliacaoAlterar");
-            msg = (String) informacoesApp.in.readObject();
-            informacoesApp.out.writeObject(avaliacao);
-            msg = (String) informacoesApp.in.readObject();
-            return msg.equals("ok");
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            return false;
-        }
-    }
-
-    public Boolean avaliacaoExcluir(Avaliacao avaliacao) {
-        String msg = "";
-        try {
-            informacoesApp.out.writeObject("AvaliacaoExcluir");
-            msg = (String) informacoesApp.in.readObject();
-            informacoesApp.out.writeObject(avaliacao);
-            msg = (String) informacoesApp.in.readObject();
-            return msg.equals("ok");
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            return false;
-        }
-    }
-
     public ArrayList<Avaliacao> avaliacaoLista() {
         String msg;
         try {
@@ -103,49 +74,6 @@ public class ConexaoController {
         }
     }
 
-
-    /* CATEGORIA */
-    public Boolean categoriaInserir(Categoria categoria) {
-        String msg = "";
-        try {
-            informacoesApp.out.writeObject("CategoriaInserir");
-            msg = (String) informacoesApp.in.readObject();
-            informacoesApp.out.writeObject(categoria);
-            msg = (String) informacoesApp.in.readObject();
-            return msg.equals("ok");
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            return false;
-        }
-    }
-
-    public Boolean categoriaAlterar(Categoria categoria) {
-        String msg = "";
-        try {
-            informacoesApp.out.writeObject("CategoriaAlterar");
-            msg = (String) informacoesApp.in.readObject();
-            informacoesApp.out.writeObject(categoria);
-            msg = (String) informacoesApp.in.readObject();
-            return msg.equals("ok");
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            return false;
-        }
-    }
-
-    public Boolean categoriaExcluir(Categoria categoria) {
-        String msg = "";
-        try {
-            informacoesApp.out.writeObject("CategoriaExcluir");
-            msg = (String) informacoesApp.in.readObject();
-            informacoesApp.out.writeObject(categoria);
-            msg = (String) informacoesApp.in.readObject();
-            return msg.equals("ok");
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            return false;
-        }
-    }
 
     public ArrayList<Categoria> categoriaLista() {
         ArrayList<Categoria> listaCategoria;
@@ -165,20 +93,100 @@ public class ConexaoController {
         return listaCategoria;
     }
 
-
-    public ArrayList<Categoria> categoriaListaNome(String nome) {
-        String msg;
+    /* PEDIDO */
+    public Boolean pedidoInserir(Pedido pedido) {
+        String msg = "";
         try {
-            informacoesApp.out.writeObject("CategoriaListaNome");
+            informacoesApp.out.writeObject("PedidoInserir");
             msg = (String) informacoesApp.in.readObject();
-            informacoesApp.out.writeObject(nome);
-            ArrayList<Categoria> listaCategoriaNome = (ArrayList<Categoria>) informacoesApp.in.readObject();
-            return listaCategoriaNome;
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            return null;
+            informacoesApp.out.writeObject(pedido);
+            msg = (String) informacoesApp.in.readObject();
+            return msg.equals("ok");
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+            return false;
+        } catch (ClassNotFoundException classe) {
+            classe.printStackTrace();
+            return  false;
         }
     }
+
+    /* PRATO PEDIDO */
+    public Boolean pratoPedidoInserir(PratoPedido pratoPedido) {
+        String msg = "";
+        try {
+            informacoesApp.out.writeObject("PratoPedidoInserir");
+            msg = (String) informacoesApp.in.readObject();
+            informacoesApp.out.writeObject(pratoPedido);
+            msg = (String) informacoesApp.in.readObject();
+            return msg.equals("ok");
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+            return false;
+        } catch (ClassNotFoundException classe) {
+            classe.printStackTrace();
+            return  false;
+        }
+    }
+
+    public Boolean pratoPedidoExcluir(PratoPedido pratoPedido) {
+        String msg = "";
+        try {
+            informacoesApp.out.writeObject("PratoPedidoExcluir");
+            msg = (String) informacoesApp.in.readObject();
+            informacoesApp.out.writeObject(pratoPedido);
+            msg = (String) informacoesApp.in.readObject();
+            return msg.equals("ok");
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+            return false;
+        } catch (ClassNotFoundException classe) {
+            classe.printStackTrace();
+            return  false;
+        }
+    }
+
+    public int getCodPedido() {
+        int codPedido;
+        try {
+            informacoesApp.out.writeObject("CodigoPedido");
+            String msg = (String) informacoesApp.in.readObject();
+            if (msg.equals("ok")) {
+                codPedido = (int) informacoesApp.in.readObject();
+            } else {
+                codPedido = 0;
+            }
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+            codPedido = 0;
+        } catch (ClassNotFoundException classe) {
+            classe.printStackTrace();
+            codPedido = 0;
+        }
+        return codPedido;
+    }
+
+    public ArrayList<PratoPedido> pratoPedidoCarrinhoLista(int codCategoria) {
+        ArrayList<PratoPedido> listaPratoPedido;
+        try {
+            informacoesApp.out.writeObject("PratoPedidoCarrinhoLista");
+            String msg = (String) informacoesApp.in.readObject();
+            if (msg.equals("ok")) {
+                informacoesApp.out.writeObject(codCategoria);
+                listaPratoPedido = (ArrayList<PratoPedido>) informacoesApp.in.readObject();
+            } else {
+                listaPratoPedido = null;
+            }
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+            listaPratoPedido = null;
+        } catch (ClassNotFoundException classe) {
+            classe.printStackTrace();
+            listaPratoPedido = null;
+        }
+        return listaPratoPedido;
+    }
+
 
     /* EMPRESA */
     public ArrayList<Empresa> empresasAbertasLista(String nome, String codCategoria) {

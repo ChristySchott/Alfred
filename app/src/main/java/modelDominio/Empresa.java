@@ -96,17 +96,9 @@ public class Empresa extends Usuario implements Serializable {
         this.nomeEmpresa = nomeEmpresa;
     }
 
-//    public Empresa(int codEmpresa) {
-//        this.codEmpresa = codEmpresa;
-//    }
-//
-//    public Empresa(int codUsuario, String nomeUsuario, String senhaUsuario) {
-//        super(codUsuario, senhaUsuario, senhaUsuario);
-//    }
-//
-//    public Empresa(String emailUsuario, String senhaUsuario) {
-//        super(emailUsuario, senhaUsuario);
-//    }
+    public Empresa(int codEmpresa) {
+        this.codEmpresa = codEmpresa;
+    }
 
     public Empresa(String cnpjEmpresa, String emailUsuario) {
         super(emailUsuario);

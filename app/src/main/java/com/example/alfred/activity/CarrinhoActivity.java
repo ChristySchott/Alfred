@@ -31,12 +31,59 @@ public class CarrinhoActivity extends AppCompatActivity {
     RadioButton rbCarrinhoDinheiro, rbCarrinhoCartao;
     TextInputEditText txCarrinhoObservacao;
     RecyclerView rvPratosPedido;
+    PratoPedido meuPratoPedido;
     InformacoesApp informacoesApp;
+    int codPedido = 0;
+    double valorTotal;
+
     private List<PratoPedido> pratosPedido;
+    // TODO - O clique deve ser no botão com ícone
     AdapterCarrinho.ItemCarrinhoOnClickListener trataCliquePratoPedido = new AdapterCarrinho.ItemCarrinhoOnClickListener() {
         @Override
         public void onClickItemCarrinho(View view, int position) {
-            PratoPedido meuPratoPedido = pratosPedido.get(position);
+            meuPratoPedido = pratosPedido.get(position);
+
+            Thread thread = new Thread(new Runnable() {
+                @Override
+                public void run() {
+
+                    ConexaoController ccon = new ConexaoController(informacoesApp);
+                    boolean okPedido = ccon.pratoPedidoExcluir(meuPratoPedido);
+                    if (okPedido) {
+                        pratosPedido = ccon.pratoPedidoCarrinhoLista(codPedido);
+                        if (pratosPedido != null) {
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    adapterCarrinho = new AdapterCarrinho(pratosPedido, trataCliquePratoPedido);
+                                    rvPratosPedido.setLayoutManager(new LinearLayoutManager(informacoesApp));
+                                    rvPratosPedido.setHasFixedSize(true);
+                                    rvPratosPedido.setItemAnimator(new DefaultItemAnimator());
+                                    rvPratosPedido.addItemDecoration(new DividerItemDecoration(informacoesApp, LinearLayout.VERTICAL));
+                                    rvPratosPedido.setAdapter(adapterCarrinho);
+                                }
+                            });
+
+                        } else {
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast.makeText(informacoesApp, "ATENÇÃO: Não foi possível obter a lista de pratos do pedido!", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                        }
+                    } else {
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Toast.makeText(informacoesApp, "ATENÇÃO: Não foi possível excluir o prato!", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }
+
+                }
+            });
+            thread.start();
         }
     };
 
@@ -56,13 +103,19 @@ public class CarrinhoActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        // Recuperar código do pedido e valor total
+        Bundle bundle = getIntent().getExtras();
+        if (bundle != null) {
+            codPedido = (int) bundle.getSerializable("codPedido");
+            valorTotal = (double) bundle.getSerializable("total");
+        }
+
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
 
                 ConexaoController ccon = new ConexaoController(informacoesApp);
-                // TODO - Adicionar método nos controllers - pratosPedidoLista();
-                // pratosPedido = ccon.empresasAbertasLista();
+                pratosPedido = ccon.pratoPedidoCarrinhoLista(codPedido);
                 if (pratosPedido != null) {
                     runOnUiThread(new Runnable() {
                         @Override
@@ -80,7 +133,7 @@ public class CarrinhoActivity extends AppCompatActivity {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            Toast.makeText(informacoesApp, "ATENÇÃO: Não foi possível obter a lista das empresas abertas!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(informacoesApp, "ATENÇÃO: Não foi possível obter a lista de pratos do pedido!", Toast.LENGTH_SHORT).show();
                         }
                     });
                 }
@@ -105,54 +158,5 @@ public class CarrinhoActivity extends AppCompatActivity {
         rvPratosPedido = findViewById(R.id.rvPratosPedido);
         txCarrinhoObservacao = findViewById(R.id.txCarrinhoObservacao);
     }
-
-    // TODO - Construir Alerta
-    /*
-
-   private void confirmarPedido() {
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Selecione um método de pagamento");
-
-        CharSequence[] itens = new CharSequence[]{
-          "Dinheiro", "Máquina cartão"
-        };
-        builder.setSingleChoiceItems(itens, 0, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                metodoPagamento = which;
-            }
-        });
-
-        final EditText editObservacao = new EditText(this);
-        editObservacao.setHint("Digite uma observação");
-        builder.setView( editObservacao );
-
-        builder.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-
-                String observacao = editObservacao.getText().toString();
-                pedidoRecuperado.setMetodoPagamento( metodoPagamento );
-                pedidoRecuperado.setObservacao( observacao );
-                pedidoRecuperado.setStatus("confirmado");
-                pedidoRecuperado.confimar();
-                pedidoRecuperado.remover();
-                pedidoRecuperado = null;
-
-            }
-        });
-        builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-
-            }
-        });
-
-        AlertDialog dialog = builder.create();
-        dialog.show();
-
-    }
-     */
 
 }

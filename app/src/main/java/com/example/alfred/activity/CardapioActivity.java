@@ -3,7 +3,6 @@ package com.example.alfred.activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -32,11 +31,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import modelDominio.Empresa;
+import modelDominio.Pedido;
 import modelDominio.Prato;
+import modelDominio.PratoPedido;
 
 public class CardapioActivity extends AppCompatActivity {
 
     Empresa empresaSelecionada;
+    PratoPedido pratoPedido;
+    Pedido pedido;
+    List<PratoPedido> pratoPedidoLista = new ArrayList<>();
     AdapterPratos adapterPratos;
     InformacoesApp informacoesApp;
     TextView txCardapioNome, txCardapioCidade, txCardapioEstado, txCardapioRua, txValorTotal;
@@ -133,7 +137,7 @@ public class CardapioActivity extends AppCompatActivity {
     private void confirmarQuantidade(final int posicao) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
-        Prato pratoSelecionado = listaPratos.get(posicao);
+        final Prato pratoSelecionado = listaPratos.get(posicao);
         builder.setTitle(pratoSelecionado.getNomePrato());
 
         quantidadeSelecionada = 1;
@@ -174,10 +178,14 @@ public class CardapioActivity extends AppCompatActivity {
         builder.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                // TODO - Construir prato pedido
-                Log.d("qnt", quantidadeSelecionada.toString());
-                valorTotalCarrinho = valorTotalCarrinho + (pratoPreco * quantidadeSelecionada);
-                txValorTotal.setText("R$ " + valorTotalCarrinho.toString());
+                pratoPedido = new PratoPedido(quantidadeSelecionada, pratoSelecionado, pratoSelecionado.getValorPrato());
+                if (pratoPedido != null) {
+                    pratoPedidoLista.add(pratoPedido);
+                    valorTotalCarrinho = valorTotalCarrinho + (pratoPreco * quantidadeSelecionada);
+                    txValorTotal.setText("R$ " + valorTotalCarrinho.toString());
+                } else {
+                    Toast.makeText(CardapioActivity.this, "Erro ao adicionar o prato!", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -203,12 +211,47 @@ public class CardapioActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        switch (item.getItemId()){
-            case R.id.menuPedido :
-                // TODO - Adicionar validação (verificar se usuário tem um prato selecionado no pedido)
+        switch (item.getItemId()) {
+            case R.id.menuPedido:
+                if (valorTotalCarrinho < 1) {
+                    Toast.makeText(CardapioActivity.this, "Ao menos um prato deve ser adicionado ao pedido!", Toast.LENGTH_SHORT).show();
+                } else {
+                    pedido = new Pedido(informacoesApp.cliente, empresaSelecionada);
+                    Thread thread = new Thread() {
+                        @Override
+                        public void run() {
+
+                            ConexaoController ccont = new ConexaoController(informacoesApp);
+
+                            boolean okPedido = ccont.pedidoInserir(pedido);
+
+                            if (okPedido) {
+                                int codPedido = ccont.getCodPedido();
+
+                                for (int x = 0; x < pratoPedidoLista.size(); x++) {
+                                    PratoPedido meuPratoPedido = pratoPedidoLista.get(x);
+                                    pratoPedido = new PratoPedido(meuPratoPedido.getQuantidadePratoPedido(), meuPratoPedido.getPrato(), meuPratoPedido.getValorUnidadePratoPedido(), codPedido);
+                                    ccont.pratoPedidoInserir(pratoPedido);
+                                }
+
+                                Intent it = new Intent(CardapioActivity.this, CarrinhoActivity.class);
+                                it.putExtra("total", valorTotalCarrinho);
+                                it.putExtra("codPedido", codPedido);
+                                startActivity(it);
+                            } else {
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        Toast.makeText(CardapioActivity.this, "Erro ao criar o pedido!", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                            }
+                        }
+                    };
+                    thread.start();
+                }
                 // TODO - Enviar uma lista de PratoPedido para popular adapter no carrino
-                Intent it = new Intent(CardapioActivity.this, CarrinhoActivity.class);
-                startActivity(it);
+
         }
 
         return super.onOptionsItemSelected(item);
