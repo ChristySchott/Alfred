@@ -71,10 +71,8 @@ public class CardapioActivity extends AppCompatActivity {
         // Contexto
         informacoesApp = (InformacoesApp) getApplicationContext();
 
-        // Recuperar empresa selecionada
-        Bundle bundle = getIntent().getExtras();
-        if (bundle != null) {
-            empresaSelecionada = (Empresa) bundle.getSerializable("empresa");
+        if (informacoesApp.empresa != null) {
+            empresaSelecionada = (Empresa) informacoesApp.empresa;
             txCardapioNome.setText(empresaSelecionada.getNomeEmpresa());
             // TODO - Setar essas infos após o join das tabelas
             // txCardapioCidade.setText(empresaSelecionada.getCidadeUsuario().getNomeCidade());

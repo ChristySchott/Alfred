@@ -174,9 +174,6 @@ public class CarrinhoActivity extends AppCompatActivity {
                             });
                         }
 
-                        Intent it = new Intent(CarrinhoActivity.this, CardapioActivity.class);
-                        startActivity(it);
-
                     }
                 });
                 thread.start();

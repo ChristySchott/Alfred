@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="16dp">
+
+            <ImageView
+                android:id="@+id/ivMeusPedidosImagem"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="12dp"/>
+
+            <TextView
+                android:id="@+id/txMeusPedidosNomeRestaurante"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="16dp"
+                android:text="Nome Restaurante"
+                android:textColor="@color/colorPrimaryDark" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:orientation="horizontal"
+                android:gravity="end">
+            <Button
+                android:id="@+id/btnMeusPedidosAprovados"
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:background="@drawable/rounded_button"
+                android:textSize="10sp"
+                android:text="avaliar" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/txMeusPedidosQuantidade"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="16dp"
+                android:text="2x"
+                android:textColor="@color/colorPrimaryDark" />
+
+            <TextView
+                android:id="@+id/txMeusPedidosNomePrato"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="4"
+                android:text="Descrição do Prato" />
+
+            <TextView
+                android:id="@+id/txMeusCarrinhosPrecoPrato"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="16dp"
+                android:text="R$ 0.00"
+                android:textColor="@color/colorMoney" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</LinearLayout>

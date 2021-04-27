@@ -50,8 +50,8 @@ public class TelaInicialActivity extends AppCompatActivity {
         @Override
         public void onClickEmpresa(View view, int position) {
             Empresa minhaEmpresa = listaEmpresasAbertas.get(position);
+            informacoesApp.empresa = minhaEmpresa;
             Intent it = new Intent(TelaInicialActivity.this, CardapioActivity.class);
-            it.putExtra("empresa", minhaEmpresa);
             startActivity(it);
         }
     };
@@ -61,8 +61,8 @@ public class TelaInicialActivity extends AppCompatActivity {
         @Override
         public void onClickEmpresa(View view, int position) {
             Empresa minhaEmpresa = listaEmpresasFechadas.get(position);
+            informacoesApp.empresa = minhaEmpresa;
             Intent it = new Intent(TelaInicialActivity.this, CardapioActivity.class);
-            it.putExtra("empresa", minhaEmpresa);
             startActivity(it);
         }
     };

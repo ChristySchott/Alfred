@@ -3,6 +3,7 @@ package com.example.alfred;
 import android.app.Application;
 
 import modelDominio.Cliente;
+import modelDominio.Empresa;
 import modelDominio.Usuario;
 
 import java.io.ObjectInputStream;
@@ -16,6 +17,7 @@ public class InformacoesApp extends Application {
     public ObjectOutputStream out;
 
     public Cliente cliente;
+    public Empresa empresa;
 
     @Override
     public void onCreate() {
