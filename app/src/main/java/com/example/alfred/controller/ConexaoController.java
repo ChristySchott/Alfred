@@ -111,6 +111,41 @@ public class ConexaoController {
         }
     }
 
+    public Boolean pedidoAlterar(Pedido pedido) {
+        String msg = "";
+        try {
+            informacoesApp.out.writeObject("PedidoAlterar");
+            msg = (String) informacoesApp.in.readObject();
+            informacoesApp.out.writeObject(pedido);
+            msg = (String) informacoesApp.in.readObject();
+            return msg.equals("ok");
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+            return false;
+        } catch (ClassNotFoundException classe) {
+            classe.printStackTrace();
+            return  false;
+        }
+    }
+
+
+    public Boolean pedidoExcluir(int codPedido) {
+        String msg = "";
+        try {
+            informacoesApp.out.writeObject("PedidoExcluir");
+            msg = (String) informacoesApp.in.readObject();
+            informacoesApp.out.writeObject(codPedido);
+            msg = (String) informacoesApp.in.readObject();
+            return msg.equals("ok");
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+            return false;
+        } catch (ClassNotFoundException classe) {
+            classe.printStackTrace();
+            return  false;
+        }
+    }
+
     /* PRATO PEDIDO */
     public Boolean pratoPedidoInserir(PratoPedido pratoPedido) {
         String msg = "";

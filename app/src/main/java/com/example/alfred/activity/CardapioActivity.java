@@ -250,7 +250,6 @@ public class CardapioActivity extends AppCompatActivity {
                     };
                     thread.start();
                 }
-                // TODO - Enviar uma lista de PratoPedido para popular adapter no carrino
 
         }
 

@@ -15,29 +15,31 @@ import java.util.List;
 import modelDominio.PratoPedido;
 
 public class AdapterCarrinho extends RecyclerView.Adapter<AdapterCarrinho.MyViewHolder> {
-    private List<PratoPedido> listaPratosPedido;
-    private AdapterCarrinho.ItemCarrinhoOnClickListener itemCarrinhoOnClickListener;
 
-    public AdapterCarrinho(List<PratoPedido> listaPratosPedido, AdapterCarrinho.ItemCarrinhoOnClickListener itemCarrinhoOnClickListener) {
+    private List<PratoPedido> listaPratosPedido;
+    private ItemCarrinhoOnClickListener itemCarrinhoOnClickListener;
+
+    public AdapterCarrinho(List<PratoPedido> listaPratosPedido, ItemCarrinhoOnClickListener itemCarrinhoOnClickListener) {
         this.listaPratosPedido = listaPratosPedido;
         this.itemCarrinhoOnClickListener = itemCarrinhoOnClickListener;
     }
 
     @NonNull
     @Override
-    public AdapterCarrinho.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View listItem = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.adapter_carrinho, parent, false);
 
         // Passamos o listItem como parâmetro para o MyViewHolder adaptar os dados
-        return new AdapterCarrinho.MyViewHolder(listItem);
+        return new MyViewHolder(listItem);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final AdapterCarrinho.MyViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull final MyViewHolder holder, final int position) {
         PratoPedido pratoPedido = listaPratosPedido.get(position);
-        holder.quantidade.setText(pratoPedido.getQuantidadePratoPedido());
-        holder.nome.setText(pratoPedido.getPrato().getNomePrato());
+
+        holder.quantidade.setText(pratoPedido.getQuantidadePratoPedido() + "x");
+        holder.nome.setText("");
         holder.preco.setText("R$ " + pratoPedido.getValorUnidadePratoPedidoString());
 
         if (itemCarrinhoOnClickListener != null) {

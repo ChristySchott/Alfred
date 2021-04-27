@@ -2,7 +2,6 @@ package com.example.alfred.adapter;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,7 +41,6 @@ public class AdapterCategorias extends RecyclerView.Adapter<AdapterCategorias.My
     @Override
     public void onBindViewHolder(@NonNull final AdapterCategorias.MyViewHolder holder, final int position) {
         Categoria categoria = listaCategorias.get(position);
-        Log.d("categorai", categoria.toString());
         image = getImage(categoria.getImagemCategoria());
         holder.imagem.setImageBitmap(image);
         holder.nome.setText(categoria.getNomeCategoria());
