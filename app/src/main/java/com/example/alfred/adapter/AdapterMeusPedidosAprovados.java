@@ -15,19 +15,21 @@ import java.util.List;
 
 import modelDominio.Pedido;
 
-public class AdapterMeusPedidos extends RecyclerView.Adapter<AdapterMeusPedidos.MyViewHolder> {
+public class AdapterMeusPedidosAprovados extends RecyclerView.Adapter<AdapterMeusPedidosAprovados.MyViewHolder> {
 
-    private List<Pedido> listaPedidos;
+    private List<Pedido> listaPedidosAprovados;
+    private PedidoAprovadoOnClickListener pedidoAprovadoOnClickListener;
 
-    public AdapterMeusPedidos(List<Pedido> listaPedidos) {
-        this.listaPedidos = listaPedidos;
+    public AdapterMeusPedidosAprovados(List<Pedido> listaPedidosAprovados, PedidoAprovadoOnClickListener pedidoAprovadoOnClickListener) {
+        this.listaPedidosAprovados = listaPedidosAprovados;
+        this.pedidoAprovadoOnClickListener = pedidoAprovadoOnClickListener;
     }
 
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View listItem = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.adapter_meus_pedidos, parent, false);
+                .inflate(R.layout.adapter_meus_pedidos_aprovados, parent, false);
 
         // Passamos o listItem como parâmetro para o MyViewHolder adaptar os dados
         return new MyViewHolder(listItem);
@@ -35,7 +37,7 @@ public class AdapterMeusPedidos extends RecyclerView.Adapter<AdapterMeusPedidos.
 
     @Override
     public void onBindViewHolder(@NonNull final MyViewHolder holder, final int position) {
-        Pedido pedido = listaPedidos.get(position);
+        Pedido pedido = listaPedidosAprovados.get(position);
 
         // TODO - BUSCAR PRATO PEDIDO DE ACORDO COM PEDIDO OU RECEBER PRATOPEDIDO AQUI?
         // TODO - ADICIONAR IMAGEMRESTAURANTE
@@ -43,11 +45,20 @@ public class AdapterMeusPedidos extends RecyclerView.Adapter<AdapterMeusPedidos.
         holder.nomeRestaurante.setText(pedido.getEmpresa().getNomeEmpresa());
         holder.preco.setText("R$ " + pedido.getPratoPedido().getValorUnidadePratoPedidoString());
         // holder.nomePrato.setText(pedido.getPratoPedido().getPrato().getNomePrato());
+
+        if (pedidoAprovadoOnClickListener != null) {
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    pedidoAprovadoOnClickListener.onClickPedidoAprovado(holder.itemView, position);
+                }
+            });
+        }
     }
 
     @Override
     public int getItemCount() {
-        return listaPedidos.size();
+        return listaPedidosAprovados.size();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
@@ -61,12 +72,16 @@ public class AdapterMeusPedidos extends RecyclerView.Adapter<AdapterMeusPedidos.
         public MyViewHolder(View itemView) {
             super(itemView);
 
-            quantidade = itemView.findViewById(R.id.txMeusPedidosQuantidade);
-            nomePrato = itemView.findViewById(R.id.txMeusPedidosNomePrato);
-            preco = itemView.findViewById(R.id.txMeusPedidosPrecoPrato);
-            nomeRestaurante = itemView.findViewById(R.id.txMeusPedidosNomeRestaurante);
-            imagemRestaurante = itemView.findViewById(R.id.ivMeusPedidosImagem);
+            quantidade = itemView.findViewById(R.id.txMeusPedidosAprovadosQuantidade);
+            nomePrato = itemView.findViewById(R.id.txMeusPedidosAprovadosNomePrato);
+            preco = itemView.findViewById(R.id.txMeusPedidosAprovadosPrecoPrato);
+            nomeRestaurante = itemView.findViewById(R.id.txMeusPedidosAprovadosNomeRestaurante);
+            imagemRestaurante = itemView.findViewById(R.id.ivMeusPedidosAprovadosImagem);
         }
+    }
+
+    public interface PedidoAprovadoOnClickListener {
+        void onClickPedidoAprovado(View view, int position);
     }
 
 }

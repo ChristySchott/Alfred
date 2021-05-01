@@ -52,7 +52,7 @@
                 android:text="Descrição do Prato" />
 
             <TextView
-                android:id="@+id/txMeusCarrinhosPrecoPrato"
+                android:id="@+id/txMeusPedidosPrecoPrato"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="16dp"

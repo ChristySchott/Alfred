@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:id="@+id/content_meus_pedidos"
     android:padding="24dp">
 
     <ScrollView
@@ -81,6 +82,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/recycler_view_container"
+                android:layout_marginTop="24dp"
                 android:orientation="vertical">
 
                 <TextView
@@ -106,5 +108,7 @@
 
         </LinearLayout>
     </ScrollView>
+
+    <include layout="@layout/fragment_dialog_avaliacao" />
 
 </LinearLayout>

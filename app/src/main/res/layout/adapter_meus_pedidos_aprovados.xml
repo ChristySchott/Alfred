@@ -16,13 +16,13 @@
             android:layout_marginBottom="16dp">
 
             <ImageView
-                android:id="@+id/ivMeusPedidosImagem"
+                android:id="@+id/ivMeusPedidosAprovadosImagem"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="12dp"/>
 
             <TextView
-                android:id="@+id/txMeusPedidosNomeRestaurante"
+                android:id="@+id/txMeusPedidosAprovadosNomeRestaurante"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="16dp"
@@ -37,7 +37,7 @@
                 android:gravity="end">
             <Button
                 android:id="@+id/btnMeusPedidosAprovados"
-                android:layout_width="80dp"
+                android:layout_width="100dp"
                 android:layout_height="30dp"
                 android:background="@drawable/rounded_button"
                 android:textSize="10sp"
@@ -53,7 +53,7 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/txMeusPedidosQuantidade"
+                android:id="@+id/txMeusPedidosAprovadosQuantidade"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="16dp"
@@ -61,14 +61,14 @@
                 android:textColor="@color/colorPrimaryDark" />
 
             <TextView
-                android:id="@+id/txMeusPedidosNomePrato"
+                android:id="@+id/txMeusPedidosAprovadosNomePrato"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="4"
                 android:text="Descrição do Prato" />
 
             <TextView
-                android:id="@+id/txMeusCarrinhosPrecoPrato"
+                android:id="@+id/txMeusPedidosAprovadosPrecoPrato"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="16dp"

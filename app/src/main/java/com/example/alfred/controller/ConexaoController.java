@@ -55,25 +55,14 @@ public class ConexaoController {
             informacoesApp.out.writeObject(avaliacao);
             msg = (String) informacoesApp.in.readObject();
             return msg.equals("ok");
-        } catch (Exception ex) {
-            ex.printStackTrace();
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
             return false;
+        } catch (ClassNotFoundException classe) {
+            classe.printStackTrace();
+            return  false;
         }
     }
-
-    public ArrayList<Avaliacao> avaliacaoLista() {
-        String msg;
-        try {
-            informacoesApp.out.writeObject("AvaliacaoLista");
-            msg = (String) informacoesApp.in.readObject();
-            ArrayList<Avaliacao> listaAvaliacao = (ArrayList<Avaliacao>) informacoesApp.in.readObject();
-            return listaAvaliacao;
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            return null;
-        }
-    }
-
 
     public ArrayList<Categoria> categoriaLista() {
         ArrayList<Categoria> listaCategoria;
@@ -144,6 +133,69 @@ public class ConexaoController {
             classe.printStackTrace();
             return  false;
         }
+    }
+
+    public ArrayList<Pedido> pedidoAnaliseLista(int codCliente) {
+        ArrayList<Pedido> listaPedidoAnalise;
+        try {
+            informacoesApp.out.writeObject("PedidoAnaliseLista");
+            String msg = (String) informacoesApp.in.readObject();
+            if (msg.equals("ok")) {
+                informacoesApp.out.writeObject(codCliente);
+                listaPedidoAnalise = (ArrayList<Pedido>) informacoesApp.in.readObject();
+            } else {
+                listaPedidoAnalise = null;
+            }
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+            listaPedidoAnalise = null;
+        } catch (ClassNotFoundException classe) {
+            classe.printStackTrace();
+            listaPedidoAnalise = null;
+        }
+        return listaPedidoAnalise;
+    }
+
+    public ArrayList<Pedido> pedidoAprovadoLista(int codCliente) {
+        ArrayList<Pedido> listaPedidoAnalise;
+        try {
+            informacoesApp.out.writeObject("PedidoAprovadoLista");
+            String msg = (String) informacoesApp.in.readObject();
+            if (msg.equals("ok")) {
+                informacoesApp.out.writeObject(codCliente);
+                listaPedidoAnalise = (ArrayList<Pedido>) informacoesApp.in.readObject();
+            } else {
+                listaPedidoAnalise = null;
+            }
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+            listaPedidoAnalise = null;
+        } catch (ClassNotFoundException classe) {
+            classe.printStackTrace();
+            listaPedidoAnalise = null;
+        }
+        return listaPedidoAnalise;
+    }
+
+    public ArrayList<Pedido> pedidoReprovadoLista(int codCliente) {
+        ArrayList<Pedido> listaPedidoAnalise;
+        try {
+            informacoesApp.out.writeObject("PedidoReprovadoLista");
+            String msg = (String) informacoesApp.in.readObject();
+            if (msg.equals("ok")) {
+                informacoesApp.out.writeObject(codCliente);
+                listaPedidoAnalise = (ArrayList<Pedido>) informacoesApp.in.readObject();
+            } else {
+                listaPedidoAnalise = null;
+            }
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+            listaPedidoAnalise = null;
+        } catch (ClassNotFoundException classe) {
+            classe.printStackTrace();
+            listaPedidoAnalise = null;
+        }
+        return listaPedidoAnalise;
     }
 
     /* PRATO PEDIDO */

@@ -160,5 +160,7 @@
         </LinearLayout>
 
     </ScrollView>
+
     <include layout="@layout/fragment_dialog_quantidade" />
+
 </LinearLayout>
