@@ -19,6 +19,7 @@
             android:src="@drawable/ic_profiledrawer" />
 
         <TextView
+            android:id="@+id/txNavHeaderNomeUsuario"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="12dp"

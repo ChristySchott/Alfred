@@ -1,20 +1,19 @@
 package com.example.alfred.activity;
 
-import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -44,6 +43,8 @@ public class TelaInicialActivity extends AppCompatActivity {
     RecyclerView rvEmpresasAbertas, rvEmpresasFechadas, rvCategorias;
     MaterialSearchView searchView;
     String filtroEmpresasNome = "", filtroCodCategoria = "";
+    TextView txNavHeaderNomeUsuario;
+    DrawerLayout drawerLayout;
 
     private List<Empresa> listaEmpresasAbertas = new ArrayList<>();
     AdapterEmpresas.EmpresaOnClickListener trataCliqueEmpresaAberta = new AdapterEmpresas.EmpresaOnClickListener() {
@@ -136,10 +137,23 @@ public class TelaInicialActivity extends AppCompatActivity {
         String sobrenome = informacoesApp.cliente.getSobrenomeCliente();
 
         MaterialToolbar toolbar = findViewById(R.id.toolbarMaterial);
+        toolbar.setNavigationIcon(R.drawable.ic_menu);
         toolbar.setTitle(nome + " " + sobrenome);
         setSupportActionBar(toolbar);
 
+
+        drawerLayout = findViewById(R.id.drawer_layout);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                drawerLayout.openDrawer(Gravity.LEFT);
+            }
+        });
+
         NavigationView navigationView = findViewById(R.id.nav_view);
+        View headerView = navigationView.getHeaderView(0);
+        txNavHeaderNomeUsuario = headerView.findViewById(R.id.txNavHeaderNomeUsuario);
+        txNavHeaderNomeUsuario.setText(nome + " " + sobrenome);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -159,6 +173,7 @@ public class TelaInicialActivity extends AppCompatActivity {
                 return true;
             }
         });
+
         //Configuração do search view
         searchView.setHint("pesquisar empresas");
         searchView.setOnQueryTextListener(new MaterialSearchView.OnQueryTextListener() {
