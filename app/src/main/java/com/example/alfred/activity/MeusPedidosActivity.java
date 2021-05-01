@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -39,8 +38,8 @@ public class MeusPedidosActivity extends AppCompatActivity {
     AdapterMeusPedidosAprovados adapterMeusPedidosAprovados;
     Avaliacao avaliacao;
     Empresa empresa;
-    int codCliente, notaAvaliacao = 0;
-    String comentarioAvaliacao = "";
+    int codCliente, notaAvaliacao;
+    String comentarioAvaliacao;
 
     // Componentes do Dialog
     TextView txAvaliarEmpresaComentario;
@@ -60,7 +59,6 @@ public class MeusPedidosActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_meus_pedidos);
-
 
         // Iniciando componentes
         iniciarComponentes();
@@ -173,21 +171,25 @@ public class MeusPedidosActivity extends AppCompatActivity {
 
         builder.setView(view);
 
-        txAvaliarEmpresaComentario = findViewById(R.id.txAvaliarEmpresaComentario);
-        rbAvaliarEmpresaNota = findViewById(R.id.rbAvaliarEmpresa);
+        txAvaliarEmpresaComentario = view.findViewById(R.id.txAvaliarEmpresaComentario);
+        rbAvaliarEmpresaNota = view.findViewById(R.id.rbAvaliarEmpresa);
 
         rbAvaliarEmpresaNota.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
                 notaAvaliacao = Math.round(rating);
-                rbAvaliarEmpresaNota.setNumStars(Math.round(rating));
             }
         });
 
         builder.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                comentarioAvaliacao = txAvaliarEmpresaComentario.getText().toString();
+                if (!txAvaliarEmpresaComentario.getText().toString().equals("")) {
+                    comentarioAvaliacao = txAvaliarEmpresaComentario.getText().toString();
+                } else {
+                    comentarioAvaliacao = "";
+                }
+
                 avaliacao = new Avaliacao(comentarioAvaliacao, notaAvaliacao, informacoesApp.cliente, empresa);
 
                 Thread thread = new Thread() {
