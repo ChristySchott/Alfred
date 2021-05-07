@@ -1,5 +1,7 @@
 package modelDominio;
 
+import android.util.Log;
+
 import java.io.Serializable;
 
 import java.text.SimpleDateFormat;
@@ -17,8 +19,8 @@ public class Cliente extends Usuario implements Serializable {
     private byte[] imagemCliente;
 
 
-    public Cliente(int codCliente, String nomeCliente, String sobrenomeCliente, Date dataNascimentoCliente, int areaCliente, int telefoneCliente, byte[] imagemCliente, int codUsuario, String emailUsuario, Cidade cidadeUsuario, Estado estadoUsuario, String ruaUsuario, String bairroUsuario, String complementoUsuario, int numeroUsuario) {
-        super(codUsuario, emailUsuario, cidadeUsuario, estadoUsuario, ruaUsuario, bairroUsuario, complementoUsuario, numeroUsuario);
+    public Cliente(int codCliente, String nomeCliente, String sobrenomeCliente, Date dataNascimentoCliente, int areaCliente, int telefoneCliente, byte[] imagemCliente, int codUsuario, String emailUsuario, String senhaUsuario, Cidade cidadeUsuario, Estado estadoUsuario, String ruaUsuario, String bairroUsuario, String complementoUsuario, int numeroUsuario) {
+        super(codUsuario, emailUsuario, senhaUsuario, cidadeUsuario, estadoUsuario, ruaUsuario, bairroUsuario, complementoUsuario, numeroUsuario);
         this.codCliente = codCliente;
         this.nomeCliente = nomeCliente;
         this.sobrenomeCliente = sobrenomeCliente;
@@ -29,13 +31,15 @@ public class Cliente extends Usuario implements Serializable {
     }
 
     // TODO - Estamos editando sem imagem, se sobrar tempo editar também a imagemCliente
-    public Cliente(int codCliente, String nomeCliente, String sobrenomeCliente, Date dataNascimentoCliente, int areaCliente, int telefoneCliente) {
+    public Cliente(int codCliente, String nomeCliente, String sobrenomeCliente, Date dataNascimentoCliente, int areaCliente, int telefoneCliente, byte[] imagemCliente, String senhaUsuario, String emailUsuario) {
+        super(emailUsuario, senhaUsuario);
         this.codCliente = codCliente;
         this.nomeCliente = nomeCliente;
         this.sobrenomeCliente = sobrenomeCliente;
         this.dataNascimentoCliente = dataNascimentoCliente;
         this.areaCliente = areaCliente;
         this.telefoneCliente = telefoneCliente;
+        this.imagemCliente = imagemCliente;
     }
 
     public Cliente(String nomeCliente, String sobrenomeCliente, Date dataNascimentoCliente, int areaCliente, int telefoneCliente, byte[] imagemCliente) {
@@ -101,12 +105,20 @@ public class Cliente extends Usuario implements Serializable {
         return areaCliente;
     }
 
+    public String getAreaStringCliente() {
+        return Integer.toString(areaCliente);
+    }
+
     public void setAreaCliente(int areaCliente) {
         this.areaCliente = areaCliente;
     }
 
     public int getTelefoneCliente() {
         return telefoneCliente;
+    }
+
+    public String getTelefoneStringCliente() {
+        return Integer.toString(telefoneCliente);
     }
 
     public void setTelefoneCliente(int telefoneCliente) {

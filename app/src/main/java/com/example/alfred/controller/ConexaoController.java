@@ -1,5 +1,7 @@
 package com.example.alfred.controller;
 
+import android.util.Log;
+
 import com.example.alfred.InformacoesApp;
 
 import java.io.IOException;
@@ -78,7 +80,6 @@ public class ConexaoController {
             ex.printStackTrace();
             listaCategoria = null;
         }
-
         return listaCategoria;
     }
 
@@ -336,7 +337,6 @@ public class ConexaoController {
             ex.printStackTrace();
             clienteSelecionado = null;
         }
-
         return clienteSelecionado;
     }
 
@@ -377,7 +377,7 @@ public class ConexaoController {
 
             if (msg.equals("ok")) {
                 informacoesApp.out.writeObject(cl);
-                return true;
+                return informacoesApp.in.readObject().equals("ok");
             }
 
             return false;
@@ -435,7 +435,7 @@ public class ConexaoController {
 
             if (msg.equals("ok")) {
                 informacoesApp.out.writeObject(usr);
-                return true;
+                return informacoesApp.in.readObject().equals("ok");
             }
 
             return false;

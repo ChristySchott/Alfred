@@ -1,6 +1,10 @@
 package com.example.alfred.activity;
 
+import android.util.Log;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -21,6 +25,7 @@ import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -49,10 +54,15 @@ public class MinhasInfosActivity extends AppCompatActivity {
     // Resultado esperado na seleção da imagem
     int SELECIONA_IMAGEM = 200;
 
+    private static final int REQUEST_GET_SINGLE_FILE = 3;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_minhas_infos);
+
+        // Contexto
+        informacoesApp = (InformacoesApp) getApplicationContext();
 
         // Configuração inicial dos componentes
         iniciarComponentes();
@@ -65,9 +75,6 @@ public class MinhasInfosActivity extends AppCompatActivity {
 
         // Adiciona máscara no campo data
         txMinhasInfosDataNascimento.addTextChangedListener(Mascara.insert("##/##/####", txMinhasInfosDataNascimento));
-
-        // Contexto
-        informacoesApp = (InformacoesApp) getApplicationContext();
 
         Thread t = new Thread() {
             @Override
@@ -161,28 +168,6 @@ public class MinhasInfosActivity extends AppCompatActivity {
                 final String senhaUsuario = informacoesApp.cliente.getSenhaUsuario();
                 final int codCliente = informacoesApp.cliente.getCodCliente();
 
-                if (informacoesApp.cliente.getNomeCliente() != null &&  !informacoesApp.cliente.getNomeCliente().equals("")) {
-                    final String bairroUsuario = informacoesApp.cliente.getBairroUsuario();
-                    final String cidadeUsuario = informacoesApp.cliente.getCidadeUsuario().getNomeCidade();
-                    final String estadoUsuario = informacoesApp.cliente.getEstadoUsuario().getNomeEstado();
-                    final String complementoUsuario = informacoesApp.cliente.getComplementoUsuario();
-
-                    final String nomeCliente = informacoesApp.cliente.getNomeCliente();
-                    final String sobrenomeCliente = informacoesApp.cliente.getSobrenomeCliente();
-                    final String dataNascimentoClienteString = informacoesApp.cliente.getDataNascimentoClienteString();
-                    final String telefoneCliente = String.valueOf(informacoesApp.cliente.getTelefoneCliente());
-
-                    txMinhasInfosBairro.setText(bairroUsuario);
-                    txMinhasInfosNome.setText(cidadeUsuario);
-                    txMinhasInfosNome.setText(estadoUsuario);
-                    txMinhasInfosNome.setText(telefoneCliente);
-                    txMinhasInfosNome.setText(complementoUsuario);
-                    txMinhasInfosNome.setText(nomeCliente);
-                    txMinhasInfosNome.setText(sobrenomeCliente);
-                    txMinhasInfosNome.setText(dataNascimentoClienteString);
-                    txMinhasInfosNome.setText(telefoneCliente);
-                }
-
                 String nome = txMinhasInfosNome.getText().toString();
                 String sobrenome = txMinhasInfosSobrenome.getText().toString();
                 String dataNascimento = txMinhasInfosDataNascimento.getText().toString();
@@ -194,6 +179,11 @@ public class MinhasInfosActivity extends AppCompatActivity {
                 String rua = txMinhasInfosRua.getText().toString();
                 String numeroRua = txMinhasInfosNumeroRua.getText().toString();
                 String complemento = txMinhasInfosComplemento.getText().toString();
+
+                Bitmap bitmap = ((BitmapDrawable) ivMinhasInfosFoto.getDrawable()).getBitmap();
+                ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+                byte[] imagem = stream.toByteArray();
 
                 if (nome.equals("")) {
                     txMinhasInfosNome.setError("Informe o nome");
@@ -224,10 +214,8 @@ public class MinhasInfosActivity extends AppCompatActivity {
                     txMinhasInfosNumeroRua.setError("Informe o número da rua");
                     txMinhasInfosNumeroRua.requestFocus();
                 } else {
-                    String complementoFinal = complemento.equals("") ? complemento : null;
-                    usuario = new Usuario(codUsuario, emailUsuario, senhaUsuario, cidadeSelecionada, estadoSelecionado, rua, bairro, complementoFinal, Integer.parseInt(numeroRua));
-                    cliente = new Cliente(codCliente, nome, sobrenome, new Date(dataNascimento), Integer.parseInt(area), Integer.parseInt(telefone));
-
+                    usuario = new Usuario(codUsuario, emailUsuario, senhaUsuario, cidadeSelecionada, estadoSelecionado, rua, bairro, complemento, Integer.parseInt(numeroRua));
+                    cliente = new Cliente(codCliente, nome, sobrenome, new Date(dataNascimento), Integer.parseInt(area), Integer.parseInt(telefone), imagem, informacoesApp.cliente.getSenhaUsuario(), informacoesApp.cliente.getEmailUsuario());
                     Thread thread = new Thread() {
                         @Override
                         public void run() {
@@ -238,11 +226,25 @@ public class MinhasInfosActivity extends AppCompatActivity {
                             boolean okCliente = ccont.clienteAlterar(cliente);
 
                             if (okUsuario && okCliente) {
-                                informacoesApp.cliente = cliente;
+                                informacoesApp.cliente.setNomeCliente(cliente.getNomeCliente());
+                                informacoesApp.cliente.setSobrenomeCliente(cliente.getSobrenomeCliente());
+                                informacoesApp.cliente.setAreaCliente(cliente.getAreaCliente());
+                                informacoesApp.cliente.setTelefoneCliente(cliente.getTelefoneCliente());
+                                informacoesApp.cliente.setDataNascimentoCliente(cliente.getDataNascimentoCliente());
+                                informacoesApp.cliente.setDataNascimentoCliente(cliente.getDataNascimentoCliente());
+                                informacoesApp.cliente.setImagemCliente(cliente.getImagemCliente());
+
+                                informacoesApp.cliente.setEmailUsuario(usuario.getEmailUsuario());
+                                informacoesApp.cliente.setCidadeUsuario(usuario.getCidadeUsuario());
+                                informacoesApp.cliente.setEstadoUsuario(usuario.getEstadoUsuario());
+                                informacoesApp.cliente.setRuaUsuario(usuario.getRuaUsuario());
+                                informacoesApp.cliente.setBairroUsuario(usuario.getBairroUsuario());
+                                informacoesApp.cliente.setNumeroUsuario(usuario.getNumeroUsuario());
+                                informacoesApp.cliente.setComplementoUsuario(usuario.getComplementoUsuario());
                                 runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {
-                                        Intent it = new Intent(MinhasInfosActivity.this, TelaInicialActivity.class);
+                                        Intent it = new Intent(getApplicationContext(), TelaInicialActivity.class);
                                         startActivity(it);
                                     }
                                 });
@@ -279,6 +281,24 @@ public class MinhasInfosActivity extends AppCompatActivity {
         spinnerCidade = findViewById(R.id.spinner_cidades);
         spinnerEstado = findViewById(R.id.spinner_estados);
         ivMinhasInfosFoto = findViewById(R.id.ivMinhasInfosFoto);
+
+        Cliente cliente = informacoesApp.cliente;
+
+        if (cliente != null) {
+            if (cliente.getImagemCliente() != null) {
+                Bitmap bmp = BitmapFactory.decodeByteArray(cliente.getImagemCliente(), 0, cliente.getImagemCliente().length);
+                ivMinhasInfosFoto.setImageBitmap(bmp);
+            }
+            txMinhasInfosNome.setText(cliente.getNomeCliente());
+            txMinhasInfosSobrenome.setText(cliente.getSobrenomeCliente());
+            txMinhasInfosDataNascimento.setText(cliente.getDataNascimentoClienteString());
+            txMinhasInfosTelefone.setText(cliente.getTelefoneStringCliente());
+            txMinhasInfosArea.setText(cliente.getAreaStringCliente());
+            txMinhasInfosBairro.setText(cliente.getBairroUsuario());
+            txMinhasInfosRua.setText(cliente.getRuaUsuario());
+            txMinhasInfosNumeroRua.setText(cliente.getNumeroUsuarioToString());
+            txMinhasInfosComplemento.setText(cliente.getComplementoUsuario());
+        }
     }
 
     void selecionarImagem() {
@@ -287,14 +307,14 @@ public class MinhasInfosActivity extends AppCompatActivity {
         i.setType("image/*");
         i.setAction(Intent.ACTION_GET_CONTENT);
 
-        startActivityForResult(Intent.createChooser(i, "Seleciona Foto"), SELECIONA_IMAGEM);
+        startActivityForResult(Intent.createChooser(i, "Seleciona Foto"), REQUEST_GET_SINGLE_FILE);
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (resultCode == RESULT_OK) {
-            if (requestCode == SELECIONA_IMAGEM) {
+            if (requestCode == REQUEST_GET_SINGLE_FILE) {
                 Uri selectedImageUri = data.getData();
                 if (null != selectedImageUri) {
                     // TODO - Salvar imagem em algum estado local
