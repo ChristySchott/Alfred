@@ -41,8 +41,10 @@ public class AdapterCategorias extends RecyclerView.Adapter<AdapterCategorias.My
     @Override
     public void onBindViewHolder(@NonNull final AdapterCategorias.MyViewHolder holder, final int position) {
         Categoria categoria = listaCategorias.get(position);
-        image = getImage(categoria.getImagemCategoria());
-        holder.imagem.setImageBitmap(image);
+        if (categoria.getImagemCategoria() != null) {
+            image = getImage(categoria.getImagemCategoria());
+            holder.imagem.setImageBitmap(image);
+        }
         holder.nome.setText(categoria.getNomeCategoria());
 
         if (categoriaOnClickListener != null) {

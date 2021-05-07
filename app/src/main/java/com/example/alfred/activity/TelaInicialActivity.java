@@ -1,12 +1,15 @@
 package com.example.alfred.activity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -44,6 +47,7 @@ public class TelaInicialActivity extends AppCompatActivity {
     MaterialSearchView searchView;
     String filtroEmpresasNome = "", filtroCodCategoria = "";
     TextView txNavHeaderNomeUsuario;
+    ImageView ivNavHeaderFoto;
     DrawerLayout drawerLayout;
 
     private List<Empresa> listaEmpresasAbertas = new ArrayList<>();
@@ -154,6 +158,14 @@ public class TelaInicialActivity extends AppCompatActivity {
         View headerView = navigationView.getHeaderView(0);
         txNavHeaderNomeUsuario = headerView.findViewById(R.id.txNavHeaderNomeUsuario);
         txNavHeaderNomeUsuario.setText(nome + " " + sobrenome);
+        ivNavHeaderFoto = headerView.findViewById(R.id.ivNavHeaderFoto);
+        if (informacoesApp.cliente.getImagemCliente() != null) {
+            Bitmap bmp = BitmapFactory.decodeByteArray(
+                    informacoesApp.cliente.getImagemCliente(),
+                    0, informacoesApp.cliente.getImagemCliente().length
+            );
+            ivNavHeaderFoto.setImageBitmap(bmp);
+        }
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {

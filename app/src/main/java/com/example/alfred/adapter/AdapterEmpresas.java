@@ -1,5 +1,7 @@
 package com.example.alfred.adapter;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.alfred.R;
+import com.example.alfred.utils.RoundedImageView;
 
 import java.util.List;
 
@@ -19,8 +22,8 @@ import modelDominio.Empresa;
 public class AdapterEmpresas extends RecyclerView.Adapter<AdapterEmpresas.MyViewHolder> {
 
     private List<Empresa> listaEmpresas;
+    Bitmap image;
     private EmpresaOnClickListener empresaOnClickListener;
-
     public AdapterEmpresas(List<Empresa> listaEmpresas, EmpresaOnClickListener empresaOnClickListener) {
         this.listaEmpresas = listaEmpresas;
         this.empresaOnClickListener = empresaOnClickListener;
@@ -39,6 +42,10 @@ public class AdapterEmpresas extends RecyclerView.Adapter<AdapterEmpresas.MyView
     @Override
     public void onBindViewHolder(@NonNull final MyViewHolder holder, final int position) {
         Empresa empresa = listaEmpresas.get(position);
+        if (empresa.getImagemEmpresa() != null) {
+            image = getImage(empresa.getImagemEmpresa());
+            holder.image.setImageBitmap(image);
+        }
 
         holder.nome.setText(empresa.getNomeEmpresa());
         holder.avaliacao.setNumStars(empresa.getAvaliacaoEmpresa().getNotaAvaliacao());
@@ -66,7 +73,7 @@ public class AdapterEmpresas extends RecyclerView.Adapter<AdapterEmpresas.MyView
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
-        ImageView image;
+        RoundedImageView image;
         TextView nome;
         RatingBar avaliacao;
         TextView categoria;
@@ -75,11 +82,17 @@ public class AdapterEmpresas extends RecyclerView.Adapter<AdapterEmpresas.MyView
         public MyViewHolder(View itemView) {
             super(itemView);
 
-            image = itemView.findViewById(R.id.ivEmpresaImagem);
+            image = RoundedImageView.class.cast(itemView.findViewById(R.id.ivEmpresaImagem));
+//            image.setImageResource(R.mipmap.ic_launcher);
+//            image = itemView.findViewById(R.id.ivEmpresaImagem);
             nome = itemView.findViewById(R.id.txEmpresaNome);
             avaliacao = itemView.findViewById(R.id.rbEmpresaAvaliacao);
             categoria = itemView.findViewById(R.id.txEmpresaCategoria);
             precoMedio = itemView.findViewById(R.id.txEmpresaPrecoMedio);
         }
+    }
+
+    public static Bitmap getImage(byte[] image) {
+        return BitmapFactory.decodeByteArray(image, 0, image.length);
     }
 }

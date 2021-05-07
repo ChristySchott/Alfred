@@ -2,7 +2,10 @@ package com.example.alfred.activity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -25,6 +28,7 @@ import com.example.alfred.InformacoesApp;
 import com.example.alfred.R;
 import com.example.alfred.adapter.AdapterPratos;
 import com.example.alfred.controller.ConexaoController;
+import com.example.alfred.utils.RoundedImageView;
 import com.google.android.material.appbar.MaterialToolbar;
 
 import java.util.ArrayList;
@@ -46,6 +50,7 @@ public class CardapioActivity extends AppCompatActivity {
     TextView txCardapioNome, txCardapioCidade, txCardapioEstado, txCardapioRua, txValorTotal;
     RatingBar rbCardapioAvaliacao;
     RecyclerView rvPratos;
+    RoundedImageView ivEmpresaImagem;
 
     // Componentes do Dialog
     TextView txQuantidadePreco, txQuantidade;
@@ -74,10 +79,12 @@ public class CardapioActivity extends AppCompatActivity {
         if (informacoesApp.empresa != null) {
             empresaSelecionada = (Empresa) informacoesApp.empresa;
             txCardapioNome.setText(empresaSelecionada.getNomeEmpresa());
-            // TODO - Setar essas infos após o join das tabelas
-            // txCardapioCidade.setText(empresaSelecionada.getCidadeUsuario().getNomeCidade());
-            // txCardapioEstado.setText(empresaSelecionada.getEstadoUsuario().getNomeEstado());
-            // txCardapioRua.setText(empresaSelecionada.getRuaUsuario());
+            if (empresaSelecionada.getImagemEmpresa() != null) {
+                ivEmpresaImagem.setImageBitmap(getImage(empresaSelecionada.getImagemEmpresa()));
+            }
+            txCardapioCidade.setText(empresaSelecionada.getCidadeUsuario().getNomeCidade() + " - ");
+            txCardapioEstado.setText(empresaSelecionada.getEstadoUsuario().getSiglaEstado());
+            txCardapioRua.setText(empresaSelecionada.getRuaUsuario());
             rbCardapioAvaliacao.setNumStars(empresaSelecionada.getAvaliacaoEmpresa().getNotaAvaliacao());
         }
 
@@ -122,6 +129,10 @@ public class CardapioActivity extends AppCompatActivity {
 
     }
 
+    public static Bitmap getImage(byte[] image) {
+        return BitmapFactory.decodeByteArray(image, 0, image.length);
+    }
+
     public void iniciarComponentes() {
         txCardapioNome = findViewById(R.id.txCardapioNome);
         txCardapioCidade = findViewById(R.id.txCardapioCidade);
@@ -130,6 +141,7 @@ public class CardapioActivity extends AppCompatActivity {
         rbCardapioAvaliacao = findViewById(R.id.rbCardapioAvaliacao);
         rvPratos = findViewById(R.id.rvPratos);
         txValorTotal = findViewById(R.id.txValorTotal);
+        ivEmpresaImagem = findViewById(R.id.ivEmpresaImagem);
     }
 
     private void confirmarQuantidade(final int posicao) {

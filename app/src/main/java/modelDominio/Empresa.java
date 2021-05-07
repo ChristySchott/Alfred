@@ -49,7 +49,7 @@ public class Empresa extends Usuario implements Serializable {
     }
 
     // Vamos utilizar esse construtor para listar as empresas no Mobile
-    public Empresa(int codEmpresa, String nomeEmpresa, int codCategoria, int codAvaliacao, double precoMedioEmpresa) {
+    public Empresa(int codEmpresa, String nomeEmpresa, int codCategoria, int codAvaliacao, double precoMedioEmpresa, byte[] imagem) {
         this.codEmpresa = codEmpresa;
         this.nomeEmpresa = nomeEmpresa;
         Categoria categoria = new Categoria(codCategoria);
@@ -57,7 +57,19 @@ public class Empresa extends Usuario implements Serializable {
         Avaliacao avaliacao = new Avaliacao(codAvaliacao);
         this.avaliacaoEmpresa = avaliacao;
         this.precoMedioEmpresa = precoMedioEmpresa;
+        this.imagemEmpresa = imagem;
     }
+
+    public Empresa(int codEmpresa, String nomeEmpresa, Categoria categoriaEmpresa, Avaliacao avaliacaoEmpresa, double precoMedioEmpresa, byte[] imagemEmpresa, Cidade cidadeUsuario, Estado estadoUsuario, String ruaUsuario) {
+        super(cidadeUsuario, estadoUsuario, ruaUsuario);
+        this.codEmpresa = codEmpresa;
+        this.nomeEmpresa = nomeEmpresa;
+        this.categoriaEmpresa = categoriaEmpresa;
+        this.avaliacaoEmpresa = avaliacaoEmpresa;
+        this.precoMedioEmpresa = precoMedioEmpresa;
+        this.imagemEmpresa = imagemEmpresa;
+    }
+
 
     public Empresa(
             int codEmpresa,
