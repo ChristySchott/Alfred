@@ -48,6 +48,8 @@
     <string name="drawer_meus_pedidos">meus pedidos</string>
     <string name="drawer_minhas_infos">minhas infos</string>
     <string name="drawer_minha_senha">minha senha</string>
+    <!--Cardapio-->
+    <string name="toolbar_cardapio">Cardápio</string>
     <!-- Carrinho -->
     <string name="titulo_conteudo_carrinho">Carrinho</string>
     <string name="titulo_header_carrinho">Encerrar Pedido</string>

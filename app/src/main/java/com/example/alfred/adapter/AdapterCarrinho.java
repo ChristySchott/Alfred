@@ -39,7 +39,7 @@ public class AdapterCarrinho extends RecyclerView.Adapter<AdapterCarrinho.MyView
         PratoPedido pratoPedido = listaPratosPedido.get(position);
 
         holder.quantidade.setText(pratoPedido.getQuantidadePratoPedido() + "x");
-        holder.nome.setText("");
+        holder.nome.setText(pratoPedido.getNomePrato());
         holder.preco.setText("R$ " + pratoPedido.getValorUnidadePratoPedidoString());
 
         if (itemCarrinhoOnClickListener != null) {

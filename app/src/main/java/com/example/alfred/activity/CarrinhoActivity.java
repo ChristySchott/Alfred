@@ -2,6 +2,7 @@ package com.example.alfred.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -25,6 +26,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import modelDominio.Pedido;
+import modelDominio.Prato;
 import modelDominio.PratoPedido;
 
 public class CarrinhoActivity extends AppCompatActivity {
@@ -33,62 +35,26 @@ public class CarrinhoActivity extends AppCompatActivity {
     RadioButton rbCarrinhoDinheiro, rbCarrinhoCartao;
     TextInputEditText txCarrinhoObservacao;
     RecyclerView rvPratosPedido;
-    PratoPedido meuPratoPedido;
     Pedido pedido;
     InformacoesApp informacoesApp;
     Button btnCarrinhoConfirmarPedido, btnCarrinhoCancelarPedido;
-    int codPedido = 0, formaPagamento = 0;
+    int formaPagamento = 0;
     String observacao = "";
-    double valorTotal;
 
     private List<PratoPedido> pratosPedido = new ArrayList<>();
+
+
     // TODO - O clique deve ser no botão com ícone
     AdapterCarrinho.ItemCarrinhoOnClickListener trataCliquePratoPedido = new AdapterCarrinho.ItemCarrinhoOnClickListener() {
         @Override
         public void onClickItemCarrinho(View view, int position) {
-            meuPratoPedido = pratosPedido.get(position);
-
-            Thread thread = new Thread(new Runnable() {
-                @Override
-                public void run() {
-
-                    ConexaoController ccon = new ConexaoController(informacoesApp);
-                    boolean okPedido = ccon.pratoPedidoExcluir(meuPratoPedido);
-                    if (okPedido) {
-                        pratosPedido = ccon.pratoPedidoCarrinhoLista(codPedido);
-                        if (pratosPedido != null) {
-                            runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    adapterCarrinho = new AdapterCarrinho(pratosPedido, trataCliquePratoPedido);
-                                    rvPratosPedido.setLayoutManager(new LinearLayoutManager(informacoesApp));
-                                    rvPratosPedido.setHasFixedSize(true);
-                                    rvPratosPedido.setItemAnimator(new DefaultItemAnimator());
-                                    rvPratosPedido.addItemDecoration(new DividerItemDecoration(informacoesApp, LinearLayout.VERTICAL));
-                                    rvPratosPedido.setAdapter(adapterCarrinho);
-                                }
-                            });
-
-                        } else {
-                            runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    Toast.makeText(informacoesApp, "ATENÇÃO: Não foi possível obter a lista de pratos do pedido!", Toast.LENGTH_SHORT).show();
-                                }
-                            });
-                        }
-                    } else {
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                Toast.makeText(informacoesApp, "ATENÇÃO: Não foi possível excluir o prato!", Toast.LENGTH_SHORT).show();
-                            }
-                        });
-                    }
-
-                }
-            });
-            thread.start();
+            pratosPedido.remove(pratosPedido.get(position));
+            adapterCarrinho = new AdapterCarrinho(pratosPedido, trataCliquePratoPedido);
+            rvPratosPedido.setLayoutManager(new LinearLayoutManager(informacoesApp));
+            rvPratosPedido.setHasFixedSize(true);
+            rvPratosPedido.setItemAnimator(new DefaultItemAnimator());
+            rvPratosPedido.addItemDecoration(new DividerItemDecoration(informacoesApp, LinearLayout.VERTICAL));
+            rvPratosPedido.setAdapter(adapterCarrinho);
         }
     };
 
@@ -108,11 +74,11 @@ public class CarrinhoActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        // Recuperar código do pedido e valor total
-        Bundle bundle = getIntent().getExtras();
+        // Recuperar pedido e lista de pratoPedido
+        final Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
-            codPedido = (int) bundle.getSerializable("codPedido");
-            valorTotal = (double) bundle.getSerializable("total");
+            pratosPedido = (ArrayList<PratoPedido>) bundle.getSerializable("pratoPedidoLista");
+            pedido = (Pedido) bundle.getSerializable("pedido");
         }
 
         Thread thread = new Thread(new Runnable() {
@@ -121,7 +87,6 @@ public class CarrinhoActivity extends AppCompatActivity {
 
                 ConexaoController ccon = new ConexaoController(informacoesApp);
 
-                pratosPedido = ccon.pratoPedidoCarrinhoLista(codPedido);
                 if (pratosPedido != null) {
                     runOnUiThread(new Runnable() {
                         @Override
@@ -152,31 +117,8 @@ public class CarrinhoActivity extends AppCompatActivity {
         btnCarrinhoCancelarPedido.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Thread thread = new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-
-                        ConexaoController ccon = new ConexaoController(informacoesApp);
-                        boolean okPedido = ccon.pedidoExcluir(codPedido);
-                        if (okPedido) {
-                            runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    Toast.makeText(informacoesApp, "Pedido excluído com sucesso", Toast.LENGTH_SHORT).show();
-                                }
-                            });
-                        } else {
-                            runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    Toast.makeText(informacoesApp, "Não foi possível excluir o pedido", Toast.LENGTH_SHORT).show();
-                                }
-                            });
-                        }
-
-                    }
-                });
-                thread.start();
+                Intent it = new Intent(CarrinhoActivity.this, CardapioActivity.class);
+                startActivity(it);
             }
         });
 
@@ -203,10 +145,19 @@ public class CarrinhoActivity extends AppCompatActivity {
 
                             ConexaoController ccon = new ConexaoController(informacoesApp);
 
-                            pedido = new Pedido(codPedido, 0, observacao, formaPagamento);
 
-                            boolean okPedido = ccon.pedidoAlterar(pedido);
+                            pedido.setObservacaoPedido(observacao);
+                            pedido.setFormaPagamentoPedido(formaPagamento);
+
+                            boolean okPedido = ccon.pedidoInserir(pedido);
+
                             if (okPedido) {
+                                int codPedido = ccon.getCodPedido();
+                                for (int x = 0; x < pratosPedido.size(); x++) {
+                                    PratoPedido meuPratoPedido = pratosPedido.get(x);
+                                    meuPratoPedido.setCodPedido(codPedido);
+                                    ccon.pratoPedidoInserir(meuPratoPedido);
+                                }
                                 runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {
@@ -229,7 +180,6 @@ public class CarrinhoActivity extends AppCompatActivity {
                         }
                     });
                     thread.start();
-
                 }
             }
         });
