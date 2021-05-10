@@ -68,6 +68,10 @@ public class PratoPedido implements Serializable {
         return valorUnidadePratoPedido;
     }
 
+    public String getQuantidadePratoPedidoString() {
+        return Integer.toString(quantidadePratoPedido);
+    }
+
     public void setValorUnidadePratoPedido(double valorUnidadePratoPedido) {
         this.valorUnidadePratoPedido = valorUnidadePratoPedido;
     }

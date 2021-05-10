@@ -275,6 +275,23 @@ public class ConexaoController {
         return listaPratoPedido;
     }
 
+    public ArrayList<PratoPedido> listaPratosPedido(int codPedido) {
+        String msg;
+        try {
+            out.writeObject("ListaPratosPedido");
+            msg = (String) in.readObject();
+
+            if (msg.equals("ok")) {
+                out.writeObject(codPedido);
+                return (ArrayList<PratoPedido>) in.readObject();
+            } else {
+                throw new Exception("Erro ao buscar lista de PratosPedido");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 
     /* EMPRESA */
     public ArrayList<Empresa> empresasAbertasLista(String nome, String codCategoria) {

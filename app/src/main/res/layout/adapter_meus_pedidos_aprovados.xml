@@ -1,83 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
-    <LinearLayout
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="10dp"
+        app:cardElevation="0dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginBottom="16dp">
-
-            <ImageView
-                android:id="@+id/ivMeusPedidosAprovadosImagem"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="12dp"/>
-
-            <TextView
-                android:id="@+id/txMeusPedidosAprovadosNomeRestaurante"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="16dp"
-                android:text="Nome Restaurante"
-                android:textColor="@color/colorPrimaryDark" />
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="2"
                 android:orientation="horizontal"
-                android:gravity="end">
-            <Button
-                android:id="@+id/btnMeusPedidosAprovados"
-                android:layout_width="100dp"
-                android:layout_height="30dp"
-                android:background="@drawable/rounded_button"
-                android:textSize="10sp"
-                android:text="avaliar" />
+                android:layout_marginBottom="16dp"
+                android:gravity="center">
+
+                <com.example.alfred.utils.RoundedImageView
+                    android:id="@+id/ivMeusPedidosAprovadosImagem"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:src="@drawable/ic_profile"
+                    android:layout_marginRight="12dp"/>
+
+                <TextView
+                    android:id="@+id/txMeusPedidosAprovadosNomeRestaurante"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="16dp"
+                    android:text="Nome Restaurante"
+                    android:textColor="@color/colorPrimaryDark" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:orientation="horizontal"
+                    android:gravity="end">
+                    <Button
+                        android:id="@+id/btnMeusPedidosAprovados"
+                        android:layout_width="100dp"
+                        android:layout_height="30dp"
+                        android:background="@drawable/rounded_button"
+                        android:textSize="10sp"
+                        android:text="avaliar" />
+
+                </LinearLayout>
 
             </LinearLayout>
 
+
+    <!--        <LinearLayout-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="match_parent">-->
+
+    <!--            <TextView-->
+    <!--                android:id="@+id/txMeusPedidosAprovadosQuantidade"-->
+    <!--                android:layout_width="wrap_content"-->
+    <!--                android:layout_height="wrap_content"-->
+    <!--                android:layout_marginRight="16dp"-->
+    <!--                android:text="2x"-->
+    <!--                android:textColor="@color/colorPrimaryDark" />-->
+
+    <!--            <TextView-->
+    <!--                android:id="@+id/txMeusPedidosAprovadosNomePrato"-->
+    <!--                android:layout_width="wrap_content"-->
+    <!--                android:layout_height="wrap_content"-->
+    <!--                android:layout_weight="4"-->
+    <!--                android:text="Descrição do Prato" />-->
+
+    <!--            <TextView-->
+    <!--                android:id="@+id/txMeusPedidosAprovadosPrecoPrato"-->
+    <!--                android:layout_width="wrap_content"-->
+    <!--                android:layout_height="wrap_content"-->
+    <!--                android:layout_marginRight="16dp"-->
+    <!--                android:text="R$ 0.00"-->
+    <!--                android:textColor="@color/colorMoney" />-->
+
+    <!--        </LinearLayout>-->
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvPratoPedidoAprovado"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:itemCount="2"
+                tools:listitem="@layout/adapter_prato_pedido" />
+
+
         </LinearLayout>
 
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/txMeusPedidosAprovadosQuantidade"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="16dp"
-                android:text="2x"
-                android:textColor="@color/colorPrimaryDark" />
-
-            <TextView
-                android:id="@+id/txMeusPedidosAprovadosNomePrato"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="4"
-                android:text="Descrição do Prato" />
-
-            <TextView
-                android:id="@+id/txMeusPedidosAprovadosPrecoPrato"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="16dp"
-                android:text="R$ 0.00"
-                android:textColor="@color/colorMoney" />
-
-        </LinearLayout>
-
-
-    </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
 </LinearLayout>

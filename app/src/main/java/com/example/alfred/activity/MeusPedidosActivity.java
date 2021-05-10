@@ -81,6 +81,27 @@ public class MeusPedidosActivity extends AppCompatActivity {
                 ConexaoController ccon = new ConexaoController(informacoesApp);
 
                 pedidosAnalise = ccon.pedidoAnaliseLista(codCliente);
+//                if (pedidosAnalise != null) {
+//                    runOnUiThread(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            adapterMeusPedidos = new AdapterMeusPedidos(pedidosAnalise);
+//                            rvEmAnalise.setLayoutManager(new LinearLayoutManager(informacoesApp));
+//                            rvEmAnalise.setHasFixedSize(true);
+//                            rvEmAnalise.setItemAnimator(new DefaultItemAnimator());
+//                            rvEmAnalise.addItemDecoration(new DividerItemDecoration(informacoesApp, LinearLayout.VERTICAL));
+//                            rvEmAnalise.setAdapter(adapterMeusPedidos);
+//                        }
+//                    });
+//                } else {
+//                    runOnUiThread(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            Toast.makeText(informacoesApp, "ATENÇÃO: Não foi possível listar os pedidos em análise!", Toast.LENGTH_SHORT).show();
+//                        }
+//                    });
+//                }
+
                 if (pedidosAnalise != null) {
                     runOnUiThread(new Runnable() {
                         @Override
@@ -97,12 +118,14 @@ public class MeusPedidosActivity extends AppCompatActivity {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            Toast.makeText(informacoesApp, "ATENÇÃO: Não foi possível listar os pedidos em análise!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(informacoesApp, "ATENÇÃO: Não foi possível listar os pedidos aprovados!", Toast.LENGTH_SHORT).show();
                         }
                     });
                 }
 
                 pedidosAprovados = ccon.pedidoAprovadoLista(codCliente);
+                System.out.println("pedidosAprovados");
+                System.out.println(pedidosAprovados);
                 if (pedidosAprovados != null) {
                     runOnUiThread(new Runnable() {
                         @Override
@@ -131,7 +154,7 @@ public class MeusPedidosActivity extends AppCompatActivity {
                         public void run() {
                             adapterMeusPedidos = new AdapterMeusPedidos(pedidosReprovados);
                             rvNegado.setLayoutManager(new LinearLayoutManager(informacoesApp));
-                            rvNegado.setHasFixedSize(true);
+//                            rvNegado.setHasFixedSize(true);
                             rvNegado.setItemAnimator(new DefaultItemAnimator());
                             rvNegado.addItemDecoration(new DividerItemDecoration(informacoesApp, LinearLayout.VERTICAL));
                             rvNegado.setAdapter(adapterMeusPedidos);

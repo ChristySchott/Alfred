@@ -1,6 +1,7 @@
 package modelDominio;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class Pedido implements Serializable {
     private static final long serialVersionUID = 123456789L;
@@ -10,8 +11,8 @@ public class Pedido implements Serializable {
     private int formaPagamentoPedido; // 0 - Dinheiro 1 - Cartão
     private Cliente cliente;
     private Empresa empresa;
-    private PratoPedido pratoPedido;
     private double valorTotal;
+    private ArrayList<PratoPedido> listaPratosPedido;
 
     public Pedido(int codPedido, int statusPedido, String observacaoPedido, int formaPagamentoPedido, Cliente cliente, Empresa empresa) {
         this.codPedido = codPedido;
@@ -29,17 +30,6 @@ public class Pedido implements Serializable {
         this.formaPagamentoPedido = formaPagamentoPedido;
         this.cliente = cliente;
         this.valorTotal = valorTotal;
-    }
-
-    public Pedido(int codPedido, int statusPedido, String observacaoPedido, int formaPagamentoPedido, Cliente cliente, double valorTotal, Empresa empresa, PratoPedido pratoPedido) {
-        this.codPedido = codPedido;
-        this.statusPedido = statusPedido;
-        this.observacaoPedido = observacaoPedido;
-        this.formaPagamentoPedido = formaPagamentoPedido;
-        this.cliente = cliente;
-        this.valorTotal = valorTotal;
-        this.empresa = empresa;
-        this.pratoPedido = pratoPedido;
     }
 
     public Pedido(int codPedido, int statusPedido, String observacaoPedido, int formaPagamentoPedido, int codCliente, int codEmpresa) {
@@ -66,11 +56,24 @@ public class Pedido implements Serializable {
 //        this.empresa = minhaEmpresa;
 //    }
 
+    public Pedido(int codPedido, Empresa empresa, ArrayList<PratoPedido> listaPratosPedido) {
+        this.codPedido = codPedido;
+        this.empresa = empresa;
+        this.listaPratosPedido = listaPratosPedido;
+    }
+
     public Pedido (Cliente cliente, Empresa empresa) {
         this.cliente = cliente;
         this.empresa = empresa;
     }
 
+    public ArrayList<PratoPedido> getListaPratosPedido() {
+        return listaPratosPedido;
+    }
+
+    public void setListaPratosPedido(ArrayList<PratoPedido> listaPratosPedido) {
+        this.listaPratosPedido = listaPratosPedido;
+    }
 
     public int getCodPedido() {
         return codPedido;
@@ -126,14 +129,6 @@ public class Pedido implements Serializable {
 
     public void setValorTotal(double valorTotal) {
         this.valorTotal = valorTotal;
-    }
-
-    public PratoPedido getPratoPedido() {
-        return pratoPedido;
-    }
-
-    public void setPratoPedido(PratoPedido pratoPedido) {
-        this.pratoPedido = pratoPedido;
     }
 
     @Override

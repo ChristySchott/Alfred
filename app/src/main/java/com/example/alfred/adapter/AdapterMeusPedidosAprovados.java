@@ -1,12 +1,20 @@
 package com.example.alfred.adapter;
 
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.alfred.R;
@@ -19,6 +27,8 @@ public class AdapterMeusPedidosAprovados extends RecyclerView.Adapter<AdapterMeu
 
     private List<Pedido> listaPedidosAprovados;
     private PedidoAprovadoOnClickListener pedidoAprovadoOnClickListener;
+    private Context contexto;
+    AdapterPratoPedido adapterPratoPedido;
 
     public AdapterMeusPedidosAprovados(List<Pedido> listaPedidosAprovados, PedidoAprovadoOnClickListener pedidoAprovadoOnClickListener) {
         this.listaPedidosAprovados = listaPedidosAprovados;
@@ -30,7 +40,7 @@ public class AdapterMeusPedidosAprovados extends RecyclerView.Adapter<AdapterMeu
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View listItem = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.adapter_meus_pedidos_aprovados, parent, false);
-
+        this.contexto = parent.getContext();
         // Passamos o listItem como parâmetro para o MyViewHolder adaptar os dados
         return new MyViewHolder(listItem);
     }
@@ -38,16 +48,24 @@ public class AdapterMeusPedidosAprovados extends RecyclerView.Adapter<AdapterMeu
     @Override
     public void onBindViewHolder(@NonNull final MyViewHolder holder, final int position) {
         Pedido pedido = listaPedidosAprovados.get(position);
+        System.out.println("pedido");
+        System.out.println(pedido.toString());
 
-        // TODO - BUSCAR PRATO PEDIDO DE ACORDO COM PEDIDO OU RECEBER PRATOPEDIDO AQUI?
-        // TODO - ADICIONAR IMAGEMRESTAURANTE
-        holder.quantidade.setText(pedido.getPratoPedido().getQuantidadePratoPedido() + "x");
+        Bitmap imagem = getImage(pedido.getEmpresa().getImagemEmpresa());
+        holder.imagemRestaurante.setImageBitmap(imagem);
         holder.nomeRestaurante.setText(pedido.getEmpresa().getNomeEmpresa());
-        holder.preco.setText("R$ " + pedido.getPratoPedido().getValorUnidadePratoPedidoString());
-        // holder.nomePrato.setText(pedido.getPratoPedido().getPrato().getNomePrato());
+
+        System.out.println("pedido.getListaPratosPedido()");
+        System.out.println(pedido.getListaPratosPedido());
+        adapterPratoPedido = new AdapterPratoPedido(pedido.getListaPratosPedido());
+        holder.rvPratoPedido.setLayoutManager(new LinearLayoutManager(this.contexto));
+//        holder.rvPratoPedido.setHasFixedSize(true);
+        holder.rvPratoPedido.setItemAnimator(new DefaultItemAnimator());
+//        holder.rvPratoPedido.addItemDecoration(new DividerItemDecoration(this.contexto, LinearLayout.VERTICAL));
+        holder.rvPratoPedido.setAdapter(adapterPratoPedido);
 
         if (pedidoAprovadoOnClickListener != null) {
-            holder.itemView.setOnClickListener(new View.OnClickListener() {
+            holder.btnAvaliar.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     pedidoAprovadoOnClickListener.onClickPedidoAprovado(holder.itemView, position);
@@ -58,30 +76,32 @@ public class AdapterMeusPedidosAprovados extends RecyclerView.Adapter<AdapterMeu
 
     @Override
     public int getItemCount() {
-        return listaPedidosAprovados.size();
-    }
-
-    public class MyViewHolder extends RecyclerView.ViewHolder {
-
-        TextView quantidade;
-        TextView nomeRestaurante;
-        TextView nomePrato;
-        TextView preco;
-        ImageView imagemRestaurante;
-
-        public MyViewHolder(View itemView) {
-            super(itemView);
-
-            quantidade = itemView.findViewById(R.id.txMeusPedidosAprovadosQuantidade);
-            nomePrato = itemView.findViewById(R.id.txMeusPedidosAprovadosNomePrato);
-            preco = itemView.findViewById(R.id.txMeusPedidosAprovadosPrecoPrato);
-            nomeRestaurante = itemView.findViewById(R.id.txMeusPedidosAprovadosNomeRestaurante);
-            imagemRestaurante = itemView.findViewById(R.id.ivMeusPedidosAprovadosImagem);
-        }
+        return this.listaPedidosAprovados.size();
     }
 
     public interface PedidoAprovadoOnClickListener {
         void onClickPedidoAprovado(View view, int position);
     }
+
+    public class MyViewHolder extends RecyclerView.ViewHolder {
+
+        TextView nomeRestaurante;
+        ImageView imagemRestaurante;
+        RecyclerView rvPratoPedido;
+        Button btnAvaliar;
+
+        public MyViewHolder(View itemView) {
+            super(itemView);
+            nomeRestaurante = itemView.findViewById(R.id.txMeusPedidosAprovadosNomeRestaurante);
+            imagemRestaurante = itemView.findViewById(R.id.ivMeusPedidosAprovadosImagem);
+            rvPratoPedido = itemView.findViewById(R.id.rvPratoPedidoAprovado);
+            btnAvaliar = itemView.findViewById(R.id.btnMeusPedidosAprovados);
+        }
+    }
+
+    public static Bitmap getImage(byte[] image) {
+        return BitmapFactory.decodeByteArray(image, 0, image.length);
+    }
+
 
 }
