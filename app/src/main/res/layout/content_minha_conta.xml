@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
     android:padding="24dp"
     tools:context="com.example.alfred.activity.MinhaContaActivity"
     tools:showIn="@layout/activity_minha_conta">
@@ -31,7 +32,7 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:hint="@string/tx_senha_atual">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -60,7 +61,7 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:hint="@string/tx_nova_senha">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -88,7 +89,7 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:hint="@string/tx_confirmar_nova_senha">
 
             <com.google.android.material.textfield.TextInputEditText

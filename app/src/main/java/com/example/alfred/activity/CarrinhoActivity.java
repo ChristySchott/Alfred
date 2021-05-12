@@ -10,6 +10,7 @@ import android.widget.RadioButton;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -69,8 +70,7 @@ public class CarrinhoActivity extends AppCompatActivity {
         informacoesApp = (InformacoesApp) getApplicationContext();
 
         // Configuração da Toolbar
-        MaterialToolbar toolbar = findViewById(R.id.toolbarMaterial);
-        toolbar.setTitle("Carrinho");
+        Toolbar toolbar = findViewById(R.id.toolbarMaterial);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 

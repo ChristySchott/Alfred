@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.alfred.InformacoesApp;
 import com.example.alfred.R;
 import com.example.alfred.controller.ConexaoController;
+import com.example.alfred.utils.Criptografia;
 import com.google.android.material.textfield.TextInputEditText;
 
 import modelDominio.Cliente;
@@ -63,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
                 } else {
 
                     if (!email.equals("") && !senha.equals("")) {
-                        cliente = new Cliente(email, senha);
+                        cliente = new Cliente(email, Criptografia.encriptar(senha));
                         Thread thread = new Thread() {
                             @Override
                             public void run() {

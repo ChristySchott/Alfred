@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -90,10 +91,13 @@ public class CardapioActivity extends AppCompatActivity {
         }
 
         // Configuração da Toolbar
-        MaterialToolbar toolbar = findViewById(R.id.toolbarMaterial);
-        toolbar.setTitle("Cardápio");
+        Toolbar toolbar = findViewById(R.id.toolbarMaterial);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        MaterialToolbar toolbar = findViewById(R.id.toolbarMaterial);
+//        toolbar.setTitle("Cardápio");
+//        setSupportActionBar(toolbar);
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
         Thread thread = new Thread(new Runnable() {

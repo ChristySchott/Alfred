@@ -2,10 +2,12 @@ package com.example.alfred.adapter;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -68,12 +70,14 @@ public class AdapterCategorias extends RecyclerView.Adapter<AdapterCategorias.My
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
+        LinearLayout layoutCategoria;
         ImageView imagem;
         TextView nome;
 
         public MyViewHolder(View itemView) {
             super(itemView);
 
+            layoutCategoria = itemView.findViewById(R.id.layoutCategoria);
             imagem = itemView.findViewById(R.id.ivCategoriaImagem);
             nome = itemView.findViewById(R.id.txCategoriaNome);
         }

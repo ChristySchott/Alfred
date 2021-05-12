@@ -16,6 +16,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.example.alfred.InformacoesApp;
 import com.example.alfred.R;
@@ -68,8 +69,7 @@ public class MinhasInfosActivity extends AppCompatActivity {
         iniciarComponentes();
 
         //Configurações Toolbar
-        MaterialToolbar toolbar = findViewById(R.id.toolbarMaterial);
-        toolbar.setTitle("Minhas Infos");
+        Toolbar toolbar = findViewById(R.id.toolbarMaterial);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -179,11 +179,17 @@ public class MinhasInfosActivity extends AppCompatActivity {
                 String rua = txMinhasInfosRua.getText().toString();
                 String numeroRua = txMinhasInfosNumeroRua.getText().toString();
                 String complemento = txMinhasInfosComplemento.getText().toString();
+                byte[] imagem;
 
-                Bitmap bitmap = ((BitmapDrawable) ivMinhasInfosFoto.getDrawable()).getBitmap();
-                ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
-                byte[] imagem = stream.toByteArray();
+                try {
+                    Bitmap bitmap = ((BitmapDrawable) ivMinhasInfosFoto.getDrawable()).getBitmap();
+                    ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                    bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+                    imagem = stream.toByteArray();
+                } catch (Exception e){
+                    imagem = null;
+                }
+
 
                 if (nome.equals("")) {
                     txMinhasInfosNome.setError("Informe o nome");
@@ -283,8 +289,9 @@ public class MinhasInfosActivity extends AppCompatActivity {
         ivMinhasInfosFoto = findViewById(R.id.ivMinhasInfosFoto);
 
         Cliente cliente = informacoesApp.cliente;
+        Log.d("cliente", cliente.toString());
 
-        if (cliente != null) {
+        if (cliente.getNomeCliente() != null) {
             if (cliente.getImagemCliente() != null) {
                 Bitmap bmp = BitmapFactory.decodeByteArray(cliente.getImagemCliente(), 0, cliente.getImagemCliente().length);
                 ivMinhasInfosFoto.setImageBitmap(bmp);

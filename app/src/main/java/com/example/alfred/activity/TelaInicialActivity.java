@@ -203,7 +203,7 @@ public class TelaInicialActivity extends AppCompatActivity {
 
                         ConexaoController ccon = new ConexaoController(informacoesApp);
                         listaEmpresasAbertas = ccon.empresasAbertasLista(filtroEmpresasNome, filtroCodCategoria);
-                        if (listaEmpresasAbertas != null) {
+                        if (listaEmpresasAbertas != null && listaEmpresasAbertas.size() > 0) {
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
@@ -218,7 +218,7 @@ public class TelaInicialActivity extends AppCompatActivity {
                         }
 
                         listaEmpresasFechadas = ccon.empresasFechadasLista(filtroEmpresasNome, filtroCodCategoria);
-                        if (listaEmpresasFechadas != null) {
+                        if (listaEmpresasFechadas != null && listaEmpresasFechadas.size() > 0) {
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {

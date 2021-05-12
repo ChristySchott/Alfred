@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.alfred">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:name=".InformacoesApp"
@@ -13,24 +13,55 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MaterialComponents">
-        <activity android:name="com.example.alfred.activity.MeusPedidosActivity" android:theme="@style/AppTheme.NoActionBar" android:parentActivityName=".activity.TelaInicialActivity"></activity>
-        <activity android:name="com.example.alfred.activity.CardapioActivity" android:theme="@style/AppTheme.NoActionBar" android:parentActivityName=".activity.TelaInicialActivity"/>
         <activity
-            android:name="com.example.alfred.activity.TelaInicialActivity"
+            android:name=".activity.MeusPedidosActivity"
+            android:label="@string/toolbar_meus_pedidos"
+            android:parentActivityName=".activity.TelaInicialActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activity.CardapioActivity"
+            android:label="@string/toolbar_cardapio"
+            android:parentActivityName=".activity.TelaInicialActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.alfred.activity.TelaInicialActivity" />
+        </activity>
+        <activity
+            android:name=".activity.TelaInicialActivity"
             android:label="@string/titulo_activity_menu"
             android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
         </activity>
-        <activity android:name="com.example.alfred.activity.CarrinhoActivity" android:theme="@style/AppTheme.NoActionBar" android:parentActivityName=".activity.CardapioActivity"/>
-        <activity android:name="com.example.alfred.activity.MinhaContaActivity" android:theme="@style/AppTheme.NoActionBar" android:parentActivityName=".activity.TelaInicialActivity"/>
-        <activity android:name="com.example.alfred.activity.MinhasInfosActivity" android:theme="@style/AppTheme.NoActionBar" android:parentActivityName=".activity.TelaInicialActivity" />
-        <activity android:name="com.example.alfred.activity.RecuperarSenhaActivity" android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name="com.example.alfred.activity.CadastroActivity" android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name="com.example.alfred.activity.MainActivity" android:theme="@style/AppTheme.NoActionBar" android:launchMode="singleTop">
+        <activity
+            android:name=".activity.CarrinhoActivity"
+            android:label="@string/toolbar_carrinho"
+            android:parentActivityName=".activity.CardapioActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activity.MinhaContaActivity"
+            android:label="@string/toolbar_alterar_senha"
+            android:parentActivityName=".activity.TelaInicialActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activity.MinhasInfosActivity"
+            android:label="@string/toolbar_minhas_infos"
+            android:parentActivityName=".activity.TelaInicialActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activity.RecuperarSenhaActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activity.CadastroActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activity.MainActivity"
+            android:launchMode="singleTop"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

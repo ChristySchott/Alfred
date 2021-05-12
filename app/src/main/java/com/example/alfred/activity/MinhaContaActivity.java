@@ -7,10 +7,12 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.example.alfred.InformacoesApp;
 import com.example.alfred.R;
 import com.example.alfred.controller.ConexaoController;
+import com.example.alfred.utils.Criptografia;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
@@ -38,8 +40,7 @@ public class MinhaContaActivity extends AppCompatActivity {
         informacoesApp = (InformacoesApp) getApplicationContext();
 
         // Configuração da Toolbar
-        MaterialToolbar toolbar = findViewById(R.id.toolbarMaterial);
-        toolbar.setTitle("Minha Conta");
+        Toolbar toolbar = findViewById(R.id.toolbarMaterial);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -85,6 +86,7 @@ public class MinhaContaActivity extends AppCompatActivity {
                     } else {
 
                         usuario = new Usuario(codUsuarioLogado, emailUsuarioLogado, senhaNova);
+                        informacoesApp.cliente.setSenhaUsuario(Criptografia.encriptar(senhaNova));
 
                         Thread thread = new Thread() {
                             @Override
@@ -92,7 +94,7 @@ public class MinhaContaActivity extends AppCompatActivity {
 
                                 ConexaoController ccont = new ConexaoController(informacoesApp);
 
-                                boolean ok = ccont.usuarioAlterar(usuario);
+                                boolean ok = ccont.usuarioAlterar(informacoesApp.cliente);
 
                                 if (ok) {
                                     runOnUiThread(new Runnable() {

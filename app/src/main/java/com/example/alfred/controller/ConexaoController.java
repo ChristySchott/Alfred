@@ -360,11 +360,15 @@ public class ConexaoController {
     public Boolean recuperarSenha(String emailUsuario) {
         String msg = "";
         try {
-            informacoesApp.out.writeObject("ClienteInserir");
+            informacoesApp.out.writeObject("RecuperarSenha");
             msg = (String) informacoesApp.in.readObject();
-            informacoesApp.out.writeObject(emailUsuario);
-            msg = (String) informacoesApp.in.readObject();
-            return msg.equals("ok");
+            if (msg.equals("ok")) {
+                informacoesApp.out.writeObject(emailUsuario);
+                msg = (String) informacoesApp.in.readObject();
+                return msg.equals("ok");
+            } else {
+                throw new Exception("Erro ao recuperar senha");
+            }
         } catch (Exception ex) {
             ex.printStackTrace();
             return false;

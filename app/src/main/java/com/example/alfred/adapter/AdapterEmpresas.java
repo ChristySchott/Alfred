@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
@@ -42,24 +43,29 @@ public class AdapterEmpresas extends RecyclerView.Adapter<AdapterEmpresas.MyView
     @Override
     public void onBindViewHolder(@NonNull final MyViewHolder holder, final int position) {
         Empresa empresa = listaEmpresas.get(position);
-        if (empresa.getImagemEmpresa() != null) {
-            image = getImage(empresa.getImagemEmpresa());
-            holder.image.setImageBitmap(image);
+        if (empresa.getNomeEmpresa() != null) {
+            if (empresa.getImagemEmpresa() != null) {
+                image = getImage(empresa.getImagemEmpresa());
+                holder.image.setImageBitmap(image);
+            }
+
+            holder.nome.setText(empresa.getNomeEmpresa());
+            holder.avaliacao.setNumStars(empresa.getAvaliacaoEmpresa().getNotaAvaliacao());
+            holder.categoria.setText(empresa.getCategoriaEmpresa().getNomeCategoria());
+            holder.precoMedio.setText("R$ "  + empresa.getPrecoMedioString());
+
+            if (empresaOnClickListener != null) {
+                holder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        empresaOnClickListener.onClickEmpresa(holder.itemView, position);
+                    }
+                });
+            }
+        } else {
+            holder.layoutAdapterEmpresa.removeAllViews();
         }
 
-        holder.nome.setText(empresa.getNomeEmpresa());
-        holder.avaliacao.setNumStars(empresa.getAvaliacaoEmpresa().getNotaAvaliacao());
-        holder.categoria.setText(empresa.getCategoriaEmpresa().getNomeCategoria());
-        holder.precoMedio.setText("R$ "  + empresa.getPrecoMedioString());
-
-        if (empresaOnClickListener != null) {
-            holder.itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    empresaOnClickListener.onClickEmpresa(holder.itemView, position);
-                }
-            });
-        }
     }
 
     @Override
@@ -73,6 +79,7 @@ public class AdapterEmpresas extends RecyclerView.Adapter<AdapterEmpresas.MyView
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
+        LinearLayout layoutAdapterEmpresa;
         RoundedImageView image;
         TextView nome;
         RatingBar avaliacao;
@@ -89,6 +96,7 @@ public class AdapterEmpresas extends RecyclerView.Adapter<AdapterEmpresas.MyView
             avaliacao = itemView.findViewById(R.id.rbEmpresaAvaliacao);
             categoria = itemView.findViewById(R.id.txEmpresaCategoria);
             precoMedio = itemView.findViewById(R.id.txEmpresaPrecoMedio);
+            layoutAdapterEmpresa = itemView.findViewById(R.id.layoutAdapterEmpresa);
         }
     }
 

@@ -22,13 +22,10 @@
     <string name="tx_data_nascimento">Data de nascimento</string>
     <string name="tx_telefone">Celular</string>
     <string name="tx_area">Area</string>
-    <string name="tx_cidade">Cidade</string>
     <string name="tx_bairro">Bairro</string>
-    <string name="tx_estado">Estado</string>
     <string name="tx_rua">Rua</string>
     <string name="tx_numero_rua">Nº</string>
     <string name="tx_complemento">Complemento</string>
-    <string name="tx_pesquisar_restaurantes">pesquisar restaurante</string>
     <string name="tx_observacao">Observação</string>
     <string name="tx_comentario">Comentário</string>
     <string name="tx_senha_atual">Senha atual</string>
@@ -48,11 +45,14 @@
     <string name="drawer_meus_pedidos">meus pedidos</string>
     <string name="drawer_minhas_infos">minhas infos</string>
     <string name="drawer_minha_senha">minha senha</string>
-    <!--Cardapio-->
+    <!--Toolbars-->
     <string name="toolbar_cardapio">Cardápio</string>
+    <string name="toolbar_meus_pedidos">Meus Pedidos</string>
+    <string name="toolbar_carrinho">Carrinho</string>
+    <string name="toolbar_alterar_senha">Alterar Senha</string>
+    <string name="toolbar_minhas_infos">Minha Conta</string>
     <!-- Carrinho -->
     <string name="titulo_conteudo_carrinho">Carrinho</string>
-    <string name="titulo_header_carrinho">Encerrar Pedido</string>
     <string name="title_content_paymentMethod">forma de pagamento</string>
     <string name="rb_dinheiro">dinheiro</string>
     <string name="rb_cartao">cartão</string>
@@ -60,15 +60,7 @@
     <string name="btn_cancelar_pedido">Cancelar pedido</string>
     <!-- Helpers -->
     <string name="helper_opcional">Opcional</string>
-    <string name="helper_comentario">Comentário</string>
-    <string name="helper_obrigatorio">Obrigatório</string>
     <string name="titulo_activity_menu">MenuActivity</string>
-    <string name="navigation_drawer_open">Abrir menu de navegação</string>
-    <string name="navigation_drawer_close">Fechar menu de navegação</string>
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
-    <string name="nav_header_desc">Navigation header</string>
-    <string name="action_settings">Settings</string>
     <!-- Recycler Views -->
     <string name="recycler_view_abertos">abertos</string>
     <string name="recycler_view_fechados">fechados</string>

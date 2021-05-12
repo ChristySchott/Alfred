@@ -5,24 +5,24 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.alfred.activity.MinhasInfosActivity"
     tools:showIn="@layout/activity_minhas_infos">
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="24dp">
+        android:paddingHorizontal="24dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingTop="64dp"
             android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="24dp"
+                android:layout_marginVertical="24dp"
                 android:text="@string/titulo_content_infos_pessoais"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="18sp" />
@@ -355,6 +355,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
+                android:layout_marginBottom="24dp"
                 android:layout_gravity="end"
                 android:orientation="horizontal">
 

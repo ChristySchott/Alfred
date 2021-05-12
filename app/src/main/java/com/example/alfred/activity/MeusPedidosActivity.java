@@ -2,6 +2,7 @@ package com.example.alfred.activity;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -69,8 +70,7 @@ public class MeusPedidosActivity extends AppCompatActivity {
         codCliente = informacoesApp.cliente.getCodCliente();
 
         // Configuração da Toolbar
-        MaterialToolbar toolbar = findViewById(R.id.toolbarMaterial);
-        toolbar.setTitle("Meus Pedidos");
+        Toolbar toolbar = findViewById(R.id.toolbarMaterial);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -81,27 +81,6 @@ public class MeusPedidosActivity extends AppCompatActivity {
                 ConexaoController ccon = new ConexaoController(informacoesApp);
 
                 pedidosAnalise = ccon.pedidoAnaliseLista(codCliente);
-//                if (pedidosAnalise != null) {
-//                    runOnUiThread(new Runnable() {
-//                        @Override
-//                        public void run() {
-//                            adapterMeusPedidos = new AdapterMeusPedidos(pedidosAnalise);
-//                            rvEmAnalise.setLayoutManager(new LinearLayoutManager(informacoesApp));
-//                            rvEmAnalise.setHasFixedSize(true);
-//                            rvEmAnalise.setItemAnimator(new DefaultItemAnimator());
-//                            rvEmAnalise.addItemDecoration(new DividerItemDecoration(informacoesApp, LinearLayout.VERTICAL));
-//                            rvEmAnalise.setAdapter(adapterMeusPedidos);
-//                        }
-//                    });
-//                } else {
-//                    runOnUiThread(new Runnable() {
-//                        @Override
-//                        public void run() {
-//                            Toast.makeText(informacoesApp, "ATENÇÃO: Não foi possível listar os pedidos em análise!", Toast.LENGTH_SHORT).show();
-//                        }
-//                    });
-//                }
-
                 if (pedidosAnalise != null) {
                     runOnUiThread(new Runnable() {
                         @Override

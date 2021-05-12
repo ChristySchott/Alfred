@@ -2,7 +2,9 @@ package com.example.alfred.utils;
 
 public class Criptografia {
 
-    public static String encriptar(int chave, String texto) {
+    private static final int chave = 5;
+
+    public static String encriptar(String texto) {
         // Variável que irá guardar o texto crifrado
         StringBuilder textoCifrado = new StringBuilder();
         // Variável com tamanho do texto a ser encriptado
@@ -26,7 +28,7 @@ public class Criptografia {
         return textoCifrado.toString();
     }
 
-    public static String decriptar(int chave, String textoCifrado) {
+    public static String decriptar(String textoCifrado) {
         // Variável que irá guardar o texto decifrado
         StringBuilder texto = new StringBuilder();
         // Variável com tamanho do texto a ser decriptado
