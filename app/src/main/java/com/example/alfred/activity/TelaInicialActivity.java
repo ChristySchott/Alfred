@@ -351,7 +351,11 @@ public class TelaInicialActivity extends AppCompatActivity {
     }
 
     private void deslogarUsuario() {
-        // TODO - Deslogar
+        informacoesApp.cliente = null;
+        informacoesApp.empresa = null;
+
+        Intent it = new Intent(TelaInicialActivity.this, MainActivity.class);
+        startActivity(it);
     }
 
 }
