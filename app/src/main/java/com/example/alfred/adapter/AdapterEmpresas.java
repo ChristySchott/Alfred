@@ -48,9 +48,8 @@ public class AdapterEmpresas extends RecyclerView.Adapter<AdapterEmpresas.MyView
                 image = getImage(empresa.getImagemEmpresa());
                 holder.image.setImageBitmap(image);
             }
-
             holder.nome.setText(empresa.getNomeEmpresa());
-            holder.avaliacao.setNumStars(empresa.getAvaliacaoEmpresa().getNotaAvaliacao());
+            holder.avaliacao.setRating(empresa.getAvaliacaoEmpresa().getNotaAvaliacao());
             holder.categoria.setText(empresa.getCategoriaEmpresa().getNomeCategoria());
             holder.precoMedio.setText("R$ "  + empresa.getPrecoMedioString());
 
