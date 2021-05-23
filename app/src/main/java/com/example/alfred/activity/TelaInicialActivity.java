@@ -320,10 +320,6 @@ public class TelaInicialActivity extends AppCompatActivity {
                             @Override
                             public void run() {
                                 adapterEmpresas = new AdapterEmpresas(listaEmpresasAbertas, trataCliqueEmpresaAberta);
-                                rvEmpresasAbertas.setLayoutManager(new LinearLayoutManager(informacoesApp));
-                                rvEmpresasAbertas.setHasFixedSize(false);
-                                rvEmpresasAbertas.setItemAnimator(new DefaultItemAnimator());
-                                rvEmpresasAbertas.addItemDecoration(new DividerItemDecoration(informacoesApp, LinearLayout.VERTICAL));
                                 rvEmpresasAbertas.setAdapter(adapterEmpresas);
                             }
                         });
@@ -332,10 +328,6 @@ public class TelaInicialActivity extends AppCompatActivity {
                             @Override
                             public void run() {
                                 adapterEmpresas = new AdapterEmpresas(listaEmpresasFechadas, trataCliqueEmpresaFechada);
-                                rvEmpresasFechadas.setLayoutManager(new LinearLayoutManager(informacoesApp));
-                                rvEmpresasFechadas.setHasFixedSize(false);
-                                rvEmpresasFechadas.setItemAnimator(new DefaultItemAnimator());
-                                rvEmpresasFechadas.addItemDecoration(new DividerItemDecoration(informacoesApp, LinearLayout.VERTICAL));
                                 rvEmpresasFechadas.setAdapter(adapterEmpresas);
                             }
                         });

@@ -37,8 +37,13 @@ public class Avaliacao implements Serializable {
         this.notaAvaliacao = notaAvaliacao;
     }
 
-    public Avaliacao(int codAvaliacao) {
-        this.codAvaliacao = codAvaliacao;
+
+//    public Avaliacao(int codAvaliacao) {
+//        this.codAvaliacao = codAvaliacao;
+//    }
+
+    public Avaliacao(int notaAvaliacao) {
+        this.notaAvaliacao = notaAvaliacao;
     }
 
     public int getCodAvaliacao() {
