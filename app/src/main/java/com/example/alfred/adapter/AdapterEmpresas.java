@@ -90,8 +90,6 @@ public class AdapterEmpresas extends RecyclerView.Adapter<AdapterEmpresas.MyView
             super(itemView);
 
             image = RoundedImageView.class.cast(itemView.findViewById(R.id.ivEmpresaImagem));
-//            image.setImageResource(R.mipmap.ic_launcher);
-//            image = itemView.findViewById(R.id.ivEmpresaImagem);
             nome = itemView.findViewById(R.id.txEmpresaNome);
             avaliacao = itemView.findViewById(R.id.rbEmpresaAvaliacao);
             categoria = itemView.findViewById(R.id.txEmpresaCategoria);

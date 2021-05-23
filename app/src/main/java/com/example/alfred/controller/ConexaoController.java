@@ -294,32 +294,10 @@ public class ConexaoController {
     }
 
     /* EMPRESA */
-    public ArrayList<Empresa> empresasAbertasLista(String nome, String codCategoria) {
+    public ArrayList<Empresa> empresasLista(String nome, String codCategoria) {
         ArrayList<Empresa> listaEmpresas;
         try {
-            informacoesApp.out.writeObject("EmpresaAbertaLista");
-            String msg = (String) informacoesApp.in.readObject();
-            if (msg.equals("ok")) {
-                informacoesApp.out.writeObject(nome);
-                informacoesApp.out.writeObject(codCategoria);
-                listaEmpresas = (ArrayList<Empresa>) informacoesApp.in.readObject();
-            } else {
-                listaEmpresas = null;
-            }
-        } catch (IOException ioe) {
-            ioe.printStackTrace();
-            listaEmpresas = null;
-        } catch (ClassNotFoundException classe) {
-            classe.printStackTrace();
-            listaEmpresas = null;
-        }
-        return listaEmpresas;
-    }
-
-    public ArrayList<Empresa> empresasFechadasLista(String nome, String codCategoria) {
-        ArrayList<Empresa> listaEmpresas;
-        try {
-            informacoesApp.out.writeObject("EmpresaFechadaLista");
+            informacoesApp.out.writeObject("EmpresaLista");
             String msg = (String) informacoesApp.in.readObject();
             if (msg.equals("ok")) {
                 informacoesApp.out.writeObject(nome);

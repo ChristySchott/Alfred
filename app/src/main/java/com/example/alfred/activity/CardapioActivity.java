@@ -94,11 +94,6 @@ public class CardapioActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbarMaterial);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-//        MaterialToolbar toolbar = findViewById(R.id.toolbarMaterial);
-//        toolbar.setTitle("Cardápio");
-//        setSupportActionBar(toolbar);
-//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
 
         Thread thread = new Thread(new Runnable() {
             @Override
